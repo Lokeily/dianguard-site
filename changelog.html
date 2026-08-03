@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>版本更新 — 地震哨兵 Dianguard</title>
+  <meta name="description" content="地震哨兵 Dianguard 的版本更新记录。本站下载按钮实时指向最新 Release，你下载到的永远是最新版。">
+  <link rel="icon" type="image/png" href="assets/ic_launcher.png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="page-changelog">
+  <canvas id="wave-canvas"></canvas>
+
+  <nav class="nav">
+    <a class="nav-logo" href="index.html">
+      <img src="assets/ic_launcher.png" alt="地震哨兵">
+      <span>地震哨兵</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html#features">功能</a>
+      <a href="index.html#how">原理</a>
+      <a href="index.html#screens">界面</a>
+      <a href="changelog.html">版本更新</a>
+      <a href="index.html#download">下载</a>
+      <a href="disclaimer.html">免责声明</a>
+      <a class="nav-github" href="https://github.com/Lokeily/Earthquake-Sentinel" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </nav>
+
+  <main class="changelog-section">
+    <div class="container">
+      <header class="changelog-header">
+        <h1>版本更新</h1>
+        <p class="lead">地震哨兵每次发版都会同步到这里。本站下载按钮实时指向列表中的<strong>最新版本</strong>，你拿到的永远是最新版。</p>
+      </header>
+
+      <div id="release-list" class="release-list">
+        <div class="release-loading">正在加载更新记录…</div>
+      </div>
+
+      <div class="changelog-actions">
+        <a class="btn btn-secondary" href="https://github.com/Lokeily/Earthquake-Sentinel/releases" target="_blank" rel="noopener">在 GitHub 查看全部 Release</a>
+        <a class="btn btn-primary" href="index.html#download">前往下载</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <img src="assets/ic_launcher.png" alt="">
+        <div>
+          <strong>地震哨兵 Dianguard</strong>
+          <p>开源 Android 地震预警应用 · 仅供学习与研究使用</p>
+        </div>
+      </div>
+      <div class="footer-links">
+        <a href="https://github.com/Lokeily/Earthquake-Sentinel" target="_blank" rel="noopener">GitHub Release</a>
+        <a href="changelog.html">版本更新</a>
+        <a href="disclaimer.html">免责声明</a>
+        <a href="https://github.com/Lokeily/Dianguard" target="_blank" rel="noopener">源码仓库</a>
+      </div>
+      <p class="footer-copy">© 2026 地震哨兵 Dianguard · 地震预警信息源自中国地震台网中心（经公共聚合转发），请以官方渠道为准。</p>
+    </div>
+  </footer>
+
+  <script type="application/json" id="fallback-releases">
+  [
+    {
+      "tag": "v1.2.0",
+      "date": "2026-08-03",
+      "notes": "最新稳定版。详见 GitHub Release 页面查看完整更新说明。"
+    },
+    {
+      "tag": "v1.1.0",
+      "date": "2026-08-01",
+      "notes": "早期稳定版。详见 GitHub Release 页面查看完整更新说明。"
+    }
+  ]
+  </script>
+  <script src="app.js"></script>
+</body>
+</html>
