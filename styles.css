@@ -1022,16 +1022,31 @@ body::after {
 /* ============================================================
    功能页组件
    ============================================================ */
-.fx-block { padding: 84px 0; position: relative; z-index: 2; }
+.fx-block { padding: 74px 0; position: relative; z-index: 2; }
 .fx-block:nth-child(even) { background: var(--bg-elev); }
-.fx-head { max-width: 780px; margin: 0 auto 46px; text-align: center; }
+.fx-head { max-width: 760px; margin: 0 auto 44px; text-align: center; }
+.fx-eyebrow {
+  display: inline-block;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--blue-dark);
+  padding: 5px 14px;
+  margin-bottom: 16px;
+  border-radius: 999px;
+  background: rgba(10,132,255,0.1);
+  border: 1px solid rgba(10,132,255,0.22);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
 .fx-head h2 {
   font-size: clamp(25px, 3.4vw, 36px);
   font-weight: 800;
   letter-spacing: -0.028em;
   margin: 0 0 14px;
 }
-.fx-head p { color: var(--text-soft); font-size: 16px; margin: 0; }
+.fx-head p { color: var(--text-soft); font-size: 16px; margin: 0; line-height: 1.62; }
 
 .fx-row {
   display: grid;
@@ -1808,4 +1823,154 @@ body::after {
   .cta-inner { padding: 40px 22px; }
   .formula-card { padding: 26px 20px; }
   .arch { padding: 24px 16px; }
+}
+
+/* ============================================================
+   技术原理页 · Apple 风格增强 + 动效填充
+   ============================================================ */
+
+/* 导航 kicker 玻璃质感 */
+.page-hero .kicker { backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
+
+/* 双栏布局：文字 + 可视化，填补横向空白 */
+.hp-dual {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 52px;
+  align-items: center;
+}
+.hp-dual.reverse { direction: rtl; }
+.hp-dual.reverse > * { direction: ltr; }
+.hp-copy { min-width: 0; }
+.hp-copy p { color: var(--text-soft); font-size: 16px; line-height: 1.66; margin: 0 0 26px; }
+.hp-copy p strong { color: var(--text); font-weight: 700; }
+.hp-visual { min-width: 0; }
+.hp-copy .stat-strip { margin-top: 0; }
+
+/* 波纹 demo 画布 + HUD */
+.wave-demo .wd-canvas {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  z-index: 1;
+}
+.wd-hud {
+  position: absolute; top: 16px; left: 18px; right: 18px;
+  display: flex; justify-content: space-between; align-items: center;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 12.5px; color: var(--text-soft);
+  z-index: 5; pointer-events: none;
+}
+.wd-hud .wd-time b { color: #fff; font-weight: 700; }
+.wd-arrive {
+  position: absolute; left: 50%; bottom: 56px;
+  transform: translateX(-50%) translateY(8px);
+  padding: 8px 16px; border-radius: 999px;
+  background: rgba(255,59,48,0.18);
+  border: 1px solid rgba(255,59,48,0.5);
+  color: #ff8a80; font-size: 13px; font-weight: 600; white-space: nowrap;
+  opacity: 0; transition: opacity .35s var(--ease), transform .35s var(--ease);
+  z-index: 6; pointer-events: none;
+}
+.wave-demo.hit .wd-arrive { opacity: 1; transform: translateX(-50%) translateY(0); }
+.wd-you.hit .pin {
+  animation: wd-hit .7s var(--ease);
+}
+@keyframes wd-hit {
+  0%   { box-shadow: 0 0 0 0 rgba(255,59,48,0.78), 0 8px 26px rgba(255,59,48,0.6); }
+  100% { box-shadow: 0 0 0 26px rgba(255,59,48,0), 0 8px 26px rgba(0,122,255,0.5); }
+}
+
+/* 烈度曲线可视化 */
+.intensity-vis {
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  background: linear-gradient(160deg, rgba(255,255,255,0.05), rgba(255,255,255,0.014));
+  padding: 26px 26px 18px;
+}
+.iv-readout { display: flex; align-items: baseline; gap: 12px; margin-bottom: 14px; flex-wrap: wrap; }
+.iv-label { font-size: 13px; color: var(--text-muted); }
+.iv-value {
+  font-size: 34px; font-weight: 800; letter-spacing: -0.03em;
+  background: linear-gradient(120deg, #fff, #9fc7ff);
+  -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+}
+.iv-sub { font-size: 12.5px; color: var(--text-muted); }
+.iv-svg { width: 100%; height: 220px; display: block; }
+.iv-curve { transition: stroke-dashoffset 1.6s var(--ease); }
+.iv-axis { font-size: 12px; color: var(--text-muted); margin-top: 10px; text-align: center; }
+
+/* 架构数据流：光点包 */
+.arch-pkt { fill: #0A84FF; filter: drop-shadow(0 0 5px rgba(10,132,255,0.95)); }
+
+/* 盲区：雷达扫描 */
+.bz-graph { overflow: hidden; border-radius: 50%; }
+.bz-sweep {
+  position: absolute; left: 50%; top: 50%;
+  width: 150%; height: 150%;
+  transform: translate(-50%, -50%);
+  background: conic-gradient(from 0deg, rgba(10,132,255,0.36), rgba(10,132,255,0) 30%);
+  border-radius: 50%;
+  animation: bz-sweep 4.4s linear infinite;
+  pointer-events: none;
+}
+@keyframes bz-sweep { to { transform: translate(-50%, -50%) rotate(360deg); } }
+
+/* 决策流程：行进光点 + 当前步高亮 */
+.flow { position: relative; }
+.flow-pkt {
+  position: absolute; left: 50%; top: 0;
+  width: 12px; height: 12px; margin-left: -6px;
+  border-radius: 50%; background: #fff;
+  box-shadow: 0 0 0 4px rgba(10,132,255,0.25), 0 0 16px rgba(10,132,255,0.95);
+  opacity: 0; transition: opacity .4s;
+  z-index: 3;
+}
+.flow.running .flow-pkt { opacity: 1; }
+.flow-node.active {
+  border-color: var(--blue);
+  background: linear-gradient(160deg, rgba(10,132,255,0.16), rgba(255,255,255,0.014));
+  box-shadow: 0 0 0 1px rgba(10,132,255,0.4), 0 14px 36px rgba(0,122,255,0.18);
+  transform: scale(1.02);
+}
+.flow-node.decide.active {
+  border-color: rgba(255,204,0,0.7);
+  background: linear-gradient(160deg, rgba(255,204,0,0.16), rgba(255,255,255,0.014));
+  box-shadow: 0 0 0 1px rgba(255,204,0,0.5);
+}
+.flow-node.alert.active {
+  border-color: rgba(255,59,48,0.7);
+  background: linear-gradient(160deg, rgba(255,59,48,0.2), rgba(255,255,255,0.014));
+}
+
+/* 时间轴：行进光点 + 滚动联动填充 */
+.tl-fill { animation: none; transition: width 0.12s linear; }
+.tl-runner {
+  position: absolute; top: 50%; left: 0;
+  width: 12px; height: 12px; margin: -6px 0 0 -6px;
+  border-radius: 50%; background: #fff;
+  box-shadow: 0 0 0 4px rgba(10,132,255,0.22), 0 0 14px rgba(10,132,255,0.95);
+  opacity: 0; transition: opacity .4s;
+  z-index: 3;
+}
+.timeline.running .tl-runner { opacity: 1; }
+
+/* ---------- 响应式：技术原理页 ---------- */
+@media (max-width: 960px) {
+  .hp-dual { grid-template-columns: 1fr; gap: 30px; }
+  .hp-dual .hp-copy { order: 1; }
+  .hp-dual .hp-visual { order: 2; }
+  .intensity-vis { padding: 22px 18px 14px; }
+  .iv-svg { height: 200px; }
+  .tl-runner { display: none; }
+}
+@media (max-width: 640px) {
+  .wave-demo { height: 260px; }
+  .wd-hud { font-size: 11.5px; top: 12px; left: 14px; right: 14px; }
+  .wd-arrive { bottom: 50px; font-size: 12px; padding: 6px 12px; }
+  .iv-value { font-size: 28px; }
+  .iv-svg { height: 168px; }
+  .bz-graph { width: 240px; height: 240px; }
+  .bz-graph .z3 { width: 232px; height: 232px; }
+  .bz-graph .z2 { width: 158px; height: 158px; }
+  .bz-graph .z1 { width: 78px; height: 78px; }
 }
