@@ -66,22 +66,132 @@
   setCountdown(12);
   setInterval(() => { cd = cd <= 0 ? 12 : cd - 1; setCountdown(cd); }, 1000);
 
-  /* ---------- 3. 滚动渐显 ---------- */
-  const observer = new IntersectionObserver((entries) => {
+  /* ---------- 3. 滚动进度条 + 导航栏悬浮态 ---------- */
+  const progressBar = document.querySelector('.scroll-progress i');
+  const siteNav = document.getElementById('site-nav');
+  function onScroll() {
+    const doc = document.documentElement;
+    const max = doc.scrollHeight - doc.clientHeight;
+    const scrolled = doc.scrollTop || document.body.scrollTop || window.scrollY || 0;
+    if (progressBar) {
+      const p = max > 0 ? scrolled / max : 0;
+      progressBar.style.width = (Math.min(1, Math.max(0, p)) * 100).toFixed(2) + '%';
+    }
+    if (siteNav) siteNav.classList.toggle('scrolled', scrolled > 12);
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  /* ---------- 4. 移动端导航菜单 ---------- */
+  const navToggle = document.getElementById('nav-toggle');
+  const navLinks = document.getElementById('nav-links');
+  if (navToggle && navLinks) {
+    navToggle.addEventListener('click', () => {
+      const open = navLinks.classList.toggle('open');
+      navToggle.classList.toggle('open', open);
+      navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      navToggle.classList.remove('open');
+      navToggle.setAttribute('aria-expanded', 'false');
+    }));
+  }
+
+  /* ---------- 5. 光标跟随高光 (spotlight) ---------- */
+  const spotEls = document.querySelectorAll(
+    '.feature-card, .source-card, .level-row, .perm-card, .stat-cell, ' +
+    '.arch-node, .tl-step, .flow-node, .callout, .formula-card, .release-card'
+  );
+  spotEls.forEach(el => el.classList.add('spot'));
+  document.addEventListener('mousemove', (e) => {
+    const s = e.target.closest && e.target.closest('.spot');
+    if (s) {
+      const r = s.getBoundingClientRect();
+      s.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+      s.style.setProperty('--my', (e.clientY - r.top) + 'px');
+    }
+  }, { passive: true });
+
+  /* ---------- 6. 数字滚动计数 ---------- */
+  function animateCount(el) {
+    if (el.dataset.counted) return;
+    el.dataset.counted = '1';
+    const target = parseFloat(el.getAttribute('data-count')) || 0;
+    const decimals = parseInt(el.getAttribute('data-decimal') || '0', 10);
+    const suffix = el.getAttribute('data-suffix') || '';
+    const dur = 1500;
+    const start = performance.now();
+    (function tick(now) {
+      const t = Math.min(1, (now - start) / dur);
+      const eased = 1 - Math.pow(1 - t, 3);
+      el.textContent = (target * eased).toFixed(decimals) + suffix;
+      if (t < 1) requestAnimationFrame(tick);
+      else el.textContent = target.toFixed(decimals) + suffix;
+    })(start);
+  }
+
+  /* ---------- 7. 滚动渐显 + 计数触发 ---------- */
+  const REVEAL_SELECTOR = [
+    '.fade-block', '.fx-block', '.fx-row', '.fx-copy', '.fx-visual',
+    '.feature-card', '.source-card', '.level-row', '.perm-card', '.stat-cell',
+    '.stat-strip', '.arch', '.arch-node', '.tl-step', '.tl-track', '.wave-demo',
+    '.formula-card', '.bz-graph', '.bz-legend', '.flow-node', '.flow-split',
+    '.callout', '.cmp-table', '.cta-inner', '.how-step', '.how-arrow',
+    '.reliability-text', '.reliability-graph', '.release-card', '.disclaimer-block',
+    '.review-card', '.download-version', '.phone.small', '.step', '.faq-item',
+    '.voice-seq', '.vs-item', '.screen-showcase'
+  ].join(', ');
+
+  const revealTargets = document.querySelectorAll(REVEAL_SELECTOR);
+  revealTargets.forEach(el => el.classList.add('reveal'));
+
+  // 方向性提示
+  document.querySelectorAll('.fx-visual, .tl-track, .voice-visual, .reliability-graph, .screen-showcase')
+    .forEach(el => el.classList.add('from-right'));
+  document.querySelectorAll('.fx-copy, .reliability-text, .voice-text')
+    .forEach(el => el.classList.add('from-left'));
+
+  const io = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('revealed');
-        observer.unobserve(entry.target);
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add('revealed');
+      entry.target.querySelectorAll('[data-count]').forEach(animateCount);
+      if (entry.target.matches('[data-count]')) animateCount(entry.target);
+      io.unobserve(entry.target);
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+
+  revealTargets.forEach(el => io.observe(el));
+
+  /* ---------- 8. 子页锚点导航高亮 ---------- */
+  const subnav = document.getElementById('subnav');
+  if (subnav) {
+    const links = Array.from(subnav.querySelectorAll('a'));
+    const map = {};
+    links.forEach(l => {
+      const href = l.getAttribute('href') || '';
+      if (href.charAt(0) === '#') {
+        const sec = document.getElementById(href.slice(1));
+        if (sec) map[href.slice(1)] = l;
       }
     });
-  }, { threshold: 0.12 });
+    const subIO = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          links.forEach(l => l.classList.remove('active'));
+          const l = map[entry.target.id];
+          if (l) l.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-45% 0px -50% 0px' });
+    Object.keys(map).forEach(id => {
+      const s = document.getElementById(id);
+      if (s) subIO.observe(s);
+    });
+  }
 
-  document.querySelectorAll(
-    '.feature-card, .source-card, .step, .review-card, .disclaimer-block, ' +
-    '.phone.small, .how-step, .reliability-text, .reliability-graph, .faq-item, .release-card, .download-version'
-  ).forEach(el => { el.classList.add('reveal'); observer.observe(el); });
-
-  /* ---------- 4. GitHub Release 实时同步 ---------- */
+  /* ---------- 9. GitHub Release 实时同步 ---------- */
   const REPO = 'Lokeily/Earthquake-Sentinel';
   const RELEASES_URL = 'https://api.github.com/repos/' + REPO + '/releases?per_page=20';
   const CACHE_KEY = 'dg_releases_v1';
