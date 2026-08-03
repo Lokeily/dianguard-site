@@ -241,8 +241,8 @@
       canvas.height = Math.max(1, Math.round(H * dpr));
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     }
-    function ecX() { return W * 0.16; }
-    function youX() { return W * 0.84; }
+    function ecX() { return W * 0.13; }
+    function youX() { return W * 0.88; }
     function cy() { return H * 0.5; }
 
     const D_KM = 480, P_SPEED = 6, S_SPEED = 3.5;
