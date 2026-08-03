@@ -60,33 +60,42 @@
   <section id="mechanism" class="fx-block">
     <div class="container">
       <div class="fx-head">
+        <span class="fx-eyebrow">01 — 地震波</span>
         <h2>先到的是 P 波，会破坏的是 S 波</h2>
-        <p>地震发生时，会同时放出两类波：跑得快的 P 波（纵波）几乎无害，跑得慢的 S 波（横波）才是让建筑摇晃、致人伤亡的元凶。预警，就是利用这<strong>两者到达的时间差</strong>。</p>
       </div>
 
-      <div class="wave-demo reveal" id="wave-demo">
-        <div class="wd-grid"></div>
-        <div class="wd-epi"></div>
-        <span class="wd-ring p"></span>
-        <span class="wd-ring p p2"></span>
-        <span class="wd-ring s"></span>
-        <span class="wd-ring s s2"></span>
-        <div class="wd-you">
-          <div class="pin">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.5-7-11a7 7 0 0 1 14 0c0 4.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+      <div class="hp-dual">
+        <div class="hp-copy">
+          <p>地震发生的瞬间，会同时放出两类波：跑得<strong>快</strong>的 P 波（纵波）几乎无害，跑得<strong>慢</strong>的 S 波（横波）才是让建筑摇晃、致人伤亡的元凶。预警，就是利用两者到达你这里的<strong>时间差</strong>。</p>
+          <div class="stat-strip">
+            <div class="stat-cell"><b data-count="6" data-suffix=" km/s">0 km/s</b><span>P 波传播速度</span></div>
+            <div class="stat-cell"><b data-count="3.5" data-decimal="1" data-suffix=" km/s">0 km/s</b><span>S 波传播速度</span></div>
+            <div class="stat-cell"><b data-count="12" data-suffix=" s">0 s</b><span>近震可争取时间</span></div>
           </div>
-          <span>你</span>
         </div>
-        <div class="wd-legend">
-          <span class="p"><i></i>P 波（纵波 · 先到 · 无害）</span>
-          <span class="s"><i></i>S 波（横波 · 后到 · 破坏）</span>
-        </div>
-      </div>
 
-      <div class="stat-strip" style="margin-top:42px">
-        <div class="stat-cell"><b data-count="6" data-suffix=" km/s">0 km/s</b><span>P 波传播速度</span></div>
-        <div class="stat-cell"><b data-count="3.5" data-decimal="1" data-suffix=" km/s">0 km/s</b><span>S 波传播速度</span></div>
-        <div class="stat-cell"><b data-count="12" data-suffix=" s">0 s</b><span>近震常见可争取时间</span></div>
+        <div class="hp-visual">
+          <div class="wave-demo reveal" id="wave-demo">
+            <div class="wd-grid"></div>
+            <canvas class="wd-canvas"></canvas>
+            <div class="wd-epi"></div>
+            <div class="wd-you">
+              <div class="pin">
+                <svg viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.5-7-11a7 7 0 0 1 14 0c0 4.5-7 11-7 11z" fill="none"/><circle cx="12" cy="10" r="2.4"/></svg>
+              </div>
+              <span>你</span>
+            </div>
+            <div class="wd-hud">
+              <span class="wd-dist">震中距 ≈ 480 km</span>
+              <span class="wd-time">T+<b>0.0</b>s</span>
+            </div>
+            <div class="wd-arrive">⚠ S 波已抵达 · 立即避险</div>
+            <div class="wd-legend">
+              <span class="p"><i></i>P 波（纵波 · 先到 · 无害）</span>
+              <span class="s"><i></i>S 波（横波 · 后到 · 破坏）</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -95,8 +104,9 @@
   <section id="timeline" class="fx-block">
     <div class="container">
       <div class="fx-head">
+        <span class="fx-eyebrow">02 — 链路</span>
         <h2>从地动山摇到手机响铃</h2>
-        <p>从震源破裂到预警送达手机，链路上的每一步都以「秒」计。下面这条时间轴，是真实预警会被压缩到的窗口。</p>
+        <p>从震源破裂到预警送达手机，链路上的每一步都以「秒」计。下面这条时间轴，是真实预警会被压缩到的窗口——滚动时进度会跟着你走。</p>
       </div>
       <div class="timeline reveal">
         <div class="tl-track"><span class="tl-fill"></span>
@@ -104,6 +114,7 @@
           <span class="tl-dot" style="left:34%"></span>
           <span class="tl-dot" style="left:67%"></span>
           <span class="tl-dot" style="left:100%"></span>
+          <span class="tl-runner"></span>
         </div>
         <div class="tl-steps">
           <div class="tl-step">
@@ -135,25 +146,58 @@
   <section id="intensity" class="fx-block">
     <div class="container">
       <div class="fx-head">
+        <span class="fx-eyebrow">03 — 烈度</span>
         <h2>它算的不是「震级」，而是「你这里有多晃」</h2>
-        <p>同样是 6 级地震，500 公里外和 20 公里外完全是两回事。地震哨兵用震级、震中距与深度，估算你所在地的烈度，再决定要不要打扰你。</p>
       </div>
-      <div class="formula-card reveal">
-        <div class="formula">
-          I ≈ 2.941 + 1.363·<em>M</em> − 1.494·ln(<em>R</em> + 7)
+
+      <div class="hp-dual">
+        <div class="hp-copy">
+          <p>同样是 6 级地震，500 公里外和 20 公里外完全是两回事。地震哨兵用震级、震中距与深度，估算你所在地的烈度，再决定要不要打扰你。</p>
+          <div class="formula-card reveal">
+            <div class="formula">
+              I ≈ 2.941 + 1.363·<em>M</em> − 1.494·ln(<em>R</em> + 7)
+            </div>
+            <div class="formula-legend">
+              <span><b>M</b>震级</span>
+              <span><b>R</b>你到震中的距离 (km)</span>
+              <span><b>I</b>你所在地的烈度</span>
+            </div>
+            <p class="formula-note">基于汪素云等（2000）中国地区烈度衰减关系。应用用你授权的大致位置得到 R，反推出本地烈度 I，再与你设定的阈值比较。</p>
+          </div>
+          <div class="callout reveal">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 2 20h20L12 3z"/><path d="M12 9v5"/><path d="M12 17h.01"/></svg>
+            <div>
+              <b>为什么不用震级直接告警</b>
+              <p>震级只描述地震本身有多大，但对你有没有危险，取决于你离它多远、震源有多深。按本地烈度触发，才能做到「远处大震不骚扰、近处小震及时报」。</p>
+            </div>
+          </div>
         </div>
-        <div class="formula-legend">
-          <span><b>M</b>震级</span>
-          <span><b>R</b>你到震中的距离 (km)</span>
-          <span><b>I</b>你所在地的烈度</span>
-        </div>
-        <p class="formula-note">基于汪素云等（2000）中国地区烈度衰减关系。应用用你授权的大致位置得到 R，反推出本地烈度 I，再与你设定的阈值比较。</p>
-      </div>
-      <div class="callout reveal">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 2 20h20L12 3z"/><path d="M12 9v5"/><path d="M12 17h.01"/></svg>
-        <div>
-          <b>为什么不用震级直接告警</b>
-          <p>震级只描述地震本身有多大，但对你有没有危险，取决于你离它多远、震源有多深。按本地烈度触发，才能做到「远处大震不骚扰、近处小震及时报」。</p>
+
+        <div class="hp-visual">
+          <div class="intensity-vis reveal" id="intensity-vis">
+            <div class="iv-readout">
+              <span class="iv-label">你所在地烈度</span>
+              <b class="iv-value">—</b>
+              <span class="iv-sub">震级 M 6.5 · 距离 R 变化中</span>
+            </div>
+            <svg class="iv-svg" viewBox="0 0 360 240" preserveAspectRatio="none" aria-hidden="true">
+              <defs>
+                <linearGradient id="ivFill" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="rgba(10,132,255,0.34)"/>
+                  <stop offset="100%" stop-color="rgba(10,132,255,0)"/>
+                </linearGradient>
+                <linearGradient id="ivStroke" x1="0" y1="0" x2="1" y2="0">
+                  <stop offset="0%" stop-color="#0A84FF"/>
+                  <stop offset="100%" stop-color="#AF52DE"/>
+                </linearGradient>
+              </defs>
+              <path class="iv-area" fill="url(#ivFill)" d=""/>
+              <path class="iv-curve" fill="none" stroke="url(#ivStroke)" stroke-width="3" stroke-linecap="round" d=""/>
+              <line class="iv-vline" x1="0" y1="0" x2="0" y2="240" stroke="rgba(255,255,255,0.22)" stroke-width="1" stroke-dasharray="3 4"/>
+              <circle class="iv-marker" r="6.5" fill="#fff" stroke="#0A84FF" stroke-width="3"/>
+            </svg>
+            <div class="iv-axis">横轴：你到震中的距离 R (km) →　纵轴：你感受到的烈度 I</div>
+          </div>
         </div>
       </div>
     </div>
@@ -163,8 +207,9 @@
   <section id="arch" class="fx-block">
     <div class="container">
       <div class="fx-head">
+        <span class="fx-eyebrow">04 — 架构</span>
         <h2>多源并行：一条链路挂了，还有别的</h2>
-        <p>预警报文要经过公共转发节点才能到手机。单一节点一旦限流、维护或断网，你就完全收不到——而且根本不会知道。地震哨兵同时常驻多条相互独立的链路。</p>
+        <p>预警报文要经过公共转发节点才能到手机。单一节点一旦限流、维护或断网，你就完全收不到——而且根本不会知道。地震哨兵同时常驻多条相互独立的链路，数据像光点一样持续汇聚。</p>
       </div>
       <div class="arch reveal">
         <div class="arch-row">
@@ -193,11 +238,13 @@
   <section id="blindzone" class="fx-block">
     <div class="container">
       <div class="fx-head">
+        <span class="fx-eyebrow">05 — 局限</span>
         <h2>预警有盲区，这是物理规律</h2>
         <p>预警依赖「地震已经发生、但破坏波还没到」这件事。越靠近震中，S 波越快抵达，留给预警的时间越短——近到一定程度，预警根本来不及发出。这是所有地震预警系统共有的局限。</p>
       </div>
       <div class="blindzone reveal">
         <div class="bz-graph">
+          <span class="bz-sweep"></span>
           <span class="bz-pulse"></span>
           <i class="z1"></i>
           <i class="z2"></i>
@@ -233,10 +280,12 @@
   <section id="decision" class="fx-block">
     <div class="container">
       <div class="fx-head">
+        <span class="fx-eyebrow">06 — 决策</span>
         <h2>收到报文后，它怎么决定「要不要叫你」</h2>
         <p>从一段原始报文到一次全屏告警，中间只有几个确定性的判断。下面这条流程，就是每次预警都会走的逻辑。</p>
       </div>
       <div class="flow reveal">
+        <span class="flow-pkt"></span>
         <div class="flow-node"><b>收到预警报文</b><span>来自任一数据源，含震中、震级、深度、发震时刻</span></div>
         <div class="flow-arrow-v"></div>
         <div class="flow-node decide"><b>估算本地烈度 I</b><span>用震级 M、震中距 R、深度 D，结合你的位置反推</span></div>
