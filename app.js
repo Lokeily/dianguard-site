@@ -5,25 +5,31 @@
   const canvas = document.getElementById('wave-canvas');
   if (canvas) {
     const ctx = canvas.getContext('2d');
-    let width, height;
+    const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let width, height, dpr = 1;
+    let isVisible = true;
+    let rafId = null;
     const waves = [];
 
     function resize() {
-      width = canvas.width = window.innerWidth;
-      height = canvas.height = window.innerHeight;
+      const rect = canvas.getBoundingClientRect();
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      width = rect.width; height = rect.height;
+      canvas.width = Math.max(1, Math.round(width * dpr));
+      canvas.height = Math.max(1, Math.round(height * dpr));
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      if (reduceMotion) drawStill();
     }
-    window.addEventListener('resize', resize);
-    resize();
 
     class Wave {
       constructor() { this.reset(); this.y = Math.random() * height; }
       reset() {
         this.x = -Math.random() * 200;
         this.y = Math.random() * height;
-        this.speed = 0.4 + Math.random() * 0.8;
-        this.amplitude = 20 + Math.random() * 40;
-        this.wavelength = 120 + Math.random() * 180;
-        this.opacity = 0.05 + Math.random() * 0.12;
+        this.speed = 0.3 + Math.random() * 0.5;
+        this.amplitude = 18 + Math.random() * 34;
+        this.wavelength = 140 + Math.random() * 200;
+        this.opacity = 0.04 + Math.random() * 0.10;
         this.hue = Math.random() > 0.7 ? 0 : 210;
       }
       update() {
@@ -36,8 +42,8 @@
           ? `rgba(255, 59, 48, ${this.opacity})`
           : `rgba(10, 132, 255, ${this.opacity})`;
         ctx.strokeStyle = color;
-        ctx.lineWidth = 1.5;
-        for (let px = 0; px <= width; px += 6) {
+        ctx.lineWidth = 1.3;
+        for (let px = 0; px <= width; px += 7) {
           const dy = Math.sin((px - this.x) / this.wavelength * Math.PI * 2) * this.amplitude;
           if (px === 0) ctx.moveTo(px, this.y + dy);
           else ctx.lineTo(px, this.y + dy);
@@ -45,13 +51,37 @@
         ctx.stroke();
       }
     }
-    for (let i = 0; i < 8; i++) waves.push(new Wave());
 
-    (function animate() {
+    for (let i = 0; i < 7; i++) waves.push(new Wave());
+
+    function drawFrame() {
       ctx.clearRect(0, 0, width, height);
       waves.forEach(w => { w.update(); w.draw(); });
-      requestAnimationFrame(animate);
-    })();
+    }
+    function drawStill() {
+      ctx.clearRect(0, 0, width, height);
+      waves.forEach((w, i) => { w.x = i * (width / waves.length); w.draw(); });
+    }
+    function loop() {
+      if (!isVisible) return;
+      drawFrame();
+      rafId = requestAnimationFrame(loop);
+    }
+
+    window.addEventListener('resize', resize);
+    document.addEventListener('visibilitychange', () => {
+      isVisible = document.visibilityState === 'visible';
+      if (isVisible && !reduceMotion) {
+        if (rafId) cancelAnimationFrame(rafId);
+        rafId = requestAnimationFrame(loop);
+      } else if (!isVisible && rafId) {
+        cancelAnimationFrame(rafId); rafId = null;
+      }
+    });
+
+    resize();
+    if (reduceMotion) drawStill();
+    else rafId = requestAnimationFrame(loop);
   }
 
   /* ---------- 2. 首屏倒计时进度环 ---------- */
@@ -63,8 +93,10 @@
     if (countEl) countEl.textContent = n;
     if (ringFgEl) ringFgEl.style.strokeDashoffset = (C * (1 - n / 12)).toFixed(2);
   }
-  setCountdown(12);
-  setInterval(() => { cd = cd <= 0 ? 12 : cd - 1; setCountdown(cd); }, 1000);
+  if (countEl || ringFgEl) {
+    setCountdown(12);
+    setInterval(() => { cd = cd <= 0 ? 12 : cd - 1; setCountdown(cd); }, 1000);
+  }
 
   /* ---------- 3. 滚动进度条 + 导航栏悬浮态 ---------- */
   const progressBar = document.querySelector('.scroll-progress i');
@@ -521,28 +553,50 @@
     if (line) line.innerHTML = '当前最新版本 <strong>v' + ver + '</strong> · 发布于 ' + date;
   }
 
-  // 极简 Markdown 渲染（标题 / 列表 / 加粗 / 行内代码 / 链接 / 分割线）
+  // 极简 Markdown 渲染（标题 / 列表 / 加粗 / 行内代码 / 链接 / 分割线 / 引用）
+  //
+  // 标题：支持 # ~ ###### 全部六级。卡片头部已展示版本号，故整体降级两档
+  // 映射到 h3~h5，避免与页面 h1/h2 抢层级；四级以上统一收敛到 h5。
+  // （旧实现只认 # / ## / ###，Release 里常用的 #### 会被当成正文，
+  //   直接把「#### 标题」四个井号原样渲染出来。）
   function renderMarkdown(md) {
     if (!md) return '';
     const lines = md.replace(/\r/g, '').split('\n');
-    let html = '', inUl = false, inOl = false;
+    let html = '', inUl = false, inOl = false, inCode = false;
     const closeLists = () => {
       if (inUl) { html += '</ul>'; inUl = false; }
       if (inOl) { html += '</ol>'; inOl = false; }
     };
-    const inline = t => t
-      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+    const esc = t => t.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    const inline = t => esc(t)
       .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
       .replace(/`([^`]+)`/g, '<code>$1</code>')
-      .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
+      .replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
+    const HTAG = { 1: 'h3', 2: 'h3', 3: 'h4', 4: 'h5', 5: 'h5', 6: 'h5' };
+
     for (const raw of lines) {
       const line = raw.trimEnd();
       let m;
-      if ((m = line.match(/^###\s+(.*)$/))) { closeLists(); html += '<h4>' + inline(m[1]) + '</h4>'; }
-      else if ((m = line.match(/^##\s+(.*)$/))) { closeLists(); html += '<h3>' + inline(m[1]) + '</h3>'; }
-      else if ((m = line.match(/^#\s+(.*)$/))) { closeLists(); html += '<h2>' + inline(m[1]) + '</h2>'; }
-      else if (/^---+\s*$/.test(line)) { closeLists(); html += '<hr>'; }
-      else if ((m = line.match(/^\s*[-*]\s+(.*)$/))) {
+
+      // 围栏代码块：内部内容原样转义，不参与其他规则
+      if (/^\s*```/.test(line)) {
+        closeLists();
+        html += inCode ? '</code></pre>' : '<pre class="release-pre"><code>';
+        inCode = !inCode;
+        continue;
+      }
+      if (inCode) { html += esc(raw) + '\n'; continue; }
+
+      if ((m = line.match(/^(#{1,6})\s+(.*)$/))) {
+        closeLists();
+        const tag = HTAG[m[1].length];
+        html += '<' + tag + '>' + inline(m[2]) + '</' + tag + '>';
+      }
+      else if (/^\s*(?:---+|\*\*\*+|___+)\s*$/.test(line)) { closeLists(); html += '<hr>'; }
+      else if ((m = line.match(/^\s*>\s?(.*)$/))) {
+        closeLists(); html += '<blockquote>' + inline(m[1]) + '</blockquote>';
+      }
+      else if ((m = line.match(/^\s*[-*+]\s+(.*)$/))) {
         if (inOl) { html += '</ol>'; inOl = false; }
         if (!inUl) { html += '<ul>'; inUl = true; }
         html += '<li>' + inline(m[1]) + '</li>';
@@ -555,29 +609,48 @@
       else if (line === '') { closeLists(); }
       else { closeLists(); html += '<p>' + inline(line) + '</p>'; }
     }
+    if (inCode) html += '</code></pre>';
     closeLists();
     return html;
+  }
+
+  // Release 正文首行常是「## v1.2.0 更新说明」，与卡片头部的版本号重复，去掉。
+  function stripRedundantTitle(body, ver) {
+    if (!body) return body;
+    const lines = body.replace(/\r/g, '').split('\n');
+    let i = 0;
+    while (i < lines.length && lines[i].trim() === '') i++;
+    const first = (lines[i] || '').trim();
+    if (/^#{1,6}\s/.test(first) && first.indexOf(ver) !== -1) {
+      lines.splice(i, 1);
+      return lines.join('\n');
+    }
+    return body;
   }
 
   function renderChangelog(releases) {
     const list = document.getElementById('release-list');
     if (!list) return;
-    if (!releases || !releases.length) {
-      list.innerHTML = '<div class="release-error">暂时无法加载更新记录，请稍后重试，或直接前往 ' +
-        '<a href="https://github.com/' + REPO + '/releases" target="_blank" rel="noopener">GitHub Release</a> 查看。</div>';
-      return;
-    }
+
+    // 拿不到数据时，保留页面内已烘焙的静态更新记录，不做任何改动。
+    if (!releases || !releases.length) return;
+
+    // 与页面内烘焙的版本完全一致时跳过重绘，避免打开页面时闪一下。
+    const signature = releases.map(versionOf).join(',');
+    if (list.getAttribute('data-baked') === signature) return;
+
     list.innerHTML = releases.map((rel, i) => {
       const ver = versionOf(rel);
       const date = fmtDate(rel.published_at);
-      const notes = renderMarkdown(rel.body || '（暂无文字说明，详见 GitHub Release）');
+      const body = stripRedundantTitle(rel.body || '', ver);
+      const notes = renderMarkdown(body.trim() || '（本次发布未附文字说明，详见 GitHub Release 页面。）');
       const dl = findApk(rel);
       const dlHtml = dl
-        ? '<p class="release-dl"><a class="btn btn-secondary btn-small" href="' + dl + '" target="_blank" rel="noopener">下载此版本 APK</a></p>'
+        ? '<p class="release-dl"><a class="btn btn-secondary btn-small" href="' + dl + '" target="_blank" rel="noopener">下载 v' + ver + ' APK</a></p>'
         : '';
       const latest = i === 0 ? ' latest' : '';
       const badge = i === 0 ? '<span class="release-badge">最新</span>' : '';
-      return '<article class="release-card' + latest + ' reveal">' +
+      return '<article class="release-card' + latest + '">' +
         '<div class="release-head">' +
           '<span class="release-version">v' + ver + '</span>' + badge +
           '<span class="release-date">' + date + '</span>' +
@@ -586,22 +659,8 @@
         dlHtml +
       '</article>';
     }).join('');
-    list.querySelectorAll('.release-card').forEach(el => { el.classList.add('revealed'); });
-  }
-
-  function loadFallback() {
-    // 接口不可用时，用页面内嵌快照兜底（保证页面不空白）
-    try {
-      const raw = document.getElementById('fallback-releases');
-      if (raw) {
-        const fb = JSON.parse(raw.textContent);
-        const mapped = fb.map(r => ({
-          tag_name: r.tag, name: r.tag, published_at: r.date + 'T00:00:00Z',
-          body: r.notes, assets: [], prerelease: false, draft: false
-        }));
-        renderChangelog(mapped);
-      }
-    } catch (e) { /* ignore */ }
+    list.setAttribute('data-baked', signature);
+    list.querySelectorAll('.release-card').forEach(el => { el.classList.add('reveal', 'revealed'); });
   }
 
   function fetchReleases() {
@@ -634,8 +693,9 @@
         renderChangelog(list);
       })
       .catch(() => {
-        // 失败时：首页保持静态默认值，更新页用内嵌快照兜底
-        if (document.getElementById('release-list')) loadFallback();
+        // 失败时静默降级：首页保持静态默认版本号，更新页保留已烘焙的静态记录。
+        // GitHub API 对未认证请求限流 60 次/小时/IP，校园网、公司网等
+        // 共享出口 IP 很容易触发，因此页面内容不能依赖这次请求。
       });
   }
 

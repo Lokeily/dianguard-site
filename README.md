@@ -15,10 +15,24 @@ Android 地震预警应用「地震哨兵」的官方展示与下载站点（Git
 
 ## 本地预览
 
+仓库根目录即 GitHub Pages 发布目录：
+
 ```bash
-cd docs
 python3 -m http.server 8000
 ```
+
+浏览器打开 `http://localhost:8000` 即可。
+
+## 更新日志维护
+
+`changelog.html` 中的更新记录由 `tools/bake-changelog.js` 从
+`Lokeily/Earthquake-Sentinel` 的 Release 自动生成。发新版后请执行：
+
+```bash
+GITHUB_TOKEN=xxx node tools/bake-changelog.js
+```
+
+未携带 token 时脚本也能跑，但容易撞到 GitHub 匿名限流。
 
 ## 说明
 

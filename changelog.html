@@ -5,8 +5,45 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>版本更新 — 地震哨兵 Dianguard</title>
   <meta name="description" content="地震哨兵 Dianguard 的版本更新记录。本站下载按钮实时指向最新 Release，你下载到的永远是最新版。">
+  <meta name="theme-color" content="#050508">
+  <meta name="color-scheme" content="dark">
   <link rel="icon" type="image/png" href="assets/ic_launcher.png">
+  <link rel="canonical" href="https://lokeily.github.io/dianguard-site/changelog.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="地震哨兵 Dianguard">
+  <meta property="og:title" content="版本更新 — 地震哨兵 Dianguard">
+  <meta property="og:description" content="地震哨兵 Dianguard 的版本更新记录。本站下载按钮实时指向最新 Release，你下载到的永远是最新版。">
+  <meta property="og:url" content="https://lokeily.github.io/dianguard-site/changelog.html">
+  <meta property="og:image" content="https://lokeily.github.io/dianguard-site/assets/og-cover.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="zh_CN">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="版本更新 — 地震哨兵 Dianguard">
+  <meta name="twitter:description" content="地震哨兵 Dianguard 的版本更新记录。本站下载按钮实时指向最新 Release，你下载到的永远是最新版。">
+  <meta name="twitter:image" content="https://lokeily.github.io/dianguard-site/assets/og-cover.png">
   <link rel="stylesheet" href="styles.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "地震哨兵 Dianguard",
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "Android",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "CNY"
+    },
+    "softwareVersion": "v1.2.0",
+    "downloadUrl": "https://github.com/Lokeily/Earthquake-Sentinel/releases/latest",
+    "codeRepository": "https://github.com/Lokeily/Earthquake-Sentinel",
+    "author": {
+      "@type": "Organization",
+      "name": "Lokeily"
+    }
+  }
+  </script>
 </head>
 <body class="page-changelog">
   <div class="scroll-progress"><i></i></div>
@@ -40,9 +77,29 @@
         <p class="lead">地震哨兵每次发版都会同步到这里。本站下载按钮实时指向列表中的<strong>最新版本</strong>，你拿到的永远是最新版。</p>
       </header>
 
-      <div id="release-list" class="release-list">
-        <div class="release-loading">正在加载更新记录…</div>
+      <!-- 下面这段由 tools/bake-changelog.js 从 GitHub Release 生成，请勿手改。
+           静态存在是刻意为之：GitHub API 对未认证请求限流 60 次/小时/IP，
+           页面内容不能依赖那次请求成功。JS 只在能连通时刷新出更新的版本。 -->
+      <!-- BAKED:BEGIN -->
+  <div id="release-list" class="release-list" data-baked="1.2.0,1.1.0">
+    <article class="release-card latest">
+      <div class="release-head">
+        <span class="release-version">v1.2.0</span><span class="release-badge">最新</span>
+        <span class="release-date">2026-08-03</span>
       </div>
+      <div class="release-notes"><h4>与 v1.1.0 的关键变化</h4><h5>🚨 告警系统重构（核心安全改进）</h5><ul><li><strong>告警阈值改为本地烈度判定</strong>：不再用震级一刀切，改为按震中距+深度+震级估算<strong>用户所在地烈度</strong>（汪素云等2000短轴衰减模型），避免远震误报。</li><li><strong>四级预警配色标准化</strong>：红/橙/黄/蓝严格对应震级分级，全软件统一配色（AlertActivity/HistoryFragment/TestAlarmActivity）。</li><li><strong>三段式真实语音播报</strong>：采用真实大陆预警录音（非TTS），短语循环 → 逐秒倒计时 → 警报循环，全程走ALARM流、锁屏/静音下最大音量。</li></ul><h5>📡 数据源全面升级</h5><ul><li><strong>新增 BeeCLD·2v8 独立主机</strong>（api.2v8.cn/ws/cea）：中国地震预警网CEA国家级秒级预警源，与Wolfx完全独立，去单点设计。</li><li><strong>FAN Studio 鉴权握手代码已就绪</strong>（需用户配置API密钥后启用）</li><li><strong>备用探测源增强</strong>：USGS + Wolfx HTTP + EMSC 三级兜底，主链路全断时自动激活。</li></ul><h5>📋 历史记录大幅改进</h5><ul><li>主源改为<strong>中国地震台网速报目录</strong>（api.wolfx.jp/cenc_eqlist.json），中文地名/震级/深度齐全</li><li>USGS FDSN + EMSC FDSN 双兜底</li><li>BigDataCloud 免密钥逆地理编码 + 内置省级边界表</li><li>顶部特色卡片 + 等级色列表，标注来源与本地预估烈度</li></ul><h5>🎨 界面与体验</h5><ul><li><strong>深色模式默认开启</strong>（OLED纯黑省电，适配常亮旧手机）</li><li>设置页参考位置<strong>只显示中文地名</strong>（Geocoder → BigDataCloud → 省级表三级兜底），绝不显示裸经纬度</li><li>模拟预警以<strong>周边真实城市</strong>为震中，完整模拟全屏告警流程</li><li>告警页排版优化：大数字倒计时、「秒」紧随数字、归零显示「地震波已抵达」</li><li>全局字体统一为简体中文（内嵌Noto Sans SC）</li><li>繁体地名自动转简体（离线字符映射表）</li></ul><h5>🔧 工程改进</h5><ul><li>核心算法抽为顶层纯函数，56个单元测试全部通过</li><li>多源连接管理重构（EewConnectionManager/EewAlertManager职责分离）</li><li>WakeLock无条件续期（消除4小时失效窗口）</li><li>启动冷静期15秒（防止BeeCLD补推历史EEW误弹告警）</li><li>返回键拦截（告警页只能点「我已安全」解除）</li><li>崩溃日志坐标自动脱敏</li></ul><h5>🔒 安全增强</h5><ul><li>BEECLD_TOKEN从源码硬编码迁移到BuildConfig注入</li><li>Doze休眠白名单引导</li><li>历史记录SP写入容错</li></ul></div>
+      <p class="release-dl"><a class="btn btn-secondary btn-small" href="https://github.com/Lokeily/Earthquake-Sentinel/releases/download/v1.2.0/Dianguard-v1.2.0-release.apk" target="_blank" rel="noopener">下载 v1.2.0 APK</a></p>
+    </article>
+    <article class="release-card">
+      <div class="release-head">
+        <span class="release-version">v1.1.0</span>
+        <span class="release-date">2026-08-02</span>
+      </div>
+      <div class="release-notes"><p>Earthquake Sentinel v1.1.0 - Multi-source EEW, OLED dark mode, Disclaimer</p></div>
+      <p class="release-dl"><a class="btn btn-secondary btn-small" href="https://github.com/Lokeily/Earthquake-Sentinel/releases/download/v1.1.0/Dianguard-v1.1.0-release.apk" target="_blank" rel="noopener">下载 v1.1.0 APK</a></p>
+    </article>
+  </div>
+  <!-- BAKED:END -->
 
       <div class="changelog-actions">
         <a class="btn btn-secondary" href="https://github.com/Lokeily/Earthquake-Sentinel/releases" target="_blank" rel="noopener">在 GitHub 查看全部 Release</a>
@@ -72,20 +129,6 @@
     </div>
   </footer>
 
-  <script type="application/json" id="fallback-releases">
-  [
-    {
-      "tag": "v1.2.0",
-      "date": "2026-08-03",
-      "notes": "最新稳定版。详见 GitHub Release 页面查看完整更新说明。"
-    },
-    {
-      "tag": "v1.1.0",
-      "date": "2026-08-01",
-      "notes": "早期稳定版。详见 GitHub Release 页面查看完整更新说明。"
-    }
-  ]
-  </script>
   <script src="app.js"></script>
 </body>
 </html>

@@ -5,8 +5,45 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>免责声明与用户协议 — 地震哨兵 Dianguard</title>
   <meta name="description" content="地震哨兵 Dianguard 的免责声明与用户协议。地震预警涉及生命安全，请以官方预警渠道为准。">
+  <meta name="theme-color" content="#050508">
+  <meta name="color-scheme" content="dark">
   <link rel="icon" type="image/png" href="assets/ic_launcher.png">
+  <link rel="canonical" href="https://lokeily.github.io/dianguard-site/disclaimer.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="地震哨兵 Dianguard">
+  <meta property="og:title" content="免责声明与用户协议 — 地震哨兵 Dianguard">
+  <meta property="og:description" content="地震哨兵 Dianguard 的免责声明与用户协议。地震预警涉及生命安全，请以官方预警渠道为准。">
+  <meta property="og:url" content="https://lokeily.github.io/dianguard-site/disclaimer.html">
+  <meta property="og:image" content="https://lokeily.github.io/dianguard-site/assets/og-cover.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="zh_CN">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="免责声明与用户协议 — 地震哨兵 Dianguard">
+  <meta name="twitter:description" content="地震哨兵 Dianguard 的免责声明与用户协议。地震预警涉及生命安全，请以官方预警渠道为准。">
+  <meta name="twitter:image" content="https://lokeily.github.io/dianguard-site/assets/og-cover.png">
   <link rel="stylesheet" href="styles.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "地震哨兵 Dianguard",
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "Android",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "CNY"
+    },
+    "softwareVersion": "v1.2.0",
+    "downloadUrl": "https://github.com/Lokeily/Earthquake-Sentinel/releases/latest",
+    "codeRepository": "https://github.com/Lokeily/Earthquake-Sentinel",
+    "author": {
+      "@type": "Organization",
+      "name": "Lokeily"
+    }
+  }
+  </script>
 </head>
 <body class="page-disclaimer">
   <div class="scroll-progress"><i></i></div>
@@ -57,7 +94,15 @@
 
         <section class="disclaimer-block">
           <h2>一、关于本服务</h2>
-          <p>本服务地震预警由中国地震台网中心提供（信息源展示为「中国地震预警网」）。本软件作为第三方信息聚合与展示工具，通过网络从公共聚合服务（wolfx.jp）转发官方预警报文，不生产数据、不修改内容。</p>
+          <p>本服务地震预警由中国地震台网中心提供（信息源展示为「中国地震预警网」）。本软件作为第三方信息聚合与展示工具，通过网络从多个相互独立的公共聚合转发服务接收官方预警报文，<strong>不生产数据、不修改内容</strong>。</p>
+          <p>当前接入的转发链路包括：</p>
+          <ul class="disclaimer-sources">
+            <li><b>Wolfx</b>（ws-api.wolfx.jp）—— 转发国家级 CENC 及四川、重庆区域预警，免密钥；</li>
+            <li><b>BeeCLD·2v8</b>（api.2v8.cn）—— 独立主机，转发国家级 CEA 秒级预警，需免费令牌（已内置）；</li>
+            <li><b>FAN Studio</b>（ws.fanstudio.tech）—— 独立主机，转发国家级 CEA 秒级预警，需用户自行配置 API 密钥后方可启用；</li>
+            <li><b>备用探测链路</b>（USGS、EMSC 等）—— 仅在上述主链路全部失效时激活，用于地震事件兜底探测，<strong>不具备预警时效性</strong>。</li>
+          </ul>
+          <p>上述转发服务均为第三方独立运营，本软件与其不存在隶属或合作关系，亦无法保证其可用性、稳定性与持续性。任一或全部链路中断均可能导致您无法收到预警。</p>
           <p>您可自愿接受是否选择启用预警服务，且在开启后，您仍可随时在主页面关闭「开启预警监听」按钮来关闭服务。</p>
         </section>
 
@@ -92,7 +137,8 @@
 
         <section class="disclaimer-block">
           <h2>五、关于第三方服务说明</h2>
-          <p>您知悉，地震预警信息由第三方中国地震台网中心（经 wolfx.jp 公共聚合转发）提供。本软件作为信息聚合展示工具，不对原始数据的准确性负责，亦不保证第三方服务的可用性、稳定性与持续性。</p>
+          <p>您知悉，地震预警信息原始来源为中国地震台网中心，并经 Wolfx、BeeCLD·2v8、FAN Studio 等第三方公共聚合服务转发后由本软件接收（详见前文「一、关于本服务」）。本软件作为信息聚合展示工具，不对原始数据的准确性负责，亦不保证任何第三方转发服务的可用性、稳定性与持续性。</p>
+          <p>历史地震记录来源于中国地震台网速报目录，并以 USGS、EMSC 等公开地震目录作为兜底；逆地理编码（将坐标转换为中文地名）可能调用系统服务或 BigDataCloud 公开接口。上述服务的数据准确性同样不在本软件保证范围内。</p>
           <p>如因第三方产品和服务引发任何纠纷，由该第三方负责解决，本软件不承担责任。</p>
         </section>
 

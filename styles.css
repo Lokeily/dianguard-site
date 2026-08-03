@@ -1637,6 +1637,32 @@ body::after {
 .disclaimer-block ol { margin: 0; padding-left: 20px; color: var(--text-muted); font-size: 14.8px; }
 .disclaimer-block li { margin-bottom: 10px; }
 .disclaimer-block li:last-child { margin-bottom: 0; }
+.disclaimer-block strong, .disclaimer-block b { color: var(--text); font-weight: 600; }
+
+/* 数据源清单（免责声明「关于本服务」） */
+.disclaimer-sources {
+  margin: 0 0 12px; padding: 0; list-style: none;
+  display: flex; flex-direction: column; gap: 9px;
+  color: var(--text-muted); font-size: 14.4px; line-height: 1.72;
+}
+.disclaimer-sources li {
+  position: relative; margin: 0; padding: 11px 14px 11px 34px;
+  background: rgba(255, 255, 255, 0.028);
+  border: 1px solid var(--border);
+  border-radius: 11px;
+}
+.disclaimer-sources li::before {
+  content: ''; position: absolute; left: 14px; top: 19px;
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--level-blue);
+  box-shadow: 0 0 0 3px rgba(10, 132, 255, 0.16);
+}
+.disclaimer-sources li:last-child::before {
+  background: var(--text-muted);
+  box-shadow: 0 0 0 3px rgba(139, 139, 150, 0.14);
+}
+.disclaimer-sources li b { color: var(--text); font-weight: 600; }
+
 .disclaimer-actions { display: flex; justify-content: center; gap: 15px; margin-top: 48px; flex-wrap: wrap; }
 
 /* ============================================================
@@ -1678,10 +1704,37 @@ body::after {
 }
 .release-date { color: var(--text-muted); font-size: 13.5px; margin-left: auto; font-family: ui-monospace, monospace; }
 .release-notes { color: var(--text-muted); font-size: 14.8px; }
-.release-notes h2, .release-notes h3, .release-notes h4 { color: var(--text); margin: 18px 0 8px; }
+.release-notes h2, .release-notes h3, .release-notes h4, .release-notes h5 {
+  color: var(--text); margin: 18px 0 8px; line-height: 1.45;
+}
+.release-notes > :first-child { margin-top: 0; }
 .release-notes h2 { font-size: 18px; }
 .release-notes h3 { font-size: 16.5px; }
-.release-notes h4 { font-size: 15px; }
+.release-notes h4 {
+  font-size: 15.5px; letter-spacing: -0.01em;
+  padding-bottom: 9px; border-bottom: 1px solid var(--border);
+}
+/* 四级标题：Release 里用来分「告警系统 / 数据源 / 界面」等类目，给个左标记 */
+.release-notes h5 {
+  font-size: 14.6px; font-weight: 650;
+  margin: 20px 0 9px; padding-left: 11px;
+  border-left: 2.5px solid var(--blue-dark);
+}
+.release-notes blockquote {
+  margin: 12px 0; padding: 10px 15px;
+  border-left: 2.5px solid var(--border-strong);
+  background: rgba(255,255,255,0.028);
+  border-radius: 0 10px 10px 0;
+  color: var(--text-soft);
+}
+.release-pre {
+  margin: 12px 0; padding: 13px 15px; overflow-x: auto;
+  background: rgba(0,0,0,0.34);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  font-size: 13px; line-height: 1.6;
+}
+.release-pre code { background: none; padding: 0; font-size: inherit; }
 .release-notes p { margin: 0 0 10px; }
 .release-notes ul, .release-notes ol { margin: 0 0 12px; padding-left: 22px; }
 .release-notes li { margin-bottom: 6px; }
