@@ -217,7 +217,8 @@ a:hover { text-decoration: underline; }
   0%,100% { box-shadow: 0 12px 40px rgba(255,59,48,0.35); }
   50% { box-shadow: 0 12px 50px rgba(255,59,48,0.6); }
 }
-.alert-icon { font-size: 36px; margin-bottom: 6px; }
+.alert-icon { font-size: 36px; margin-bottom: 6px; color: #fff; }
+.alert-icon svg { width: 36px; height: 36px; }
 .alert-level { font-size: 13px; opacity: 0.9; letter-spacing: 0.1em; }
 .alert-mag { font-size: 34px; font-weight: 800; margin: 6px 0; }
 .alert-eta { font-size: 18px; }
@@ -312,12 +313,13 @@ a:hover { text-decoration: underline; }
   font-size: 24px;
   margin-bottom: 18px;
 }
-.feature-icon.red { background: rgba(255,59,48,0.12); }
-.feature-icon.blue { background: rgba(10,132,255,0.12); }
-.feature-icon.yellow { background: rgba(255,204,0,0.12); }
-.feature-icon.orange { background: rgba(255,149,0,0.12); }
-.feature-icon.purple { background: rgba(175,82,222,0.12); }
-.feature-icon.green { background: rgba(52,199,89,0.12); }
+.feature-icon.red { background: rgba(255,59,48,0.12); color: var(--level-red); }
+.feature-icon.blue { background: rgba(10,132,255,0.12); color: var(--level-blue); }
+.feature-icon.yellow { background: rgba(255,204,0,0.12); color: var(--level-yellow); }
+.feature-icon.orange { background: rgba(255,149,0,0.12); color: var(--level-orange); }
+.feature-icon.purple { background: rgba(175,82,222,0.12); color: var(--purple); }
+.feature-icon.green { background: rgba(52,199,89,0.12); color: var(--green); }
+.feature-icon svg { width: 26px; height: 26px; }
 .feature-card h3 { margin: 0 0 10px; font-size: 19px; }
 .feature-card p { margin: 0; color: var(--text-muted); font-size: 15px; }
 
@@ -621,7 +623,9 @@ a:hover { text-decoration: underline; }
   font-weight: 800;
   margin: 0 auto 14px;
 }
-.how-icon { font-size: 30px; margin-bottom: 10px; }
+.how-icon { font-size: 30px; margin-bottom: 10px; color: var(--blue); }
+.how-icon.red { color: var(--level-red); }
+.how-icon svg { width: 30px; height: 30px; }
 .how-step h3 { margin: 0 0 8px; font-size: 18px; }
 .how-step p { margin: 0; color: var(--text-muted); font-size: 14px; }
 .how-arrow {
