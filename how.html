@@ -134,6 +134,7 @@
           </div>
         </div>
       </div>
+      <p class="anim-caption">蓝色环为 P 波（快·无害），红色环为 S 波（慢·破坏）——震源持续脉动，S 波抵达瞬间触发告警</p>
     </div>
   </section>
 
@@ -237,6 +238,7 @@
           </div>
         </div>
       </div>
+      <p class="anim-caption">曲线上方光点随距离扫描移动——你离震中越远，烈度越低，低于阈值即不再打扰你</p>
     </div>
   </section>
 
@@ -268,6 +270,7 @@
         </div>
         <p class="arch-caption">四条链路同时在线，谁先送达就用谁的；同一次地震从多个源到达时，只弹一次告警。</p>
       </div>
+      <p class="anim-caption">光点沿弧线持续汇聚——四条独立链路并行收数据，任一可达即触发，无单点故障</p>
     </div>
   </section>
 
@@ -322,6 +325,7 @@
         <p>从一段原始报文到一次全屏告警，中间只有几个确定性的判断。下面这条流程，就是每次预警都会走的逻辑。</p>
       </div>
       <div class="flow reveal">
+        <span class="flow-scan"></span>
         <span class="flow-pkt"></span>
         <div class="flow-node"><b>收到预警报文</b><span>来自任一数据源，含震中、震级、深度、发震时刻</span></div>
         <div class="flow-arrow-v"></div>
@@ -334,6 +338,7 @@
           <div class="flow-node quiet"><b>否 → 仅通知栏 / 历史</b><span>不打断你，安静记录这次地震</span></div>
         </div>
       </div>
+      <p class="anim-caption">扫描线从上至下掠过，模拟报文逐级判定——每个节点都是一个确定性的判断</p>
     </div>
   </section>
 

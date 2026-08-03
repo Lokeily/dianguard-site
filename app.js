@@ -213,6 +213,46 @@
 
   revealTargets.forEach(el => io.observe(el));
 
+  /* ---------- 7.5 增强动效：in-view 触发 ---------- */
+  // 以下元素的 CSS 动画需要 .in-view 类才会启动。
+  // 用一个独立的 IntersectionObserver 在元素进入视口时添加该类，
+  // 首次触发后不再移除（动画持续播放或按 CSS 定义一次性完成）。
+  const ENHANCE_SELECTOR = [
+    '.hero-device', '.how-grid', '.reliability-graph',
+    '.screen-showcase', '.voice-seq', '.cmp-table',
+    '.flow', '.level-row'
+  ].join(', ');
+  const enhanceEls = document.querySelectorAll(ENHANCE_SELECTOR);
+  const enhanceIO = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+        enhanceIO.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -5% 0px' });
+  enhanceEls.forEach(el => enhanceIO.observe(el));
+
+  /* ---------- 7.6 功能详解 · 语音序列轮播 ---------- */
+  // 三段语音序列依次「激活」，模拟逐段播报的真实流程。
+  const voiceSeq = document.querySelector('.voice-seq');
+  if (voiceSeq) {
+    const items = voiceSeq.querySelectorAll('.vs-item');
+    let vIdx = 0;
+    const voiceIO = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        voiceIO.unobserve(e.target);
+        setInterval(() => {
+          items.forEach(it => it.classList.remove('active'));
+          if (items[vIdx]) items[vIdx].classList.add('active');
+          vIdx = (vIdx + 1) % items.length;
+        }, 2200);
+      });
+    }, { threshold: 0.3 });
+    voiceIO.observe(voiceSeq);
+  }
+
   /* ---------- 8. 子页锚点导航高亮 ---------- */
   const subnav = document.getElementById('subnav');
   if (subnav) {

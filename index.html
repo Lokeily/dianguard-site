@@ -94,6 +94,7 @@
     </div>
 
     <div class="hero-device">
+      <div class="seismic-rings" aria-hidden="true"><i></i><i></i><i></i></div>
       <div class="phone">
         <div class="phone-notch"></div>
         <div class="phone-screen">
@@ -128,6 +129,7 @@
           </div>
         </div>
       </div>
+      <p class="hero-caption">模拟界面 · 倒计时与预警等级仅供演示</p>
     </div>
   </header>
 
@@ -136,26 +138,31 @@
       <h2 class="section-title">多源实时预警，<span class="text-muted">任一主机可达即触发。</span></h2>
       <div class="source-grid">
         <div class="source-card">
+          <span class="source-live"><span class="pulse-dot"></span>LIVE</span>
           <div class="source-name">Wolfx CENC</div>
           <div class="source-url">ws-api.wolfx.jp/cenc_eew</div>
           <span class="badge free">免 Key</span>
         </div>
         <div class="source-card">
+          <span class="source-live"><span class="pulse-dot"></span>LIVE</span>
           <div class="source-name">Wolfx SC / CQ</div>
           <div class="source-url">四川 · 重庆地震局</div>
           <span class="badge free">免 Key</span>
         </div>
         <div class="source-card">
+          <span class="source-live"><span class="pulse-dot"></span>LIVE</span>
           <div class="source-name">BeeCLD · 2v8</div>
           <div class="source-url">api.2v8.cn/ws/cea</div>
           <span class="badge token">免费 wat_ 令牌</span>
         </div>
         <div class="source-card">
+          <span class="source-live"><span class="pulse-dot"></span>LIVE</span>
           <div class="source-name">FAN Studio</div>
           <div class="source-url">ws.fanstudio.tech/cea</div>
           <span class="badge key">API 密钥可选</span>
         </div>
       </div>
+      <p class="anim-caption">脉冲点代表各数据源的 WebSocket 连接状态，延迟各不相同——这正是「多源并行」的直观体现</p>
     </div>
   </section>
 
@@ -172,7 +179,7 @@
           <h3>秒级监测</h3>
           <p>通过 WebSocket 直连多个相互独立的国家级预警源，震后数秒内收到原始报文，不经过人工转发。</p>
         </div>
-        <div class="how-arrow">→</div>
+        <div class="how-arrow"><span class="flow-dot"></span>→</div>
         <div class="how-step">
           <div class="how-num">2</div>
           <div class="how-icon">
@@ -181,7 +188,7 @@
           <h3>本地估算烈度</h3>
           <p>用汪素云等（2000）短轴衰减模型，结合你授权的大致位置，估算所在地烈度，而非只看震中震级。</p>
         </div>
-        <div class="how-arrow">→</div>
+        <div class="how-arrow"><span class="flow-dot"></span>→</div>
         <div class="how-step">
           <div class="how-num">3</div>
           <div class="how-icon red">
@@ -271,8 +278,12 @@
           <line x1="40" y1="30" x2="100" y2="180"></line>
           <line x1="100" y1="30" x2="100" y2="180"></line>
           <line x1="160" y1="30" x2="100" y2="180"></line>
+          <circle class="rg-pkt" r="3"><animateMotion dur="2.2s" repeatCount="indefinite" path="M40,30 L100,180"/></circle>
+          <circle class="rg-pkt rg-p2" r="3"><animateMotion dur="2.2s" begin="0.7s" repeatCount="indefinite" path="M100,30 L100,180"/></circle>
+          <circle class="rg-pkt rg-p3" r="3"><animateMotion dur="2.2s" begin="1.4s" repeatCount="indefinite" path="M160,30 L100,180"/></circle>
         </svg>
       </div>
+      <p class="anim-caption">光点沿连线汇聚至「地震哨兵」，三条链路互不依赖——任一可达即触发预警</p>
     </div>
   </section>
 

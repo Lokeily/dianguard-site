@@ -1792,6 +1792,376 @@ body::after {
 }
 
 /* ============================================================
+   增强动效（v2）— 差异化模块动画
+   每组动画均由 IntersectionObserver 按需启停，遵守
+   prefers-reduced-motion。以下仅声明样式，触发逻辑在 app.js。
+   ============================================================ */
+
+/* ---- 主页 · 英雄区：震波脉冲环 ----
+   以手机为中心向外扩散的同心环，模拟地震波传播，
+   让用户第一眼就感受到「预警」的核心意象。 */
+.hero-device { position: relative; }
+.seismic-rings {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 200px; height: 200px;
+  pointer-events: none;
+  z-index: -1;
+}
+.seismic-rings i {
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 100%; height: 100%;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 59, 48, 0.5);
+  transform: translate(-50%, -50%) scale(0.4);
+  opacity: 0;
+}
+.hero-device.in-view .seismic-rings i {
+  animation: seismic-expand 3.6s var(--ease) infinite;
+}
+.hero-device.in-view .seismic-rings i:nth-child(2) { animation-delay: 1.2s; border-color: rgba(10, 132, 255, 0.4); }
+.hero-device.in-view .seismic-rings i:nth-child(3) { animation-delay: 2.4s; border-color: rgba(255, 149, 0, 0.35); }
+@keyframes seismic-expand {
+  0% { transform: translate(-50%, -50%) scale(0.3); opacity: 0; }
+  15% { opacity: 0.7; }
+  100% { transform: translate(-50%, -50%) scale(2.2); opacity: 0; }
+}
+.hero-caption {
+  position: absolute;
+  bottom: -28px; left: 50%;
+  transform: translateX(-50%);
+  font-size: 11.5px;
+  color: var(--text-muted);
+  white-space: nowrap;
+  letter-spacing: 0.04em;
+  opacity: 0;
+  transition: opacity 0.6s 0.8s var(--ease);
+}
+.hero-device.in-view .hero-caption { opacity: 0.7; }
+
+/* ---- 主页 · 数据源卡片：实时心跳指示 ----
+   每张源卡片左上角加一个脉冲绿点，模拟「连接在线」状态，
+   延迟各不相同，让多源并行的概念具象化。 */
+.source-card { position: relative; }
+.source-live {
+  position: absolute;
+  top: 14px; right: 14px;
+  display: flex; align-items: center; gap: 5px;
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--green);
+  opacity: 0;
+  transition: opacity 0.5s var(--ease);
+}
+.source-card.in-view .source-live { opacity: 0.85; }
+.source-live .pulse-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--green);
+  position: relative;
+}
+.source-live .pulse-dot::after {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  border: 1.5px solid var(--green);
+  animation: heartbeat 2s ease-out infinite;
+}
+.source-card:nth-child(2) .source-live .pulse-dot::after { animation-delay: 0.5s; }
+.source-card:nth-child(3) .source-live .pulse-dot::after { animation-delay: 1s; }
+.source-card:nth-child(4) .source-live .pulse-dot::after { animation-delay: 1.5s; }
+@keyframes heartbeat {
+  0% { transform: scale(0.8); opacity: 0.8; }
+  100% { transform: scale(2.4); opacity: 0; }
+}
+
+/* ---- 主页 · 三步流程：步骤序号脉冲 + 连接光流 ----
+   步骤序号在进入视口时弹跳放大，箭头内增加一颗光点
+   沿方向行进，强化「1→2→3」的顺序感。 */
+.how-step .how-num {
+  transition: transform 0.5s var(--ease);
+}
+.how-grid.in-view .how-step:nth-child(1) .how-num { animation: num-pop 0.6s 0.1s var(--ease) backwards; }
+.how-grid.in-view .how-step:nth-child(3) .how-num { animation: num-pop 0.6s 0.3s var(--ease) backwards; }
+.how-grid.in-view .how-step:nth-child(5) .how-num { animation: num-pop 0.6s 0.5s var(--ease) backwards; }
+@keyframes num-pop {
+  0% { transform: scale(0.3); opacity: 0; }
+  60% { transform: scale(1.15); }
+  100% { transform: scale(1); opacity: 1; }
+}
+.how-arrow { position: relative; overflow: hidden; }
+.how-arrow .flow-dot {
+  position: absolute;
+  top: 50%; left: 0;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--blue-dark);
+  box-shadow: 0 0 8px var(--blue-dark);
+  transform: translateY(-50%);
+  opacity: 0;
+}
+.how-grid.in-view .how-arrow .flow-dot {
+  animation: flow-right 2s 0.8s var(--ease) infinite;
+}
+@keyframes flow-right {
+  0% { left: 0; opacity: 0; }
+  20% { opacity: 1; }
+  80% { opacity: 1; }
+  100% { left: 100%; opacity: 0; }
+}
+
+/* ---- 主页 · 可靠性图：数据汇聚光点 ----
+   在已有的虚线动画基础上，叠加一颗颗光点沿连线
+   从各数据源向「地震哨兵」汇聚，视觉化「多源冗余」。 */
+.rg-pkt {
+  fill: var(--blue-dark);
+  filter: drop-shadow(0 0 4px var(--blue-dark));
+  opacity: 0;
+}
+.rg-pkt.rg-p2 { fill: var(--level-orange); filter: drop-shadow(0 0 4px var(--level-orange)); }
+.rg-pkt.rg-p3 { fill: var(--green); filter: drop-shadow(0 0 4px var(--green)); }
+.reliability-graph.in-view .rg-pkt { animation: rg-converge 2.2s var(--ease) infinite; }
+.reliability-graph.in-view .rg-pkt.rg-p2 { animation-delay: 0.7s; }
+.reliability-graph.in-view .rg-pkt.rg-p3 { animation-delay: 1.4s; }
+@keyframes rg-converge {
+  0% { opacity: 0; offset-distance: 0%; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { opacity: 0; offset-distance: 100%; }
+}
+
+/* ---- 主页 · 语音波形：增强频谱条 ----
+   将 5 根静态条扩展为更多根 + 不规则高度，
+   配合播放进度指示器，模拟真实音频频谱可视化。 */
+.voice-visual { position: relative; }
+.voice-visual::after {
+  content: 'STREAM_ALARM';
+  position: absolute;
+  bottom: -22px; left: 50%;
+  transform: translateX(-50%);
+  font-size: 10px;
+  font-family: ui-monospace, monospace;
+  color: var(--text-muted);
+  letter-spacing: 0.15em;
+  opacity: 0.5;
+}
+
+/* ---- 主页 · 界面预览：状态指示器闪烁 ----
+   预览屏内的状态点与历史卡片在进入视口后
+   依次闪烁，让静态截图有「实时运行」的错觉。 */
+.screen-showcase.in-view .status-card .dot,
+.screen-showcase.in-view .mock-item .dot {
+  animation: blink 2s ease-in-out infinite;
+}
+.screen-showcase.in-view .mock-item:nth-child(1) .dot { animation-delay: 0s; }
+.screen-showcase.in-view .mock-item:nth-child(2) .dot { animation-delay: 0.4s; }
+.screen-showcase.in-view .mock-item:nth-child(3) .dot { animation-delay: 0.8s; }
+.screen-showcase.in-view .history-item { animation: slide-in-item 0.5s var(--ease) backwards; }
+.screen-showcase.in-view .phone:nth-child(1) .history-item:nth-child(1) { animation-delay: 0.1s; }
+.screen-showcase.in-view .phone:nth-child(1) .history-item:nth-child(2) { animation-delay: 0.25s; }
+.screen-showcase.in-view .phone:nth-child(1) .history-item:nth-child(3) { animation-delay: 0.4s; }
+@keyframes slide-in-item {
+  from { opacity: 0; transform: translateX(-12px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* ---- 功能详解 · 预警卡片：旋转光晕 ----
+   在告警图标后方放一圈缓慢旋转的锥形渐变光晕，
+   色彩随预警等级变化，增加紧迫感而不喧宾夺主。 */
+.alert-icon { position: relative; }
+.alert-icon::before {
+  content: '';
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 60px; height: 60px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: conic-gradient(from 0deg, transparent, rgba(255,255,255,0.25), transparent 60%);
+  animation: icon-aura 3s linear infinite;
+  z-index: -1;
+}
+@keyframes icon-aura { to { transform: translate(-50%, -50%) rotate(360deg); } }
+
+/* ---- 功能详解 · 四级预警行：色带扫入 ----
+   每行进入视口时，左边缘的色点先亮起，
+   随后一条色带从左向右扫过行背景，强化等级递进。 */
+.level-row { position: relative; overflow: hidden; }
+.level-row::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, var(--row-glow, transparent) 0%, transparent 40%);
+  opacity: 0;
+  transform: translateX(-100%);
+  transition: none;
+}
+.level-row.revealed::after {
+  animation: level-sweep 0.9s var(--ease);
+}
+.level-row.blue { --row-glow: rgba(10, 132, 255, 0.12); }
+.level-row.yellow { --row-glow: rgba(255, 204, 0, 0.1); }
+.level-row.orange { --row-glow: rgba(255, 149, 0, 0.12); }
+.level-row.red { --row-glow: rgba(255, 59, 48, 0.14); }
+@keyframes level-sweep {
+  0% { opacity: 0; transform: translateX(-100%); }
+  30% { opacity: 1; }
+  100% { opacity: 0; transform: translateX(100%); }
+}
+
+/* ---- 功能详解 · 语音序列：音频条形动画 ----
+   三段语音序列的条形图依次「播放」：当前段条形跳动，
+   其余段静止，模拟逐段播报的真实流程。 */
+.vs-bars { display: flex; gap: 2.5px; align-items: flex-end; height: 22px; }
+.vs-bars i {
+  width: 3px;
+  border-radius: 2px;
+  background: var(--blue-dark);
+  height: 30%;
+  transition: height 0.2s ease;
+}
+.voice-seq.in-view .vs-item.active .vs-bars i {
+  animation: bar-bounce 0.6s ease-in-out infinite;
+}
+.voice-seq.in-view .vs-item.active .vs-bars i:nth-child(2) { animation-delay: 0.1s; }
+.voice-seq.in-view .vs-item.active .vs-bars i:nth-child(3) { animation-delay: 0.2s; }
+.voice-seq.in-view .vs-item.active .vs-bars i:nth-child(4) { animation-delay: 0.3s; }
+@keyframes bar-bounce {
+  0%, 100% { height: 25%; }
+  50% { height: 100%; }
+}
+.vs-item {
+  transition: border-color 0.4s, background 0.4s;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 16px;
+}
+.vs-item.active {
+  border-color: rgba(10, 132, 255, 0.4);
+  background: rgba(10, 132, 255, 0.06);
+}
+
+/* ---- 功能详解 · 对比表：行渐入 + 文字弹入 ----
+   表格行在进入视口时依次淡入并轻微上移，
+   ✓/✗ 标记延迟弹入，让对比信息逐行展开而非一次性闪现。 */
+.cmp-table tbody tr {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.45s var(--ease), transform 0.45s var(--ease);
+}
+.cmp-table.in-view tbody tr { opacity: 1; transform: none; }
+.cmp-table.in-view tbody tr:nth-child(1) { transition-delay: 0.05s; }
+.cmp-table.in-view tbody tr:nth-child(2) { transition-delay: 0.12s; }
+.cmp-table.in-view tbody tr:nth-child(3) { transition-delay: 0.19s; }
+.cmp-table.in-view tbody tr:nth-child(4) { transition-delay: 0.26s; }
+.cmp-table.in-view tbody tr:nth-child(5) { transition-delay: 0.33s; }
+.cmp-table.in-view tbody tr:nth-child(6) { transition-delay: 0.40s; }
+.cmp-table.in-view tbody tr:nth-child(7) { transition-delay: 0.47s; }
+.cmp-table.in-view tbody tr:nth-child(8) { transition-delay: 0.54s; }
+.cmp-table.in-view .cmp-yes,
+.cmp-table.in-view .cmp-no {
+  animation: cmp-pop 0.5s 0.6s var(--ease) backwards;
+}
+@keyframes cmp-pop {
+  from { opacity: 0; transform: scale(0.6); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* ---- 技术原理 · 波纹 demo：震源核心脉冲 ----
+   震源点持续脉动，即使波纹环尚未扩张也保持「活跃」感。 */
+.wd-epi {
+  position: relative;
+}
+.wd-epi::before {
+  content: '';
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 14px; height: 14px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: var(--level-orange);
+  box-shadow: 0 0 12px var(--level-orange);
+  animation: epi-core 1.4s ease-in-out infinite;
+}
+.wd-epi::after {
+  content: '';
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 14px; height: 14px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  border: 2px solid var(--level-orange);
+  animation: epi-ring 1.4s ease-out infinite;
+}
+@keyframes epi-core {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); }
+  50% { transform: translate(-50%, -50%) scale(1.3); }
+}
+@keyframes epi-ring {
+  0% { transform: translate(-50%, -50%) scale(1); opacity: 0.8; }
+  100% { transform: translate(-50%, -50%) scale(3.5); opacity: 0; }
+}
+
+/* ---- 技术原理 · 盲区：多层扩展环 ----
+   原有的单一 bz-ping 扩展为三层不同颜色的环，
+   分别对应盲区（红）、有效区（橙）、衰减区（蓝），
+   让「距离决定预警效果」一目了然。 */
+.bz-graph .core { z-index: 3; }
+.bz-graph .core::before {
+  content: '';
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 16px; height: 16px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: var(--level-red);
+  box-shadow: 0 0 16px var(--level-red);
+  animation: epi-core 1.2s ease-in-out infinite;
+}
+
+/* ---- 技术原理 · 决策流：扫描线 ----
+   决策流程在进入视口时，一条水平光线从上到下扫过，
+   然后各节点依次高亮，模拟「逐级判定」过程。 */
+.flow { position: relative; }
+.flow-scan {
+  position: absolute;
+  left: 0; right: 0;
+  height: 2px;
+  top: 0;
+  background: linear-gradient(90deg, transparent, var(--blue-dark), transparent);
+  box-shadow: 0 0 16px var(--blue-dark);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 5;
+}
+.flow.in-view .flow-scan {
+  animation: flow-scan-down 1.6s var(--ease);
+}
+@keyframes flow-scan-down {
+  0% { top: 0; opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { top: 100%; opacity: 0; }
+}
+
+/* ---- 通用 · 模块说明文字 ----
+   部分动效模块下方附简明说明，帮助用户理解动画含义。 */
+.anim-caption {
+  text-align: center;
+  font-size: 12.5px;
+  color: var(--text-muted);
+  margin-top: 18px;
+  letter-spacing: 0.02em;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.6s 0.4s var(--ease), transform 0.6s 0.4s var(--ease);
+}
+.in-view + .anim-caption,
+.section.in-view .anim-caption { opacity: 0.65; transform: none; }
+
+/* ============================================================
    响应式
    ============================================================ */
 @media (max-width: 1080px) {
