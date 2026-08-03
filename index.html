@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>地震哨兵 Dianguard — 私人地震预警哨兵</title>
+  <meta name="description" content="地震哨兵是一款面向中国大陆用户的 Android 地震预警应用，在破坏性 S 波到达前以全屏倒计时+真实大陆预警语音告警。">
+  <link rel="icon" type="image/png" href="assets/ic_launcher.png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <canvas id="wave-canvas"></canvas>
+
+  <nav class="nav">
+    <a class="nav-logo" href="#top">
+      <img src="assets/ic_launcher.png" alt="地震哨兵">
+      <span>地震哨兵</span>
+    </a>
+    <div class="nav-links">
+      <a href="#features">功能</a>
+      <a href="#screens">界面</a>
+      <a href="#download">下载</a>
+      <a href="disclaimer.html">免责声明</a>
+      <a class="nav-github" href="https://github.com/Lokeily/Earthquake-Sentinel" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </nav>
+
+  <header id="top" class="hero">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="dot level-blue"></span>Android 版 v1.2.0 已发布
+      </div>
+      <h1 class="hero-title">
+        插上旧手机，<br>
+        它就是你的<span class="gradient-text">私人地震预警哨兵</span>。
+      </h1>
+      <p class="hero-subtitle">
+        24 小时监听中国大陆国家级地震预警，S 波到达前全屏倒计时告警。<br>
+        真实大陆预警语音 · 多源去单点 · 蓝黄橙红四级预警。
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="https://github.com/Lokeily/Earthquake-Sentinel/releases/download/v1.2.0/Dianguard-v1.2.0-release.apk">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15h-2v-2h2v2zm0-4h-2V7h2v6zm4 4h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+          立即下载 APK
+        </a>
+        <a class="btn btn-secondary" href="https://github.com/Lokeily/Earthquake-Sentinel" target="_blank" rel="noopener">查看 GitHub</a>
+      </div>
+      <p class="hero-note">完全免费 · 开源 · 仅供学习研究 · <a href="disclaimer.html">使用请先阅读免责声明</a></p>
+    </div>
+
+    <div class="hero-device">
+      <div class="phone">
+        <div class="phone-notch"></div>
+        <div class="phone-screen">
+          <div class="alert-card red">
+            <div class="alert-icon">⚠</div>
+            <div class="alert-level">红色预警</div>
+            <div class="alert-mag">6.4 级地震</div>
+            <div class="alert-eta"><span class="count">12</span> 秒后 S 波到达</div>
+            <div class="alert-tip">就近避险 · 保护头部</div>
+          </div>
+          <div class="home-preview">
+            <div class="status-row">
+              <span class="status-label">数据源</span>
+              <span class="status-value">Wolfx · BeeCLD · FAN</span>
+            </div>
+            <div class="source-dots">
+              <span class="dot level-blue"></span>
+              <span class="dot level-yellow"></span>
+              <span class="dot level-orange"></span>
+              <span class="dot level-red"></span>
+            </div>
+            <button class="mock-btn">开启预警监听</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="section sources">
+    <div class="container">
+      <h2 class="section-title">多源实时预警，<span class="text-muted">任一主机可达即触发。</span></h2>
+      <div class="source-grid">
+        <div class="source-card">
+          <div class="source-name">Wolfx CENC</div>
+          <div class="source-url">ws-api.wolfx.jp/cenc_eew</div>
+          <span class="badge free">免 Key</span>
+        </div>
+        <div class="source-card">
+          <div class="source-name">Wolfx SC / CQ</div>
+          <div class="source-url">四川 · 重庆地震局</div>
+          <span class="badge free">免 Key</span>
+        </div>
+        <div class="source-card">
+          <div class="source-name">BeeCLD · 2v8</div>
+          <div class="source-url">api.2v8.cn/ws/cea</div>
+          <span class="badge token">免费 wat_ 令牌</span>
+        </div>
+        <div class="source-card">
+          <div class="source-name">FAN Studio</div>
+          <div class="source-url">ws.fanstudio.tech/cea</div>
+          <span class="badge key">API 密钥可选</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="features" class="section features">
+    <div class="container">
+      <h2 class="section-title">核心功能</h2>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <div class="feature-icon red">📢</div>
+          <h3>全屏倒计时告警</h3>
+          <p>S 波到达前强制全屏弹出，锁屏之上、亮屏、横竖屏自适应，蓝/黄/橙/红四级预警 + 真实大陆预警语音播报。</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon blue">🌐</div>
+          <h3>多源去单点</h3>
+          <p>同时订阅 Wolfx、BeeCLD·2v8 等相互独立的主机，任一可达即触发；FAN Studio 配置密钥后自动启用。</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon yellow">🎚️</div>
+          <h3>烈度阈值可调</h3>
+          <p>2°/3°/4° 三档阈值，低于阈值仅通知栏提示，避免告警疲劳。3° 为推荐默认值。</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon orange">🧪</div>
+          <h3>模拟预警</h3>
+          <p>以手机定位周边真实城市为震中，随机方向与 ETA，拉起与真实预警完全一致的全屏页面，用于科普自测。</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon purple">📜</div>
+          <h3>地震历史记录</h3>
+          <p>抓取中国地震台网速报目录，最近 50 条，含中文地名、震级、深度与发震时刻，按等级色展示。</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon green">🌙</div>
+          <h3>深色 OLED 省电</h3>
+          <p>跟随系统 / 浅色 / 深色（#000000 纯黑）三档，AMOLED 黑色像素直接熄灭，防烧屏。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="screens" class="section screens">
+    <div class="container">
+      <h2 class="section-title">界面一览</h2>
+      <div class="screen-showcase">
+        <div class="phone small">
+          <div class="phone-notch"></div>
+          <div class="phone-screen dark">
+            <div class="screen-header">主页</div>
+            <div class="status-card">
+              <div class="status-title">监听中</div>
+              <div class="status-desc">3 路数据源在线</div>
+            </div>
+            <div class="mock-list">
+              <div class="mock-item"><span class="dot level-green"></span>网络正常</div>
+              <div class="mock-item"><span class="dot level-green"></span>定位已获取</div>
+              <div class="mock-item"><span class="dot level-blue"></span>悬浮窗待授权</div>
+            </div>
+          </div>
+        </div>
+        <div class="phone small">
+          <div class="phone-notch"></div>
+          <div class="phone-screen dark">
+            <div class="screen-header">历史</div>
+            <div class="history-item level-orange">
+              <div class="history-mag">5.2</div>
+              <div class="history-info">
+                <div>云南大理</div>
+                <div class="history-meta">10 km · 2 小时前</div>
+              </div>
+            </div>
+            <div class="history-item level-blue">
+              <div class="history-mag">3.8</div>
+              <div class="history-info">
+                <div>四川宜宾</div>
+                <div class="history-meta">12 km · 5 小时前</div>
+              </div>
+            </div>
+            <div class="history-item level-yellow">
+              <div class="history-mag">4.6</div>
+              <div class="history-info">
+                <div>新疆喀什</div>
+                <div class="history-meta">8 km · 昨天</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="phone small">
+          <div class="phone-notch"></div>
+          <div class="phone-screen dark">
+            <div class="screen-header">设置</div>
+            <div class="mock-list compact">
+              <div class="mock-item">参考位置</div>
+              <div class="mock-item">烈度阈值：3°</div>
+              <div class="mock-item">深色模式</div>
+              <div class="mock-item">测试报警</div>
+              <div class="mock-item">系统自检</div>
+              <div class="mock-item">检查更新</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section voice">
+    <div class="container voice-inner">
+      <div class="voice-text">
+        <h2 class="section-title">真实大陆预警语音</h2>
+        <p>告警语音全部采用真实大陆预警录音，不使用 TTS 读数字，全链路走 STREAM_ALARM，锁屏/静音下最大音量。</p>
+        <ul class="voice-list">
+          <li><strong>短语循环</strong>「有感地震，请勿惊慌」等分级短语，倒计时前循环播放。</li>
+          <li><strong>逐字倒计时</strong>将「10 秒倒计时」拆成 10 / 9 / … / 1 的独立音频，每秒播一个。</li>
+          <li><strong>警报</strong>倒计时归零后循环播放，直到你点击「我已安全」。</li>
+        </ul>
+      </div>
+      <div class="voice-visual">
+        <div class="wave-block"></div>
+        <div class="wave-block"></div>
+        <div class="wave-block"></div>
+        <div class="wave-block"></div>
+        <div class="wave-block"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section reviews">
+    <div class="container">
+      <h2 class="section-title">用户怎么说</h2>
+      <div class="review-grid">
+        <blockquote class="review-card">
+          <p>"把旧手机放床头当哨兵，设了 3° 阈值，既不吵也不漏。"</p>
+          <cite>— 酷安用户</cite>
+        </blockquote>
+        <blockquote class="review-card">
+          <p>"多源兜底这个设计很关键，单个转发站挂了还有备份。"</p>
+          <cite>— GitHub Issue 反馈</cite>
+        </blockquote>
+        <blockquote class="review-card">
+          <p>"模拟预警能选真实城市，给爸妈演示一遍就会用了。"</p>
+          <cite>— 微博用户</cite>
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
+  <section id="download" class="section download">
+    <div class="container">
+      <h2 class="section-title">安装前必看</h2>
+      <div class="install-steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <h3>下载 APK</h3>
+          <p>从 GitHub Release 下载 <code>Dianguard-v1.2.0-release.apk</code>，体积约 16 MB。</p>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <h3>允许安装未知应用</h3>
+          <p>首次安装时按系统提示授权浏览器/文件管理器「安装未知应用」权限。</p>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <h3>开启必要权限</h3>
+          <p>定位、通知、悬浮窗、忽略电池优化，按引导页逐项开启，否则无法后台监听。</p>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <h3>加入厂商白名单</h3>
+          <p>小米/华为/OPPO/vivo 等需在系统设置中将本应用加入自启动 + 电池优化豁免。</p>
+        </div>
+      </div>
+      <div class="download-actions">
+        <a class="btn btn-primary btn-large" href="https://github.com/Lokeily/Earthquake-Sentinel/releases/download/v1.2.0/Dianguard-v1.2.0-release.apk">
+          下载 Dianguard v1.2.0
+        </a>
+        <a class="btn btn-secondary" href="disclaimer.html">阅读免责声明与用户协议</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <img src="assets/ic_launcher.png" alt="">
+        <div>
+          <strong>地震哨兵 Dianguard</strong>
+          <p>昆明城市学院学生刘家恺个人作品集 · 更替互娱支持开发</p>
+        </div>
+      </div>
+      <div class="footer-links">
+        <a href="https://github.com/Lokeily/Earthquake-Sentinel" target="_blank" rel="noopener">GitHub Release</a>
+        <a href="disclaimer.html">免责声明</a>
+        <a href="https://github.com/Lokeily/Dianguard" target="_blank" rel="noopener">源码仓库</a>
+      </div>
+      <p class="footer-copy">© 2026 地震哨兵 Dianguard. 仅供学习与研究使用。</p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
