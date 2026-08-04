@@ -644,7 +644,7 @@ body::after {
 /* ============================================================
    区块通用
    ============================================================ */
-.section { padding: 108px 0; position: relative; z-index: 2; }
+.section { padding: 108px 0; position: relative; z-index: 2; contain: layout style; }
 .section-eyebrow {
   display: block;
   text-align: center;
@@ -1119,7 +1119,7 @@ body::after {
 /* ============================================================
    功能页组件
    ============================================================ */
-.fx-block { padding: 74px 0; position: relative; z-index: 2; }
+.fx-block { padding: 74px 0; position: relative; z-index: 2; contain: layout style; }
 .fx-block:nth-child(even) { background: var(--bg-elev); }
 .fx-head { max-width: 760px; margin: 0 auto 44px; text-align: center; }
 .fx-eyebrow {
