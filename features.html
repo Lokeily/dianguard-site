@@ -281,15 +281,18 @@
       </div>
       <div class="fx-row" style="margin-top:56px">
         <div class="fx-copy">
-          <span class="fx-tag">EewFusion</span>
-          <h3>多源融合决策引擎</h3>
+          <span class="fx-tag">EewFusion</span><span class="fx-tag self">自研核心</span>
+          <h3>EewFusion — 自研多源融合决策引擎</h3>
           <p>借鉴集成学习思想，每个数据源被视为独立「专家」。在 <strong>1.5s 融合窗口</strong>内收集多源报文后加权融合，单源异常不会主导结果：</p>
+          <p class="fx-lead">这是地震哨兵区别于「单源转发器」的核心能力，完全由作者<strong>自研</strong>：让多源相互印证，而非盲信单一来源。</p>
           <ul class="fx-points">
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span><b>震级融合</b>：加权中位数，比算术平均更抗异常值，单源偏差异常不主导结果。</span></li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span><b>坐标选优</b>：取权重最高源的原始坐标，严禁加权平均（避免物理意义错误）。</span></li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span><b>置信度</b>：多源一致→高置信；单源初报→低置信并标记 <code>isPreliminary</code>，禁止触发红色。</span></li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span><b>交叉验证</b>：双源以上一致才触发高等级告警，单源伪造报文被加权中位数 / 置信度机制抑制。</span></li>
           </ul>
+          <p class="fx-note">工程保障：坐标防抖 · 按事件版本隔离 · 超时强制输出 · 10 分钟跨源去重，确保不重复、不漏报。</p>
+          <p class="fx-license">EewFusion 为地震哨兵自研核心算法。当前版本随开源仓库以 <strong>精简兼容实现</strong>（加权融合 + 坐标选优）发布；其 <strong>完整引擎将在后续版本转为闭源专有</strong>，不再随仓库分发。</p>
           <p style="margin-top:20px"><a class="link-arrow" href="how.html#arch">查看完整数据流架构<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></p>
         </div>
         <div class="fx-visual">

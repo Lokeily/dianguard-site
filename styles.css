@@ -3167,3 +3167,62 @@ body::after {
 @media (max-width: 460px) {
   .arch-steps { grid-template-columns: 1fr; }
 }
+
+/* ============================================================
+   EewFusion 自研核心 品牌化样式
+   ============================================================ */
+.fx-tag.self {
+  background: rgba(255,159,10,0.16);
+  color: #ff9f0a;
+  margin-left: 8px;
+}
+.fx-lead {
+  color: var(--text-soft);
+  font-size: 15px;
+  margin: 14px 0 0;
+  line-height: 1.62;
+}
+.fx-note {
+  color: var(--text-muted);
+  font-size: 13px;
+  margin: 16px 0 0;
+  padding-left: 14px;
+  border-left: 2px solid var(--border);
+  line-height: 1.6;
+}
+.fx-license {
+  color: var(--text-muted);
+  font-size: 13px;
+  margin: 14px 0 0;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px 14px;
+  line-height: 1.62;
+}
+.fx-license strong { color: var(--text-soft); font-weight: 600; }
+
+/* 首页 EewFusion 聚光块 */
+.eewfusion-spot {
+  margin-top: 26px;
+  padding: 22px 24px;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: linear-gradient(180deg, rgba(255,159,10,0.05), rgba(255,255,255,0.02));
+}
+.eewfusion-spot h3 {
+  margin: 12px 0 8px;
+  font-size: 19px;
+  letter-spacing: -0.01em;
+}
+.eewfusion-spot p {
+  margin: 0;
+  color: var(--text-soft);
+  font-size: 15px;
+  line-height: 1.66;
+}
+.eewfusion-spot p strong { color: var(--text); font-weight: 600; }
+
+@media (max-width: 760px) {
+  .eewfusion-spot { padding: 18px 18px; }
+}
