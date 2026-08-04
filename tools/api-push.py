@@ -22,7 +22,7 @@ def api(method, path, body=None):
         raise
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-FILES = ["index.html", "features.html", "how.html", "styles.css", "app.js"]
+FILES = ["index.html", "features.html", "how.html", "changelog.html", "disclaimer.html", "styles.css", "app.js"]
 
 # 1. 获取当前 main 分支的最新 commit
 ref = api("GET", f"/git/refs/heads/{BRANCH}")
