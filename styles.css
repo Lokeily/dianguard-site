@@ -2700,6 +2700,12 @@ body::after {
   letter-spacing: 0.06em;
   z-index: 4;
 }
+/* 统一时间轴（周期 3.6s，P/S/台站/手机/倒计时共享）：
+   0%      震源破裂，P、S 波同时出发
+   ~24%    P 波到达台站 → 台站闪亮测定 → 手机弹出倒计时 14
+   ~59%    P 波到达「你」（先到 · 无害）→ 用户蓝闪
+   97%~100% 倒计时归零 → S 波到达「你」（后到 · 破坏）→ 警报 → 重置
+*/
 .pw-ring {
   position: absolute;
   top: 50%; left: 15%;
@@ -2711,18 +2717,25 @@ body::after {
 }
 .pw-ring.p {
   border: 2.5px solid rgba(10, 132, 255, 0.75);
-  animation: pw-wave 2.12s linear infinite;   /* 20/34 × 3.6s */
+  animation: pw-wave-p 3.6s linear infinite;
 }
 .pw-ring.s {
   border: 3.5px solid rgba(255, 59, 48, 0.8);
-  animation: pw-wave 3.6s linear infinite;
+  animation: pw-wave-s 3.6s linear infinite;
 }
-@keyframes pw-wave {
+/* P 波：59%（2.12s）到达「你」，此后保持（已到、继续无害传播）直到 S 波追上 */
+@keyframes pw-wave-p {
+  0% { transform: translate(-50%, -50%) scale(0.01); opacity: 0.95; }
+  59% { transform: translate(-50%, -50%) scale(1); opacity: 0.55; }
+  96%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0; }
+}
+/* S 波：100%（3.6s）才到达「你」——永远在 P 波之后 */
+@keyframes pw-wave-s {
   0% { transform: translate(-50%, -50%) scale(0.01); opacity: 0.95; }
   100% { transform: translate(-50%, -50%) scale(1); opacity: 0; }
 }
 
-/* 台站：P 波经过时闪亮（约 40% 路径处，P 环 2.12s 的 40% ≈ 0.85s） */
+/* 台站：P 波到达（24%）时闪亮测定 */
 .pw-station {
   position: absolute;
   top: 50%; left: 43%;
@@ -2736,7 +2749,6 @@ body::after {
   border-radius: 50%;
   background: var(--text-muted);
   border: 2px solid rgba(255,255,255,0.25);
-  transition: background 0.3s, box-shadow 0.3s;
 }
 .st-flash {
   position: absolute;
@@ -2746,18 +2758,12 @@ body::after {
   border-radius: 50%;
   border: 2px solid rgba(10, 132, 255, 0.9);
   opacity: 0;
-  animation: st-flash 2.12s linear infinite;
+  animation: st-flash 3.6s linear infinite;
 }
 @keyframes st-flash {
-  0%, 36% { opacity: 0; transform: translate(-50%, -50%) scale(0.6); }
-  42%, 52% { opacity: 1; transform: translate(-50%, -50%) scale(1.6); }
-  60%, 100% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
-}
-.pw-station .st-label {
-  font-size: 10px;
-  color: var(--text-muted);
-  white-space: nowrap;
-  letter-spacing: 0.04em;
+  0%, 21% { opacity: 0; transform: translate(-50%, -50%) scale(0.6); }
+  24%, 32% { opacity: 1; transform: translate(-50%, -50%) scale(1.7); }
+  40%, 100% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
 }
 .pw-station::before {
   content: '';
@@ -2769,15 +2775,21 @@ body::after {
   background: var(--level-blue);
   box-shadow: 0 0 10px var(--level-blue);
   opacity: 0;
-  animation: st-core 2.12s linear infinite;
+  animation: st-core 3.6s linear infinite;
 }
 @keyframes st-core {
-  0%, 36% { opacity: 0; }
-  42%, 55% { opacity: 0.95; }
-  62%, 100% { opacity: 0; }
+  0%, 21% { opacity: 0; }
+  24%, 34% { opacity: 0.95; }
+  42%, 100% { opacity: 0; }
+}
+.pw-station .st-label {
+  font-size: 10px;
+  color: var(--text-muted);
+  white-space: nowrap;
+  letter-spacing: 0.04em;
 }
 
-/* 你处：P 波到达后手机亮起显示倒计时，S 波到达前始终可见 */
+/* 你处：P 波到达（59%）蓝闪 · S 波到达（100%）红闪 */
 .pw-you {
   position: absolute;
   top: 50%; right: 10%;
@@ -2788,6 +2800,25 @@ body::after {
   z-index: 3;
 }
 .pw-you svg { width: 26px; height: 26px; color: var(--level-blue); }
+.you-pulse {
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 34px; height: 34px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  border: 2px solid transparent;
+  opacity: 0;
+  pointer-events: none;
+  animation: you-wave 3.6s linear infinite;
+}
+@keyframes you-wave {
+  0%, 56% { border-color: transparent; opacity: 0; transform: translate(-50%, -50%) scale(0.6); }
+  59%, 66% { border-color: rgba(10, 132, 255, 0.9); opacity: 1; transform: translate(-50%, -50%) scale(1.5); }
+  70%, 93% { border-color: transparent; opacity: 0; transform: translate(-50%, -50%) scale(1); }
+  96%, 100% { border-color: rgba(255, 59, 48, 0.95); opacity: 1; transform: translate(-50%, -50%) scale(1.6); }
+}
+
+/* 手机：台站测定后（~24%）弹出倒计时，S 波到达前（97%）淡出 */
 .pw-phone {
   font-size: 10.5px;
   font-weight: 700;
@@ -2798,12 +2829,36 @@ body::after {
   border: 1px solid rgba(10, 132, 255, 0.35);
   white-space: nowrap;
   opacity: 0;
-  animation: phone-count 3.6s linear infinite;
+  animation: phone-visible 3.6s linear infinite;
 }
-@keyframes phone-count {
-  0%, 56% { opacity: 0; transform: translateY(2px); }
-  60%, 90% { opacity: 1; transform: none; }
-  94%, 100% { opacity: 0; transform: translateY(-2px); }
+@keyframes phone-visible {
+  0%, 23% { opacity: 0; transform: translateY(4px); }
+  26%, 93% { opacity: 1; transform: none; }
+  97%, 100% { opacity: 0; transform: translateY(-2px); }
+}
+
+/* 倒计时数字：24%（台站测定）开始从 14 递减，100%（S 波到达）归零。
+   用 @property 注册整数变量 + counter 渲染，纯 CSS 无 JS；
+   不支持 @property 的浏览器降级为静态 14。 */
+@property --cd {
+  syntax: '<integer>';
+  initial-value: 14;
+  inherits: false;
+}
+.pw-count {
+  font-variant-numeric: tabular-nums;
+  min-width: 1.4ch;
+  display: inline-block;
+  text-align: center;
+  counter-reset: cd var(--cd, 14);
+}
+.pw-count::before { content: counter(cd); }
+.pw-count {
+  animation: cd-count 3.6s linear infinite;
+}
+@keyframes cd-count {
+  0%, 24% { --cd: 14; }
+  100% { --cd: 0; }
 }
 .pw-hud {
   position: absolute;
@@ -2830,8 +2885,8 @@ body::after {
   white-space: nowrap;
 }
 @keyframes pw-alert-show {
-  0%, 90% { opacity: 0; transform: translate(-50%, -50%) scale(0.85); }
-  95%, 100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  0%, 95% { opacity: 0; transform: translate(-50%, -50%) scale(0.85); }
+  99%, 100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
 }
 .pw-legend {
   position: absolute;

@@ -126,15 +126,16 @@
             <div class="pw-ring p"></div>
             <div class="pw-ring s"></div>
             <div class="pw-you">
+              <span class="you-pulse" aria-hidden="true"></span>
               <svg viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.5-7-11a7 7 0 0 1 14 0c0 4.5-7 11-7 11z" fill="none"/><circle cx="12" cy="10" r="2.4"/></svg>
               <span>你 · 120 km</span>
-              <span class="pw-phone">📱 预警倒计时 14 s</span>
+              <span class="pw-phone">📱 倒计时 <b class="pw-count"></b> s</span>
             </div>
             <div class="pw-hud">
-              <span class="pw-dist">震中距 120 km · P 波 20 s 到 · S 波 34 s 到</span>
+              <span class="pw-dist">震中距 120 km · P 波 20 s 先到 · S 波 34 s 后到</span>
               <span class="pw-time">预警窗口 <b>14</b> s</span>
             </div>
-            <div class="pw-alert">⚠ S 波已抵达 · 立即避险</div>
+            <div class="pw-alert">⚠ 倒计时归零 · S 波已抵达 · 立即避险</div>
             <div class="pw-legend">
               <span class="p"><i></i>P 波（纵波 · 20 s 先到 · 无害）</span>
               <span class="s"><i></i>S 波（横波 · 34 s 后到 · 破坏）</span>
