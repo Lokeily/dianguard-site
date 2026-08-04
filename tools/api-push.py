@@ -2,7 +2,11 @@
 """通过 GitHub Git Data API 推送本地变更（绕过 git push 代理 502 问题）。"""
 import json, base64, urllib.request, os, sys
 
-TOKEN = "REDACTED_TOKEN"
+TOKEN = os.environ.get("GITHUB_TOKEN")
+if not TOKEN:
+    print("错误：请设置环境变量 GITHUB_TOKEN（GitHub Personal Access Token）。")
+    print("示例：GITHUB_TOKEN=ghp_xxx python3 tools/api-push.py")
+    sys.exit(1)
 REPO = "Lokeily/dianguard-site"
 BRANCH = "main"
 API = f"https://api.github.com/repos/{REPO}"
