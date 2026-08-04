@@ -115,7 +115,7 @@
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
 
-  /* ---------- 4. 移动端导航菜单 ---------- */
+  /* ---------- 4. 移动端导航菜单 + 二级下拉 ---------- */
   const navToggle = document.getElementById('nav-toggle');
   const navLinks = document.getElementById('nav-links');
   if (navToggle && navLinks) {
@@ -123,12 +123,53 @@
       const open = navLinks.classList.toggle('open');
       navToggle.classList.toggle('open', open);
       navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      if (!open) {
+        navLinks.querySelectorAll('.nav-item.open').forEach(el => el.classList.remove('open'));
+      }
     });
+
+    // 移动端：点击「功能 / 技术原理」父项或其箭头 → 折叠展开二级菜单
+    const isMobile = () => window.innerWidth <= 960;
+    navLinks.querySelectorAll('.nav-item').forEach(item => {
+      const link = item.querySelector(':scope > a');
+      const caret = item.querySelector('.nav-caret');
+      const toggle = (e) => {
+        if (!isMobile()) return;
+        e.preventDefault();
+        e.stopPropagation();
+        const willOpen = !item.classList.contains('open');
+        navLinks.querySelectorAll('.nav-item.open').forEach(el => el.classList.remove('open'));
+        if (willOpen) item.classList.add('open');
+      };
+      if (link) link.addEventListener('click', toggle);
+      if (caret) caret.addEventListener('click', toggle);
+    });
+
+    // 点击下拉里的二级链接 → 关闭整个移动菜单
     navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      if (!isMobile() || a.closest('.nav-drop')) {
+        if (isMobile() && a.closest('.nav-drop')) {
+          navLinks.classList.remove('open');
+          navToggle.classList.remove('open');
+          navToggle.setAttribute('aria-expanded', 'false');
+        }
+        return;
+      }
       navLinks.classList.remove('open');
       navToggle.classList.remove('open');
       navToggle.setAttribute('aria-expanded', 'false');
     }));
+
+    // 点击页面其他区域：收起移动菜单与二级下拉
+    document.addEventListener('click', (e) => {
+      if (navLinks.classList.contains('open') &&
+          !e.target.closest('.nav-links') && !e.target.closest('.nav-toggle')) {
+        navLinks.classList.remove('open');
+        navToggle.classList.remove('open');
+        navToggle.setAttribute('aria-expanded', 'false');
+        navLinks.querySelectorAll('.nav-item.open').forEach(el => el.classList.remove('open'));
+      }
+    }, { passive: true });
   }
 
   /* ---------- 5. 光标跟随高光 (spotlight) ---------- */
@@ -297,9 +338,10 @@
   /* ---------- 8.5 导航滑动指示条（宽屏桌面端） ---------- */
   // 把静态的 active 下划线升级为可滑移的高亮胶囊：
   // 初始停在当前页链接上，鼠标悬停其他链接时平滑滑过去。
+  // 支持普通链接与带二级菜单的 .nav-item > a。
   const navLinksEl = document.getElementById('nav-links');
   const navTabs = navLinksEl
-    ? Array.from(navLinksEl.querySelectorAll(':scope > a:not(.nav-github):not(.nav-cta)'))
+    ? Array.from(navLinksEl.querySelectorAll(':scope > a:not(.nav-github):not(.nav-cta), :scope > .nav-item > a'))
     : [];
   if (navLinksEl && navTabs.length) {
     const navIndicator = document.createElement('span');
@@ -314,7 +356,9 @@
     };
     const syncNav = () => {
       if (window.innerWidth <= 960) { navIndicator.style.opacity = 0; return; }
-      const act = navTabs.find(x => x.classList.contains('active'));
+      // active 可能在普通链接上，也可能在带下拉的 .nav-item.active 上
+      const act = navTabs.find(x => x.classList.contains('active')) ||
+                  (navLinksEl.querySelector('.nav-item.active > a') || null);
       if (act) { moveNav(act); navIndicator.style.opacity = 1; }
       else navIndicator.style.opacity = 0;
     };

@@ -235,6 +235,103 @@ body::after {
 .nav-github:hover { background: rgba(255,255,255,0.08); color: #fff !important; border-color: var(--border-strong); }
 .nav-github svg { width: 18px; height: 18px; }
 
+/* ---- 导航二级下拉（功能 / 技术原理） ---- */
+.nav-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.nav-item > a {
+  position: relative;
+  color: var(--text-muted);
+  padding: 8px 11px 8px 13px;
+  border-radius: 10px;
+  transition: color 0.22s, background 0.22s;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  z-index: 1;
+}
+.nav-item > a:hover { color: var(--text); text-decoration: none; background: rgba(255,255,255,0.05); }
+.nav-item.active > a { color: var(--text); }
+.nav-caret {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  z-index: 1;
+  transition: transform 0.3s var(--ease), color 0.22s;
+  cursor: pointer;
+}
+.nav-caret svg { width: 13px; height: 13px; }
+.nav-item:hover .nav-caret,
+.nav-item.active .nav-caret { color: var(--text); }
+.nav-item.open .nav-caret,
+.nav-item:hover .nav-caret { transform: rotate(180deg); }
+
+.nav-drop {
+  position: absolute;
+  top: calc(100% + 14px);
+  left: 50%;
+  transform: translateX(-50%) translateY(10px) scale(0.97);
+  min-width: 236px;
+  padding: 8px;
+  background: rgba(12, 12, 18, 0.94);
+  backdrop-filter: blur(24px) saturate(140%);
+  -webkit-backdrop-filter: blur(24px) saturate(140%);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55), 0 4px 16px rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s var(--ease), transform 0.25s var(--ease), visibility 0.25s;
+  z-index: 160;
+}
+.nav-drop::before {
+  content: "";
+  position: absolute;
+  top: -5px; left: 50%;
+  width: 10px; height: 10px;
+  transform: translateX(-50%) rotate(45deg);
+  background: rgba(14, 14, 20, 0.96);
+  border-left: 1px solid var(--border);
+  border-top: 1px solid var(--border);
+}
+.nav-item:hover .nav-drop,
+.nav-item:focus-within .nav-drop,
+.nav-item.open .nav-drop {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0) scale(1);
+}
+.nav-drop a {
+  display: block;
+  padding: 10px 12px;
+  border-radius: 11px;
+  color: var(--text-soft);
+  transition: background 0.2s, color 0.2s;
+}
+.nav-drop a b {
+  display: block;
+  font-size: 13.5px;
+  color: var(--text);
+  margin-bottom: 2px;
+  font-weight: 600;
+}
+.nav-drop a span {
+  display: block;
+  font-size: 11.5px;
+  color: var(--text-muted);
+}
+.nav-drop a:hover {
+  background: rgba(10, 132, 255, 0.12);
+  color: #fff;
+  text-decoration: none;
+}
+.nav-drop a:hover b { color: #fff; }
+.nav-drop a:hover span { color: rgba(255,255,255,0.72); }
+
 .nav-toggle {
   display: none;
   width: 40px; height: 40px;
@@ -2371,6 +2468,59 @@ body::after {
   .nav-cta { text-align: center; margin-top: 8px; }
   .nav-github { width: auto !important; height: auto !important; border-radius: 12px !important; padding: 12px 14px !important; justify-content: flex-start; gap: 10px; }
   .nav-github::after { content: "GitHub 仓库"; font-size: 15px; }
+
+  /* 移动端：二级菜单折叠式展开 */
+  .nav-item {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .nav-item > a {
+    padding: 13px 14px;
+    font-size: 15px;
+    border-radius: 12px;
+    justify-content: space-between;
+  }
+  .nav-item.active > a { background: rgba(10,132,255,0.14); }
+  .nav-caret {
+    position: absolute;
+    right: 14px; top: 50%;
+    transform: translateY(-50%);
+  }
+  .nav-item.open .nav-caret,
+  .nav-item:hover .nav-caret { transform: translateY(-50%) rotate(180deg); }
+  .nav-drop {
+    position: static;
+    transform: none;
+    min-width: 0;
+    padding: 4px 0 6px 14px;
+    margin: 2px 0 6px;
+    background: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border: none;
+    border-left: 2px solid var(--border);
+    border-radius: 0;
+    box-shadow: none;
+    opacity: 1;
+    visibility: visible;
+    display: none;
+    transition: none;
+  }
+  .nav-drop::before { display: none; }
+  .nav-item.open .nav-drop {
+    display: block;
+    animation: drop-in 0.28s var(--ease);
+  }
+  .nav-drop a {
+    padding: 10px 12px;
+    border-radius: 10px;
+  }
+  .nav-drop a b { font-size: 14px; }
+  .nav-drop a span { font-size: 12px; }
+  @keyframes drop-in {
+    from { opacity: 0; transform: translateY(-6px); }
+    to { opacity: 1; transform: none; }
+  }
 }
 
 @media (max-width: 860px) {
