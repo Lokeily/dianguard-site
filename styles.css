@@ -3079,3 +3079,91 @@ body::after {
 }
 
 /* test marker */
+
+/* ============================================================
+   地震哨兵 v1.3.0 新增组件样式
+   （GB 18306-2015 六分区系数表 / 四层架构步骤 / 移除源卡片 / off 徽标）
+   ============================================================ */
+
+/* ----- GB 18306-2015 六分区短轴衰减系数表 ----- */
+.zone-table {
+  width: 100%;
+  max-width: 660px;
+  margin: 16px auto 2px;
+  border-collapse: collapse;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  font-size: 13px;
+}
+.zone-table th,
+.zone-table td {
+  padding: 9px 11px;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+}
+.zone-table th {
+  background: rgba(255,255,255,0.06);
+  font-weight: 700;
+  font-size: 12.5px;
+  letter-spacing: 0.02em;
+}
+.zone-table td {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  color: var(--text);
+}
+.zone-table th:first-child,
+.zone-table td:first-child { text-align: left; }
+.zone-table td:first-child {
+  font-family: inherit;
+  font-weight: 600;
+}
+.zone-table tbody tr:last-child td { border-bottom: none; }
+.zone-table tbody tr:hover { background: rgba(255,255,255,0.035); }
+
+/* ----- 四层数据流架构步骤 ----- */
+.arch-steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin: 16px 0 2px;
+}
+.arch-step {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 14px 15px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.03);
+}
+.arch-step b { font-size: 14px; color: var(--text); }
+.arch-step span { font-size: 12px; color: var(--text-muted); line-height: 1.5; }
+
+/* ----- 已移除数据源卡片（v1.3.0 不再内置） ----- */
+.source-card.muted {
+  opacity: 0.62;
+  background: rgba(255,255,255,0.02);
+  border-style: dashed;
+  border-color: rgba(255,255,255,0.12);
+}
+.source-card.muted .source-name { color: var(--text-muted); }
+.source-card.muted .source-url { color: #6f6f7a; }
+.source-card.muted:hover {
+  transform: none;
+  border-color: rgba(255,255,255,0.12);
+}
+
+/* ----- 停用 / 移除 徽标 ----- */
+.badge.off {
+  background: rgba(142,142,147,0.16);
+  color: #9a9aa3;
+}
+
+/* ----- 响应式：架构步骤在窄屏堆叠 ----- */
+@media (max-width: 760px) {
+  .arch-steps { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 460px) {
+  .arch-steps { grid-template-columns: 1fr; }
+}

@@ -35,7 +35,7 @@
       "price": "0",
       "priceCurrency": "CNY"
     },
-    "softwareVersion": "v1.2.0",
+    "softwareVersion": "v1.3.0",
     "downloadUrl": "https://github.com/Lokeily/Earthquake-Sentinel/releases/latest",
     "codeRepository": "https://github.com/Lokeily/Earthquake-Sentinel",
     "author": {
@@ -58,8 +58,8 @@
     <button class="nav-toggle" id="nav-toggle" aria-label="打开菜单" aria-expanded="false"><i></i><i></i><i></i></button>
     <div class="nav-links" id="nav-links">
       <a href="index.html">首页</a>
-      <div class="nav-item"><a href="features.html">功能</a><span class="nav-caret" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span><div class="nav-drop" role="menu"><a href="features.html#alerting"><b>告警体验</b><span>全屏倒计时 · 锁屏之上</span></a><a href="features.html#levels"><b>四级预警</b><span>蓝黄橙红 · 按震级分级</span></a><a href="features.html#voice"><b>预警语音</b><span>真实录音 · 三段式播报</span></a><a href="features.html#sources"><b>多源冗余</b><span>多路并行 · 任一可达即触发</span></a><a href="features.html#control"><b>个性化</b><span>阈值可调 · 模拟演练</span></a><a href="features.html#permissions"><b>权限说明</b><span>每一项都对应一个功能</span></a></div></div>
-      <div class="nav-item"><a href="how.html">技术原理</a><span class="nav-caret" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span><div class="nav-drop" role="menu"><a href="how.html#mechanism"><b>地震波</b><span>先见闪电 · 后闻雷声</span></a><a href="how.html#timeline"><b>预警时间轴</b><span>从地动山摇到手机响铃</span></a><a href="how.html#intensity"><b>烈度公式</b><span>你这里有多晃</span></a><a href="how.html#arch"><b>数据流架构</b><span>水管爆了还有别的</span></a><a href="how.html#blindzone"><b>预警盲区</b><span>离闪电太近来不及</span></a><a href="how.html#decision"><b>触发决策</b><span>要不要叫醒你</span></a></div></div>
+      <div class="nav-item"><a href="features.html">功能</a><span class="nav-caret" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span><div class="nav-drop" role="menu"><a href="features.html#alerting"><b>告警体验</b><span>全屏倒计时 · 锁屏之上</span></a><a href="features.html#levels"><b>四级预警</b><span>Ⅰ红Ⅱ橙Ⅲ黄Ⅳ蓝 · 按本地烈度</span></a><a href="features.html#voice"><b>预警语音</b><span>真实录音 · 三段式播报</span></a><a href="features.html#sources"><b>多源融合</b><span>双源独立 · EewFusion 决策</span></a><a href="features.html#control"><b>个性化</b><span>阈值可调 · 模拟演练</span></a><a href="features.html#permissions"><b>权限说明</b><span>每一项都对应一个功能</span></a></div></div>
+      <div class="nav-item"><a href="how.html">技术原理</a><span class="nav-caret" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span><div class="nav-drop" role="menu"><a href="how.html#mechanism"><b>地震波</b><span>先见闪电 · 后闻雷声</span></a><a href="how.html#timeline"><b>预警时间轴</b><span>从地动山摇到手机响铃</span></a><a href="how.html#intensity"><b>烈度公式</b><span>你这里有多晃</span></a><a href="how.html#arch"><b>四层数据流</b><span>双源融合 · 分区烈度</span></a><a href="how.html#blindzone"><b>预警盲区</b><span>离闪电太近来不及</span></a><a href="how.html#decision"><b>触发决策</b><span>要不要叫醒你</span></a></div></div>
       <a href="changelog.html" class="active">版本更新</a>
       <a href="disclaimer.html">免责声明</a>
       <span class="nav-sep"></span>
@@ -129,9 +129,10 @@
       <div class="footer-sources">
         <span class="fs-label">数据来源</span>
         <a href="https://www.cenc.ac.cn/" target="_blank" rel="noopener">中国地震台网中心</a>
-        <a href="https://wolfx.jp/" target="_blank" rel="noopener">Wolfx</a>
-        <a href="https://api.2v8.cn/" target="_blank" rel="noopener">BeeCLD·2v8</a>
-        <a href="https://fanstudio.tech/" target="_blank" rel="noopener">FAN Studio</a>
+        <a href="https://wolfx.jp/" target="_blank" rel="noopener">Wolfx（CENC）</a>
+        <a href="https://www.cnee.net/" target="_blank" rel="noopener">ICL 成都高新减灾所</a>
+        <a href="https://earthquake.usgs.gov/" target="_blank" rel="noopener">USGS</a>
+        <a href="https://www.seismicportal.eu/" target="_blank" rel="noopener">EMSC</a>
       </div>
     </div>
   </footer>

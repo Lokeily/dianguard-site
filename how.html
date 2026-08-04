@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>技术原理 — 地震哨兵 Dianguard</title>
-  <meta name="description" content="地震哨兵如何为你争取那几秒：P 波与 S 波传播、预警时间轴、汪素云等（2000）烈度衰减公式、多源数据流架构、预警盲区与触发决策流程。">
+  <meta name="description" content="地震哨兵如何为你争取那几秒：P 波与 S 波传播、预警时间轴、GB 18306-2015 分区烈度衰减模型、多源数据流架构、预警盲区与触发决策流程。">
   <meta name="theme-color" content="#050508">
   <meta name="color-scheme" content="dark">
   <link rel="icon" type="image/png" href="assets/ic_launcher.png">
@@ -12,7 +12,7 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="地震哨兵 Dianguard">
   <meta property="og:title" content="技术原理 — 地震哨兵 Dianguard">
-  <meta property="og:description" content="地震哨兵如何为你争取那几秒：P 波与 S 波传播、预警时间轴、汪素云等（2000）烈度衰减公式、多源数据流架构、预警盲区与触发决策流程。">
+  <meta property="og:description" content="地震哨兵如何为你争取那几秒：P 波与 S 波传播、预警时间轴、GB 18306-2015 分区烈度衰减模型、多源数据流架构、预警盲区与触发决策流程。">
   <meta property="og:url" content="https://lokeily.github.io/dianguard-site/how.html">
   <meta property="og:image" content="https://lokeily.github.io/dianguard-site/assets/og-cover.png">
   <meta property="og:image:width" content="1200">
@@ -20,7 +20,7 @@
   <meta property="og:locale" content="zh_CN">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="技术原理 — 地震哨兵 Dianguard">
-  <meta name="twitter:description" content="地震哨兵如何为你争取那几秒：P 波与 S 波传播、预警时间轴、汪素云等（2000）烈度衰减公式、多源数据流架构、预警盲区与触发决策流程。">
+  <meta name="twitter:description" content="地震哨兵如何为你争取那几秒：P 波与 S 波传播、预警时间轴、GB 18306-2015 分区烈度衰减模型、多源数据流架构、预警盲区与触发决策流程。">
   <meta name="twitter:image" content="https://lokeily.github.io/dianguard-site/assets/og-cover.png">
   <link rel="stylesheet" href="styles.css">
   <script type="application/ld+json">
@@ -35,7 +35,7 @@
       "price": "0",
       "priceCurrency": "CNY"
     },
-    "softwareVersion": "v1.2.0",
+    "softwareVersion": "v1.3.0",
     "downloadUrl": "https://github.com/Lokeily/Earthquake-Sentinel/releases/latest",
     "codeRepository": "https://github.com/Lokeily/Earthquake-Sentinel",
     "author": {
@@ -58,8 +58,8 @@
     <button class="nav-toggle" id="nav-toggle" aria-label="打开菜单" aria-expanded="false"><i></i><i></i><i></i></button>
     <div class="nav-links" id="nav-links">
       <a href="index.html">首页</a>
-      <div class="nav-item"><a href="features.html">功能</a><span class="nav-caret" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span><div class="nav-drop" role="menu"><a href="features.html#alerting"><b>告警体验</b><span>全屏倒计时 · 锁屏之上</span></a><a href="features.html#levels"><b>四级预警</b><span>蓝黄橙红 · 按震级分级</span></a><a href="features.html#voice"><b>预警语音</b><span>真实录音 · 三段式播报</span></a><a href="features.html#sources"><b>多源冗余</b><span>多路并行 · 任一可达即触发</span></a><a href="features.html#control"><b>个性化</b><span>阈值可调 · 模拟演练</span></a><a href="features.html#permissions"><b>权限说明</b><span>每一项都对应一个功能</span></a></div></div>
-      <div class="nav-item active"><a href="how.html">技术原理</a><span class="nav-caret" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span><div class="nav-drop" role="menu"><a href="how.html#mechanism"><b>地震波</b><span>先见闪电 · 后闻雷声</span></a><a href="how.html#timeline"><b>预警时间轴</b><span>从地动山摇到手机响铃</span></a><a href="how.html#intensity"><b>烈度公式</b><span>你这里有多晃</span></a><a href="how.html#arch"><b>数据流架构</b><span>水管爆了还有别的</span></a><a href="how.html#blindzone"><b>预警盲区</b><span>离闪电太近来不及</span></a><a href="how.html#decision"><b>触发决策</b><span>要不要叫醒你</span></a></div></div>
+      <div class="nav-item"><a href="features.html">功能</a><span class="nav-caret" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span><div class="nav-drop" role="menu"><a href="features.html#alerting"><b>告警体验</b><span>全屏倒计时 · 锁屏之上</span></a><a href="features.html#levels"><b>四级预警</b><span>Ⅰ红Ⅱ橙Ⅲ黄Ⅳ蓝 · 按本地烈度</span></a><a href="features.html#voice"><b>预警语音</b><span>真实录音 · 三段式播报</span></a><a href="features.html#sources"><b>多源融合</b><span>双源独立 · EewFusion 决策</span></a><a href="features.html#control"><b>个性化</b><span>阈值可调 · 模拟演练</span></a><a href="features.html#permissions"><b>权限说明</b><span>每一项都对应一个功能</span></a></div></div>
+      <div class="nav-item active"><a href="how.html">技术原理</a><span class="nav-caret" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span><div class="nav-drop" role="menu"><a href="how.html#mechanism"><b>地震波</b><span>先见闪电 · 后闻雷声</span></a><a href="how.html#timeline"><b>预警时间轴</b><span>从地动山摇到手机响铃</span></a><a href="how.html#intensity"><b>烈度公式</b><span>你这里有多晃</span></a><a href="how.html#arch"><b>四层数据流</b><span>双源融合 · 分区烈度</span></a><a href="how.html#blindzone"><b>预警盲区</b><span>离闪电太近来不及</span></a><a href="how.html#decision"><b>触发决策</b><span>要不要叫醒你</span></a></div></div>
       <a href="changelog.html">版本更新</a>
       <a href="disclaimer.html">免责声明</a>
       <span class="nav-sep"></span>
@@ -202,7 +202,7 @@
 
       <div class="hp-dual">
         <div class="hp-copy">
-          <p>同样一次 6.5 级地震：震中 20 公里外，烈度约 6.9 度，吊灯猛晃、书架倾倒；500 公里外，烈度只剩约 2.5 度，多数人毫无感觉。地震哨兵用震级、震中距与深度估算你所在地的烈度，<strong>低于阈值只进通知栏，不打扰你</strong>。</p>
+          <p>同样一次 6.5 级地震：震中 20 公里外，烈度约 6.9 度，吊灯猛晃、书架倾倒；500 公里外，烈度只剩约 2.5 度，多数人毫无感觉。地震哨兵采用 <strong>GB 18306-2015《中国地震动参数区划图》第六代六分区短轴衰减模型</strong>，按震中坐标自动选用所在分区系数，结合震级、震中距与深度估算你所在地的烈度，<strong>低于阈值只进通知栏，不打扰你</strong>。</p>
           <div class="formula-card reveal">
             <div class="formula">
               I ≈ 2.941 + 1.363·<em>M</em> − 1.494·ln(<em>R</em> + 7)
@@ -212,7 +212,17 @@
               <span><b>R</b>你到震中的距离 (km)</span>
               <span><b>I</b>你所在地的烈度</span>
             </div>
-            <p class="formula-note">基于汪素云等（2000）中国地区烈度衰减关系。M 6.5 时：R=20 km → I≈6.9°；R=500 km → I≈2.5°。</p>
+            <p class="formula-note">上图以「川滇西南区」（云南全境+川西）为例，公式为 I = A + B·M + C·lg(R+R₀) + 0.5σ。全国分为 6 个分区，系数各异：</p>
+          <table class="zone-table">
+            <tr><th>分区</th><th>A</th><th>B</th><th>C</th><th>R₀</th><th>σ</th></tr>
+            <tr><td>川滇西南</td><td>2.941</td><td>1.363</td><td>-1.494</td><td>7</td><td>0.67</td></tr>
+            <tr><td>四川盆地</td><td>3.456</td><td>1.280</td><td>-1.608</td><td>7</td><td>0.61</td></tr>
+            <tr><td>青藏区</td><td>3.368</td><td>1.275</td><td>-3.312</td><td>9</td><td>0.66</td></tr>
+            <tr><td>新疆区</td><td>3.611</td><td>1.435</td><td>-3.848</td><td>13</td><td>0.59</td></tr>
+            <tr><td>东部强震区</td><td>3.659</td><td>1.363</td><td>-3.541</td><td>13</td><td>0.58</td></tr>
+            <tr><td>中强地震区</td><td>3.944</td><td>1.071</td><td>-2.845</td><td>7</td><td>0.52</td></tr>
+          </table>
+          <p class="formula-note" style="margin-top:10px">关键特性：云南深源地震（深度&gt;60km）启用郁曙君(1993)特殊公式；震中距分区边界&lt;15km 时双区并行取 MAX（边界防抖）；触发阈值采用 +0.5σ 偏上分位数，宁可高报不低报；S 波到达时间使用<strong>空间震源距</strong> √(R²+depth²)，深源地震不会倒计时空警报；M&lt;3.0 或 R&lt;0 直接跳过触发。</p>
           </div>
           <div class="callout reveal">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 2 20h20L12 3z"/><path d="M12 9v5"/><path d="M12 17h.01"/></svg>
@@ -275,15 +285,21 @@
     <div class="container">
       <div class="fx-head">
         <span class="fx-eyebrow">04 — 架构</span>
-        <h2>一条水管爆了，其它水管还在供水</h2>
-        <p>预警报文要经过公共转发节点才能到手机。单一节点一旦限流、维护或断网，你就完全收不到——而且根本不会知道。地震哨兵同时常驻多条相互独立的链路，<strong>一条断了，其它的还在送</strong>。</p>
+        <h2>从地动山摇到手机响铃：四层数据流</h2>
+        <p>预警报文需经公共转发节点到达手机。地震哨兵常驻两条<strong>域名完全独立</strong>的实时链路（Wolfx CENC + ICL 减灾所），任一可达即触发；主链路全断时，USGS / EMSC 备用探测源兜底。所有报文汇入自研 <strong>EewFusion 融合引擎</strong> 统一决策。</p>
       </div>
       <div class="arch reveal">
         <div class="arch-row">
-          <div class="arch-node"><b>Wolfx CENC</b><span>ws-api.wolfx.jp</span></div>
-          <div class="arch-node"><b>Wolfx SC / CQ</b><span>四川 · 重庆局</span></div>
-          <div class="arch-node"><b>BeeCLD · 2v8</b><span>api.2v8.cn</span></div>
-          <div class="arch-node"><b>FAN Studio</b><span>ws.fanstudio.tech</span></div>
+          <div class="arch-node"><b>Wolfx CENC</b><span>wss · 秒级推送</span></div>
+          <div class="arch-node"><b>ICL 减灾所</b><span>HTTP 3s · 官方源</span></div>
+          <div class="arch-node"><b>USGS</b><span>备用 · 30s 轮询</span></div>
+          <div class="arch-node"><b>EMSC</b><span>备用 · 30s 轮询</span></div>
+        </div>
+        <div class="arch-steps">
+          <div class="arch-step"><b>① 解析层</b><span>parseEew / parseIclEew 等，统一多源报文格式</span></div>
+          <div class="arch-step"><b>② EewFusion 融合</b><span>加权中位数 · 坐标选优 · 动态趋势积分 · 1.5s 融合窗</span></div>
+          <div class="arch-step"><b>③ GB 18306-2015 分区烈度</b><span>6 分区短轴衰减 · 边界防抖 · +0.5σ 安全边际</span></div>
+          <div class="arch-step"><b>④ AlertActivity</b><span>全屏锁屏 · 四级真实语音 · 倒计时 · 震级渐进升级</span></div>
         </div>
         <div class="arch-flow">
           <svg viewBox="0 0 600 58" preserveAspectRatio="none">
@@ -308,9 +324,9 @@
         <div class="arch-row">
           <div class="arch-node hub"><b>地震哨兵</b><span>WebSocket 并行汇聚 · 自动去重</span></div>
         </div>
-        <p class="arch-caption">四条链路同时在线，谁先送达就用谁的；同一次地震从多个源到达时，只弹一次告警。FAN Studio 未配置密钥时自动跳过，不空转。</p>
+        <p class="arch-caption">四条链路同时在线，谁先送达就用谁的；同一次地震从多个源到达时只弹一次告警，绝不重复打扰。</p>
       </div>
-      <p class="anim-caption">四色光点沿各自弧线持续汇聚——即使某一条链路（如 FAN）因未配置而停用，其余三条仍照常送达，无单点故障</p>
+      <p class="anim-caption">四色光点沿各自弧线持续汇聚——即使某一条链路临时中断，其余链路仍照常送达，无单点故障</p>
     </div>
   </section>
 
@@ -370,10 +386,10 @@
         <div class="flow-arrow-v"></div>
         <div class="flow-node f2"><b>估算本地烈度 I</b><span>用震级 M、震中距 R、深度 D，结合你的位置反推</span></div>
         <div class="flow-arrow-v"></div>
-        <div class="flow-node f3"><b>I ≥ 阈值 且 已过冷静期？</b><span>阈值默认 2°（推荐），可设为 3° / 4°；启动后 15 秒冷静期防误报</span></div>
+        <div class="flow-node f3"><b>本地烈度 I ≥ 阈值 且 多源已交叉验证？</b><span>阈值默认 2°（推荐），可设为 3° / 4°；单源初报标记 isPreliminary 禁止触发红色；启动后冷静期防误报</span></div>
         <div class="flow-arrow-v"></div>
         <div class="flow-split">
-          <div class="flow-node f4 alert"><b>是 → 全屏倒计时</b><span>锁屏之上、自动亮屏、真实语音 + 震动同步</span></div>
+          <div class="flow-node f4 alert"><b>是 → 按等级全屏倒计时</b><span>Ⅰ红≥7° / Ⅱ橙5-6° / Ⅲ黄3-4° / Ⅳ蓝&lt;3°，锁屏之上、自动亮屏、真实语音 + 震动同步</span></div>
           <div class="flow-node f5 quiet"><b>否 → 仅通知栏 / 历史</b><span>不打断你，安静记录这次地震</span></div>
         </div>
       </div>
@@ -417,9 +433,10 @@
       <div class="footer-sources">
         <span class="fs-label">数据来源</span>
         <a href="https://www.cenc.ac.cn/" target="_blank" rel="noopener">中国地震台网中心</a>
-        <a href="https://wolfx.jp/" target="_blank" rel="noopener">Wolfx</a>
-        <a href="https://api.2v8.cn/" target="_blank" rel="noopener">BeeCLD·2v8</a>
-        <a href="https://fanstudio.tech/" target="_blank" rel="noopener">FAN Studio</a>
+        <a href="https://wolfx.jp/" target="_blank" rel="noopener">Wolfx（CENC）</a>
+        <a href="https://www.cnee.net/" target="_blank" rel="noopener">ICL 成都高新减灾所</a>
+        <a href="https://earthquake.usgs.gov/" target="_blank" rel="noopener">USGS</a>
+        <a href="https://www.seismicportal.eu/" target="_blank" rel="noopener">EMSC</a>
       </div>
     </div>
   </footer>

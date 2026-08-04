@@ -35,7 +35,7 @@
       "price": "0",
       "priceCurrency": "CNY"
     },
-    "softwareVersion": "v1.2.0",
+    "softwareVersion": "v1.3.0",
     "downloadUrl": "https://github.com/Lokeily/Earthquake-Sentinel/releases/latest",
     "codeRepository": "https://github.com/Lokeily/Earthquake-Sentinel",
     "author": {
@@ -58,8 +58,8 @@
     <button class="nav-toggle" id="nav-toggle" aria-label="打开菜单" aria-expanded="false"><i></i><i></i><i></i></button>
     <div class="nav-links" id="nav-links">
       <a href="index.html">首页</a>
-      <div class="nav-item active"><a href="features.html">功能</a><span class="nav-caret" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span><div class="nav-drop" role="menu"><a href="features.html#alerting"><b>告警体验</b><span>全屏倒计时 · 锁屏之上</span></a><a href="features.html#levels"><b>四级预警</b><span>蓝黄橙红 · 按震级分级</span></a><a href="features.html#voice"><b>预警语音</b><span>真实录音 · 三段式播报</span></a><a href="features.html#sources"><b>多源冗余</b><span>多路并行 · 任一可达即触发</span></a><a href="features.html#control"><b>个性化</b><span>阈值可调 · 模拟演练</span></a><a href="features.html#permissions"><b>权限说明</b><span>每一项都对应一个功能</span></a></div></div>
-      <div class="nav-item"><a href="how.html">技术原理</a><span class="nav-caret" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span><div class="nav-drop" role="menu"><a href="how.html#mechanism"><b>地震波</b><span>先见闪电 · 后闻雷声</span></a><a href="how.html#timeline"><b>预警时间轴</b><span>从地动山摇到手机响铃</span></a><a href="how.html#intensity"><b>烈度公式</b><span>你这里有多晃</span></a><a href="how.html#arch"><b>数据流架构</b><span>水管爆了还有别的</span></a><a href="how.html#blindzone"><b>预警盲区</b><span>离闪电太近来不及</span></a><a href="how.html#decision"><b>触发决策</b><span>要不要叫醒你</span></a></div></div>
+      <div class="nav-item active"><a href="features.html">功能</a><span class="nav-caret" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span><div class="nav-drop" role="menu"><a href="features.html#alerting"><b>告警体验</b><span>全屏倒计时 · 锁屏之上</span></a><a href="features.html#levels"><b>四级预警</b><span>Ⅰ红Ⅱ橙Ⅲ黄Ⅳ蓝 · 按本地烈度</span></a><a href="features.html#voice"><b>预警语音</b><span>真实录音 · 三段式播报</span></a><a href="features.html#sources"><b>多源融合</b><span>双源独立 · EewFusion 决策</span></a><a href="features.html#control"><b>个性化</b><span>阈值可调 · 模拟演练</span></a><a href="features.html#permissions"><b>权限说明</b><span>每一项都对应一个功能</span></a></div></div>
+      <div class="nav-item"><a href="how.html">技术原理</a><span class="nav-caret" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span><div class="nav-drop" role="menu"><a href="how.html#mechanism"><b>地震波</b><span>先见闪电 · 后闻雷声</span></a><a href="how.html#timeline"><b>预警时间轴</b><span>从地动山摇到手机响铃</span></a><a href="how.html#intensity"><b>烈度公式</b><span>你这里有多晃</span></a><a href="how.html#arch"><b>四层数据流</b><span>双源融合 · 分区烈度</span></a><a href="how.html#blindzone"><b>预警盲区</b><span>离闪电太近来不及</span></a><a href="how.html#decision"><b>触发决策</b><span>要不要叫醒你</span></a></div></div>
       <a href="changelog.html">版本更新</a>
       <a href="disclaimer.html">免责声明</a>
       <span class="nav-sep"></span>
@@ -150,7 +150,7 @@
           <h3>算的是「你这里有多晃」</h3>
           <p>很多预警只告诉你震级，但 6.0 级地震在 500 公里外和 20 公里外完全是两回事。地震哨兵用震级、震中距与震源深度估算<strong>你所在位置</strong>的烈度，再决定是否打扰你。</p>
           <ul class="fx-points">
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span>基于<b>汪素云等（2000）</b>中国地区烈度衰减关系估算本地烈度。</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span>基于 <b>GB 18306-2015《中国地震动参数区划图》六分区短轴衰减模型</b>估算本地烈度。</span></li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span>低于阈值的远震<b>只进通知栏和历史记录</b>，不打断你。</span></li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span>详情行完整给出<b>震中距、预估本地震感、震源深度</b>三项关键数据。</span></li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span>服务启动后有 <b>15 秒冷静期</b>，避免数据源补发历史报文造成误报惊吓。</span></li>
@@ -172,36 +172,36 @@
   <section id="levels" class="fx-block">
     <div class="container">
       <div class="fx-head">
-        <h2>蓝 · 黄 · 橙 · 红 四级响应</h2>
-        <p>等级按<strong>震级</strong>划分，决定告警页的配色与语音内容；是否触发全屏，则由你所在地的<strong>估算烈度</strong>和你设定的阈值共同决定。</p>
+        <h2>Ⅰ 红 · Ⅱ 橙 · Ⅲ 黄 · Ⅳ 蓝 四级预警</h2>
+        <p>等级按<strong>你所在地的预估烈度</strong>（中国地震局官方标准）划分，决定告警页配色与语音内容；是否触发全屏，由预估烈度与你设定的阈值共同决定。</p>
       </div>
       <div class="level-table">
-        <div class="level-row blue">
-          <div class="level-name"><span class="dot level-blue"></span>蓝色</div>
-          <div class="level-mag">M &lt; 4.0</div>
-          <div class="level-desc">轻微地震。多数人可能仅感到轻微晃动，无需惊慌，留意后续信息即可。</div>
-        </div>
-        <div class="level-row yellow">
-          <div class="level-name"><span class="dot level-yellow"></span>黄色</div>
-          <div class="level-mag">4.0 ≤ M &lt; 5.0</div>
-          <div class="level-desc">有感地震。室内物品可能轻微晃动，请提高警惕，远离玻璃、吊灯与高处物品。</div>
+        <div class="level-row red">
+          <div class="level-name"><span class="dot level-red"></span>Ⅰ级 红色</div>
+          <div class="level-mag">预估烈度 ≥ 7°</div>
+          <div class="level-desc">灾害性。可能造成建筑损毁，请立即就近躲避、保护头部，震后有序撤离。</div>
         </div>
         <div class="level-row orange">
-          <div class="level-name"><span class="dot level-orange"></span>橙色</div>
-          <div class="level-mag">5.0 ≤ M &lt; 6.0</div>
-          <div class="level-desc">强烈地震。可能造成物品倾倒、墙体开裂，请立即采取防护措施并准备避险。</div>
+          <div class="level-name"><span class="dot level-orange"></span>Ⅱ级 橙色</div>
+          <div class="level-mag">5° ≤ 预估烈度 &lt; 7°</div>
+          <div class="level-desc">灾害性。可能造成物品倾倒、墙体开裂，请立即采取防护措施并准备避险。</div>
         </div>
-        <div class="level-row red">
-          <div class="level-name"><span class="dot level-red"></span>红色</div>
-          <div class="level-mag">M ≥ 6.0</div>
-          <div class="level-desc">破坏性地震。可能造成建筑损毁，请立即就近躲避、保护头部，震后有序撤离。</div>
+        <div class="level-row yellow">
+          <div class="level-name"><span class="dot level-yellow"></span>Ⅲ级 黄色</div>
+          <div class="level-mag">3° ≤ 预估烈度 &lt; 5°</div>
+          <div class="level-desc">告知性。室内物品可能轻微晃动，请提高警惕，远离玻璃、吊灯与高处物品。</div>
+        </div>
+        <div class="level-row blue">
+          <div class="level-name"><span class="dot level-blue"></span>Ⅳ级 蓝色</div>
+          <div class="level-mag">预估烈度 &lt; 3°</div>
+          <div class="level-desc">告知性。多数人仅感轻微晃动或无明显感觉，留意后续信息即可。</div>
         </div>
       </div>
       <div class="callout">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 2 20h20L12 3z"/><path d="M12 9v5"/><path d="M12 17h.01"/></svg>
         <div>
-          <b>等级 ≠ 一定会全屏</b>
-          <p>一次 6.0 级地震如果发生在 800 公里之外，你这里的估算烈度可能不到 2 度，此时只会进通知栏。反过来，一次 4.5 级的近震也可能触发全屏。这正是「按本地烈度触发」的意义。</p>
+          <b>等级由「本地烈度」决定，不是震级</b>
+          <p>一次远方的 6 级地震，你这里的预估烈度可能不到 2 度，只会进通知栏；一次近处的 4.5 级小震却可能触发全屏。阈值可在 <strong>3° / 2°（默认推荐）/ 4°</strong> 间切换：调高更安静，调低更灵敏。单源初报会被标记为 <code>isPreliminary</code>，禁止触发红色，防止误报。</p>
         </div>
       </div>
     </div>
@@ -254,49 +254,49 @@
   <section id="sources" class="fx-block">
     <div class="container">
       <div class="fx-head">
-        <h2>多源冗余：一条链路挂了，还有别的</h2>
-        <p>地震预警报文需要经过公共转发节点才能到达手机。单一节点一旦限流、维护或断网，你就完全收不到预警——而你根本不会知道。</p>
+        <h2>多源融合：两条完全独立的链路，任一可达即触发</h2>
+        <p>地震预警报文需经公共转发节点到达手机。单一节点一旦限流、维护或断网，你就完全收不到——且不会知道。地震哨兵同时常驻两条<strong>域名完全独立</strong>的实时链路，并保留备用探测源兜底，把单点故障概率压到最低。</p>
       </div>
       <div class="source-grid">
         <div class="source-card">
           <div class="source-name">Wolfx CENC</div>
-          <div class="source-url">ws-api.wolfx.jp/cenc_eew</div>
-          <span class="badge free">免 Key · 默认启用</span>
+          <div class="source-url">wss://ws-api.wolfx.jp · WebSocket</div>
+          <span class="badge free">主实时源 · 秒级推送 · 免 Key</span>
         </div>
         <div class="source-card">
-          <div class="source-name">Wolfx SC / CQ</div>
-          <div class="source-url">四川 · 重庆地震局通道</div>
-          <span class="badge free">免 Key · 默认启用</span>
+          <div class="source-name">ICL 成都高新减灾所</div>
+          <div class="source-url">mobile-new.chinaeew.cn · HTTP 3s 轮询</div>
+          <span class="badge free">中国官方预警 · 域名完全独立</span>
         </div>
         <div class="source-card">
-          <div class="source-name">BeeCLD · 2v8</div>
-          <div class="source-url">api.2v8.cn/ws/cea</div>
-          <span class="badge token">免费令牌 · 已内置</span>
+          <div class="source-name">USGS / EMSC</div>
+          <div class="source-url">FDSN · HTTP 30s 轮询</div>
+          <span class="badge token">备用探测源 · 主链路全断时激活</span>
         </div>
-        <div class="source-card">
-          <div class="source-name">FAN Studio</div>
-          <div class="source-url">ws.fanstudio.tech/cea</div>
-          <span class="badge key">需 API 密钥 · 可选</span>
+        <div class="source-card muted">
+          <div class="source-name">BeeCLD · 2v8 / FAN Studio</div>
+          <div class="source-url">v1.3.0 已移除内置</div>
+          <span class="badge off">令牌 / 密钥改由用户自行填写，不再内置</span>
         </div>
       </div>
       <div class="fx-row" style="margin-top:56px">
         <div class="fx-copy">
-          <span class="fx-tag">Redundancy</span>
-          <h3>任一主机可达即触发</h3>
-          <p>所有数据源指向同一套国家级预警数据，但走的是<strong>互不相同的主机与网络路径</strong>。它们同时在线，谁先送到就用谁的，重复报文自动去重。</p>
+          <span class="fx-tag">EewFusion</span>
+          <h3>多源融合决策引擎</h3>
+          <p>借鉴集成学习思想，每个数据源被视为独立「专家」。在 <strong>1.5s 融合窗口</strong>内收集多源报文后加权融合，单源异常不会主导结果：</p>
           <ul class="fx-points">
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span><b>并行连接</b>：多条 WebSocket 同时保持，不是主备切换，没有切换延迟。</span></li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span><b>自动去重</b>：同一次地震从多个源到达时，只弹一次告警。</span></li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span><b>断线自愈</b>：任一连接掉线自动重连，未配置密钥的源会被直接跳过而不空转。</span></li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span><b>状态可见</b>：主页实时显示每条链路的在线情况，不做黑盒。</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span><b>震级融合</b>：加权中位数，比算术平均更抗异常值，单源偏差异常不主导结果。</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span><b>坐标选优</b>：取权重最高源的原始坐标，严禁加权平均（避免物理意义错误）。</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span><b>置信度</b>：多源一致→高置信；单源初报→低置信并标记 <code>isPreliminary</code>，禁止触发红色。</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span><b>交叉验证</b>：双源以上一致才触发高等级告警，单源伪造报文被加权中位数 / 置信度机制抑制。</span></li>
           </ul>
           <p style="margin-top:20px"><a class="link-arrow" href="how.html#arch">查看完整数据流架构<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></p>
         </div>
         <div class="fx-visual">
           <div class="reliability-graph" style="flex:none;width:100%;max-width:290px;height:270px">
             <div class="rg-source">Wolfx</div>
-            <div class="rg-source">BeeCLD</div>
-            <div class="rg-source">FAN</div>
+            <div class="rg-source">ICL</div>
+            <div class="rg-source">USGS/EMSC</div>
             <div class="rg-hub">地震哨兵</div>
             <svg class="rg-lines" viewBox="0 0 200 220" preserveAspectRatio="none">
               <line x1="100" y1="30" x2="100" y2="180"></line>
@@ -379,6 +379,7 @@
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span><b>无账号体系</b>，不需要注册、不需要登录。</span></li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span><b>无广告、无内购</b>，完全免费且开源，代码可自行审计。</span></li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span>除网络请求必须的 URL 外，<b>无任何数据上报行为</b>。</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span><b>证书固定（SPKI）</b>：所有数据链路固定 leaf + 中间 CA 双 pin，即使网络层被控也无法用伪 CA 冒充数据源。</span></li>
           </ul>
         </div>
         <div class="fx-copy">
@@ -520,9 +521,10 @@
       <div class="footer-sources">
         <span class="fs-label">数据来源</span>
         <a href="https://www.cenc.ac.cn/" target="_blank" rel="noopener">中国地震台网中心</a>
-        <a href="https://wolfx.jp/" target="_blank" rel="noopener">Wolfx</a>
-        <a href="https://api.2v8.cn/" target="_blank" rel="noopener">BeeCLD·2v8</a>
-        <a href="https://fanstudio.tech/" target="_blank" rel="noopener">FAN Studio</a>
+        <a href="https://wolfx.jp/" target="_blank" rel="noopener">Wolfx（CENC）</a>
+        <a href="https://www.cnee.net/" target="_blank" rel="noopener">ICL 成都高新减灾所</a>
+        <a href="https://earthquake.usgs.gov/" target="_blank" rel="noopener">USGS</a>
+        <a href="https://www.seismicportal.eu/" target="_blank" rel="noopener">EMSC</a>
       </div>
     </div>
   </footer>
