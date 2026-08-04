@@ -98,42 +98,45 @@
     <div class="container">
       <div class="fx-head">
         <span class="fx-eyebrow">01 — 地震波</span>
-        <h2>先到的是 P 波，会破坏的是 S 波</h2>
+        <h2>为什么总能「先见闪电，后闻雷声」？</h2>
+        <p>因为光跑得比声音快。地震也藏着同样的秘密：两类波同时从震源出发，<strong>快的先到，慢的才是破坏者</strong>——预警，就是利用这个时间差。</p>
       </div>
 
       <div class="hp-dual">
         <div class="hp-copy">
-          <p>地震发生的瞬间，会同时放出两类波：跑得<strong>快</strong>的 P 波（纵波）几乎无害，跑得<strong>慢</strong>的 S 波（横波）才是让建筑摇晃、致人伤亡的元凶。预警，就是利用两者到达你这里的<strong>时间差</strong>。</p>
+          <p>地震发生的瞬间，会同时放出两类波：跑得<strong>快</strong>的 P 波（纵波 · 压缩波）几乎无害，跑得<strong>慢</strong>的 S 波（横波 · 剪切波）才是让建筑摇晃、致人伤亡的元凶。就像闪电先到、雷声后到——<strong>P 波先到，S 波后到</strong>。</p>
           <div class="stat-strip">
-            <div class="stat-cell"><b data-count="6" data-suffix=" km/s">0 km/s</b><span>P 波传播速度</span></div>
+            <div class="stat-cell"><b data-count="6" data-suffix=" km/s">0 km/s</b><span>P 波传播速度（地壳浅部）</span></div>
             <div class="stat-cell"><b data-count="3.5" data-decimal="1" data-suffix=" km/s">0 km/s</b><span>S 波传播速度</span></div>
-            <div class="stat-cell"><b data-count="12" data-suffix=" s">0 s</b><span>近震可争取时间</span></div>
+            <div class="stat-cell"><b data-count="14" data-suffix=" s">0 s</b><span>震中距 120 km 时的预警窗口</span></div>
           </div>
         </div>
 
         <div class="hp-visual">
-          <div class="pw-demo">
+            <div class="pw-demo">
             <div class="pw-grid"></div>
-            <div class="pw-epi"><span class="pw-core"></span></div>
+            <span class="pw-simnote">加速演示 · 非实时</span>
+            <div class="pw-epi"><span class="pw-core"></span><span class="pw-epi-label">震中</span></div>
             <div class="pw-ring p"></div>
             <div class="pw-ring s"></div>
             <div class="pw-you">
               <svg viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.5-7-11a7 7 0 0 1 14 0c0 4.5-7 11-7 11z" fill="none"/><circle cx="12" cy="10" r="2.4"/></svg>
-              <span>你</span>
+              <span>你 · 120 km</span>
             </div>
             <div class="pw-hud">
-              <span class="pw-dist">震中距 ≈ 480 km</span>
-              <span class="pw-time">P 波 12 秒后到 · S 波 <b>21</b> 秒后到</span>
+              <span class="pw-dist">震中距 120 km · P 波 20 s 到 · S 波 34 s 到</span>
+              <span class="pw-time">预警窗口 <b>14</b> s</span>
             </div>
             <div class="pw-alert">⚠ S 波已抵达 · 立即避险</div>
             <div class="pw-legend">
-              <span class="p"><i></i>P 波（纵波 · 先到 · 无害）</span>
-              <span class="s"><i></i>S 波（横波 · 后到 · 破坏）</span>
+              <span class="p"><i></i>P 波（纵波 · 20 s 先到 · 无害）</span>
+              <span class="s"><i></i>S 波（横波 · 34 s 后到 · 破坏）</span>
             </div>
+            <div class="pw-analogy">⚡ 闪电 → 雷声，间隔就是距离；P 波 → S 波，间隔就是预警时间</div>
           </div>
         </div>
       </div>
-      <p class="anim-caption">蓝色波前先到、红色波前后到——两者到达的时间差，就是预警能为你争取的全部窗口</p>
+      <p class="anim-caption">蓝色 P 波先到、红色 S 波后到——120 km 外两者相差 14 秒，这 14 秒就是预警为你争取的全部窗口</p>
     </div>
   </section>
 
@@ -142,14 +145,14 @@
     <div class="container">
       <div class="fx-head">
         <span class="fx-eyebrow">02 — 链路</span>
-        <h2>从地动山摇到手机响铃</h2>
-        <p>从震源破裂到预警送达手机，链路上的每一步都以「秒」计。下面这条时间轴，是真实预警会被压缩到的窗口。</p>
+        <h2>从地动山摇，到手机响铃，只有几十秒</h2>
+        <p>以震中距 120 km 的一次地震为例，把链路拆开看：每一步都以「秒」计，而破坏性 S 波要 <strong>34 秒</strong>才到——预警要做的，就是抢在这之前把警报送进你的手机。</p>
       </div>
       <div class="timeline reveal">
         <div class="tl-track"><span class="tl-fill"></span>
           <span class="tl-dot" style="left:0%"></span>
-          <span class="tl-dot" style="left:34%"></span>
-          <span class="tl-dot" style="left:67%"></span>
+          <span class="tl-dot" style="left:10%"></span>
+          <span class="tl-dot" style="left:20%"></span>
           <span class="tl-dot" style="left:100%"></span>
           <span class="tl-runner"></span>
         </div>
@@ -157,25 +160,26 @@
           <div class="tl-step">
             <div class="tl-time">T + 0 s</div>
             <b>地震发生</b>
-            <p>震源破裂，P 波与 S 波同时向四周传播。</p>
+            <p>震源破裂，P 波与 S 波同时出发。以 120 km 外为例：S 波将于 34 秒后抵达。</p>
           </div>
           <div class="tl-step">
-            <div class="tl-time">T + 数秒</div>
+            <div class="tl-time">T + 3 s</div>
             <b>台网测定</b>
-            <p>周边地震台站捕捉到 P 波，自动反推震中、震级与深度。</p>
+            <p>周边台站捕捉到 P 波，自动反推震中、震级与深度——仅需约 2~5 秒。</p>
           </div>
           <div class="tl-step">
-            <div class="tl-time">T + 数秒</div>
-            <b>预警发出</b>
-            <p>国家级预警系统生成报文，经多路公共转发节点推送。</p>
+            <div class="tl-time">T + 5 s</div>
+            <b>预警送达</b>
+            <p>报文经多路公共节点推送，你的手机已收到——震后约 3~8 秒完成全链路。</p>
           </div>
           <div class="tl-step">
-            <div class="tl-time">T + 数秒~数十秒</div>
+            <div class="tl-time">T + 34 s</div>
             <b>S 波抵达你</b>
-            <p>手机收到报文并倒计时，在 S 波到达前提醒你避险。</p>
+            <p>破坏性震动才到。此时你已经拥有约 29 秒的倒计时，足够避险。</p>
           </div>
         </div>
       </div>
+      <p class="anim-caption">T+5 秒收到预警、T+34 秒 S 波才到——中间约 29 秒，就是「抢」出来的逃生窗口</p>
     </div>
   </section>
 
@@ -184,12 +188,13 @@
     <div class="container">
       <div class="fx-head">
         <span class="fx-eyebrow">03 — 烈度</span>
-        <h2>它算的不是「震级」，而是「你这里有多晃」</h2>
+        <h2>同一次地震，为什么有人被晃醒，有人毫无感觉？</h2>
+        <p>因为离震中的距离不同。地震哨兵算的不是「震级」（地震本身多大），而是<strong>你这里有多晃</strong>（本地烈度），再决定要不要打扰你。</p>
       </div>
 
       <div class="hp-dual">
         <div class="hp-copy">
-          <p>同样是 6 级地震，500 公里外和 20 公里外完全是两回事。地震哨兵用震级、震中距与深度，估算你所在地的烈度，再决定要不要打扰你。</p>
+          <p>同样一次 6.5 级地震：震中 20 公里外，烈度约 6.9 度，吊灯猛晃、书架倾倒；500 公里外，烈度只剩约 2.5 度，多数人毫无感觉。地震哨兵用震级、震中距与深度估算你所在地的烈度，<strong>低于阈值只进通知栏，不打扰你</strong>。</p>
           <div class="formula-card reveal">
             <div class="formula">
               I ≈ 2.941 + 1.363·<em>M</em> − 1.494·ln(<em>R</em> + 7)
@@ -199,13 +204,13 @@
               <span><b>R</b>你到震中的距离 (km)</span>
               <span><b>I</b>你所在地的烈度</span>
             </div>
-            <p class="formula-note">基于汪素云等（2000）中国地区烈度衰减关系。应用用你授权的大致位置得到 R，反推出本地烈度 I，再与你设定的阈值比较。</p>
+            <p class="formula-note">基于汪素云等（2000）中国地区烈度衰减关系。M 6.5 时：R=20 km → I≈6.9°；R=500 km → I≈2.5°。</p>
           </div>
           <div class="callout reveal">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 2 20h20L12 3z"/><path d="M12 9v5"/><path d="M12 17h.01"/></svg>
             <div>
               <b>为什么不用震级直接告警</b>
-              <p>震级只描述地震本身有多大，但对你有没有危险，取决于你离它多远、震源有多深。按本地烈度触发，才能做到「远处大震不骚扰、近处小震及时报」。</p>
+              <p>震级只描述地震本身有多大，但对你有没有危险，取决于你离它多远。按本地烈度触发，才能做到「远处大震不骚扰、近处小震及时报」。</p>
             </div>
           </div>
         </div>
@@ -213,9 +218,9 @@
         <div class="hp-visual">
           <div class="intensity-vis reveal" id="intensity-vis">
             <div class="iv-readout">
-              <span class="iv-label">你所在地烈度</span>
+              <span class="iv-label">你所在地烈度（M 6.5）</span>
               <b class="iv-value">随距离衰减</b>
-              <span class="iv-sub">震级 M 6.5 · 距离 R 5 → 600 km</span>
+              <span class="iv-sub">R = 5 → 600 km · 阈值线 2°</span>
             </div>
             <svg class="iv-svg" viewBox="0 0 360 240" aria-hidden="true">
               <defs>
@@ -228,6 +233,21 @@
                   <stop offset="100%" stop-color="#AF52DE"/>
                 </linearGradient>
               </defs>
+              <!-- 阈值线：I = 2° -->
+              <line class="iv-threshold" x1="38" y1="169.1" x2="344" y2="169.1" stroke="rgba(255,204,0,0.55)" stroke-width="1.4" stroke-dasharray="5 5"/>
+              <text class="iv-th-label" x="41" y="162.5" fill="rgba(255,204,0,0.8)" font-size="10.5">阈值 2°（低于此只进通知栏）</text>
+              <!-- 生活场景标记：20 km（吊灯猛晃） -->
+              <g class="iv-pt iv-pt-a">
+                <circle cx="66.4" cy="96.7" r="5" fill="#FF9500"/>
+                <text x="71" y="93" fill="rgba(255,149,0,0.9)" font-size="10.5">20 km · 6.9°</text>
+                <text x="71" y="106" fill="rgba(255,149,0,0.65)" font-size="9.5">吊灯猛晃</text>
+              </g>
+              <!-- 生活场景标记：500 km（毫无感觉） -->
+              <g class="iv-pt iv-pt-b">
+                <circle cx="320.7" cy="157.6" r="5" fill="#34C759"/>
+                <text x="325" y="154" fill="rgba(52,199,89,0.9)" font-size="10.5">500 km · 2.5°</text>
+                <text x="325" y="167" fill="rgba(52,199,89,0.65)" font-size="9.5">多数人无感</text>
+              </g>
               <path class="iv-area" fill="url(#ivFill)" d="M38.0 44.7 L41.8 59.4 L45.6 69.3 L49.5 76.8 L53.3 82.8 L57.1 87.8 L61.0 92.1 L64.8 95.9 L68.6 99.2 L72.4 102.2 L76.2 105.0 L80.1 107.5 L83.9 109.8 L87.7 112.0 L91.5 114.0 L95.4 115.9 L99.2 117.7 L103.0 119.4 L106.9 121.0 L110.7 122.5 L114.5 123.9 L118.3 125.3 L122.2 126.6 L126.0 127.9 L129.8 129.1 L133.6 130.3 L137.4 131.4 L141.3 132.5 L145.1 133.6 L148.9 134.6 L152.8 135.6 L156.6 136.5 L160.4 137.4 L164.2 138.3 L168.0 139.2 L171.9 140.0 L175.7 140.9 L179.5 141.7 L183.3 142.4 L187.2 143.2 L191.0 143.9 L194.8 144.7 L198.7 145.4 L202.5 146.1 L206.3 146.7 L210.1 147.4 L213.9 148.1 L217.8 148.7 L221.6 149.3 L225.4 149.9 L229.2 150.5 L233.1 151.1 L236.9 151.7 L240.7 152.2 L244.6 152.8 L248.4 153.3 L252.2 153.9 L256.0 154.4 L259.9 154.9 L263.7 155.4 L267.5 155.9 L271.3 156.4 L275.1 156.9 L279.0 157.4 L282.8 157.8 L286.6 158.3 L290.4 158.8 L294.3 159.2 L298.1 159.7 L301.9 160.1 L305.8 160.5 L309.6 160.9 L313.4 161.4 L317.2 161.8 L321.1 162.2 L324.9 162.6 L328.7 163.0 L332.5 163.4 L336.3 163.8 L340.2 164.1 L344.0 164.5L344 210 L38 210 Z"/>
               <path class="iv-curve" fill="none" stroke="url(#ivStroke)" stroke-width="3" stroke-linecap="round" d="M38.0 44.7 L41.8 59.4 L45.6 69.3 L49.5 76.8 L53.3 82.8 L57.1 87.8 L61.0 92.1 L64.8 95.9 L68.6 99.2 L72.4 102.2 L76.2 105.0 L80.1 107.5 L83.9 109.8 L87.7 112.0 L91.5 114.0 L95.4 115.9 L99.2 117.7 L103.0 119.4 L106.9 121.0 L110.7 122.5 L114.5 123.9 L118.3 125.3 L122.2 126.6 L126.0 127.9 L129.8 129.1 L133.6 130.3 L137.4 131.4 L141.3 132.5 L145.1 133.6 L148.9 134.6 L152.8 135.6 L156.6 136.5 L160.4 137.4 L164.2 138.3 L168.0 139.2 L171.9 140.0 L175.7 140.9 L179.5 141.7 L183.3 142.4 L187.2 143.2 L191.0 143.9 L194.8 144.7 L198.7 145.4 L202.5 146.1 L206.3 146.7 L210.1 147.4 L213.9 148.1 L217.8 148.7 L221.6 149.3 L225.4 149.9 L229.2 150.5 L233.1 151.1 L236.9 151.7 L240.7 152.2 L244.6 152.8 L248.4 153.3 L252.2 153.9 L256.0 154.4 L259.9 154.9 L263.7 155.4 L267.5 155.9 L271.3 156.4 L275.1 156.9 L279.0 157.4 L282.8 157.8 L286.6 158.3 L290.4 158.8 L294.3 159.2 L298.1 159.7 L301.9 160.1 L305.8 160.5 L309.6 160.9 L313.4 161.4 L317.2 161.8 L321.1 162.2 L324.9 162.6 L328.7 163.0 L332.5 163.4 L336.3 163.8 L340.2 164.1 L344.0 164.5"/>
               <circle class="iv-marker" r="6.5" fill="#fff" stroke="#0A84FF" stroke-width="3" cx="38" cy="45">
@@ -238,7 +258,7 @@
           </div>
         </div>
       </div>
-      <p class="anim-caption">光点沿曲线往返扫描——离震中 20 km 烈度近 7 度，600 km 外只剩 2 度出头，远震自然不再打扰你</p>
+      <p class="anim-caption">光点沿曲线扫描——20 km 外烈度 6.9°（吊灯猛晃），500 km 外 2.5°（多数人无感），2° 阈值线之下只进通知栏</p>
     </div>
   </section>
 
@@ -247,8 +267,8 @@
     <div class="container">
       <div class="fx-head">
         <span class="fx-eyebrow">04 — 架构</span>
-        <h2>多源并行：一条链路挂了，还有别的</h2>
-        <p>预警报文要经过公共转发节点才能到手机。单一节点一旦限流、维护或断网，你就完全收不到——而且根本不会知道。地震哨兵同时常驻多条相互独立的链路，数据像光点一样持续汇聚。</p>
+        <h2>一条水管爆了，其它水管还在供水</h2>
+        <p>预警报文要经过公共转发节点才能到手机。单一节点一旦限流、维护或断网，你就完全收不到——而且根本不会知道。地震哨兵同时常驻多条相互独立的链路，<strong>一条断了，其它的还在送</strong>。</p>
       </div>
       <div class="arch reveal">
         <div class="arch-row">
@@ -280,9 +300,9 @@
         <div class="arch-row">
           <div class="arch-node hub"><b>地震哨兵</b><span>WebSocket 并行汇聚 · 自动去重</span></div>
         </div>
-        <p class="arch-caption">四条链路同时在线，谁先送达就用谁的；同一次地震从多个源到达时，只弹一次告警。</p>
+        <p class="arch-caption">四条链路同时在线，谁先送达就用谁的；同一次地震从多个源到达时，只弹一次告警。FAN Studio 未配置密钥时自动跳过，不空转。</p>
       </div>
-      <p class="anim-caption">四色光点沿各自弧线持续汇聚——四条独立链路并行收数据，任一可达即触发，无单点故障</p>
+      <p class="anim-caption">四色光点沿各自弧线持续汇聚——即使某一条链路（如 FAN）因未配置而停用，其余三条仍照常送达，无单点故障</p>
     </div>
   </section>
 
@@ -291,8 +311,8 @@
     <div class="container">
       <div class="fx-head">
         <span class="fx-eyebrow">05 — 局限</span>
-        <h2>预警有盲区，这是物理规律</h2>
-        <p>预警依赖「地震已经发生、但破坏波还没到」这件事。越靠近震中，S 波越快抵达，留给预警的时间越短——近到一定程度，预警根本来不及发出。这是所有地震预警系统共有的局限。</p>
+        <h2>离闪电太近，雷声和闪电几乎同时到</h2>
+        <p>预警依赖「地震已经发生、但破坏波还没到」这件事。越靠近震中，S 波越快抵达，留给预警的时间越短——近到一定程度，预警根本来不及发出。这是所有地震预警系统共有的物理局限。</p>
       </div>
       <div class="blindzone reveal">
         <div class="bz-graph">
@@ -306,7 +326,7 @@
         <ul class="bz-legend">
           <li>
             <span class="swatch r"></span>
-            <div><b>近场盲区</b><p>震中极近区域，S 波几乎与测定同步到达，预警往往来不及发出。</p></div>
+            <div><b>近场盲区</b><p>离闪电太近，雷声与闪电几乎同时到。同理，震中附近 S 波与测定同步到达，预警来不及发出。</p></div>
           </li>
           <li>
             <span class="swatch o"></span>
@@ -333,8 +353,8 @@
     <div class="container">
       <div class="fx-head">
         <span class="fx-eyebrow">06 — 决策</span>
-        <h2>收到报文后，它怎么决定「要不要叫你」</h2>
-        <p>从一段原始报文到一次全屏告警，中间只有几个确定性的判断。下面这条流程，就是每次预警都会走的逻辑。</p>
+        <h2>一次预警，怎么决定要不要叫醒你？</h2>
+        <p>从一段原始报文到一次全屏告警，中间只有几个<strong>确定性</strong>的判断，没有任何「猜」。下面这条流程，就是每次预警都会走的逻辑。</p>
       </div>
       <div class="flow reveal">
         <span class="flow-scan"></span>

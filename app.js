@@ -205,7 +205,7 @@
   const ENHANCE_SELECTOR = [
     '.hero-device', '.how-grid', '.reliability-graph',
     '.screen-showcase', '.voice-seq', '.cmp-table',
-    '.flow', '.level-row'
+    '.flow', '.level-row', '.intensity-vis', '.pw-demo'
   ].join(', ');
   const enhanceEls = document.querySelectorAll(ENHANCE_SELECTOR);
   const enhanceIO = new IntersectionObserver((entries) => {

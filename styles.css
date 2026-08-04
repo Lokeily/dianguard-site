@@ -2517,6 +2517,39 @@ body::after {
   0% { transform: translate(-50%, -50%) scale(1); opacity: 0.8; }
   100% { transform: translate(-50%, -50%) scale(3.4); opacity: 0; }
 }
+.pw-epi-label {
+  position: absolute;
+  top: 26px; left: 50%;
+  transform: translateX(-50%);
+  font-size: 11px;
+  color: var(--text-muted);
+  white-space: nowrap;
+  letter-spacing: 0.08em;
+}
+.pw-analogy {
+  position: absolute;
+  bottom: 48px; left: 0; right: 0;
+  text-align: center;
+  font-size: 12px;
+  color: rgba(255, 204, 0, 0.85);
+  letter-spacing: 0.02em;
+  z-index: 4;
+  opacity: 0;
+  animation: analogy-fade 1.2s 1.4s var(--ease) forwards;
+}
+@keyframes analogy-fade {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 0.9; transform: none; }
+}
+.pw-simnote {
+  position: absolute;
+  top: 40px; right: 14px;
+  font-size: 10px;
+  font-family: ui-monospace, monospace;
+  color: rgba(139, 139, 150, 0.8);
+  letter-spacing: 0.06em;
+  z-index: 4;
+}
 .pw-ring {
   position: absolute;
   top: 50%; left: 15%;
@@ -2608,6 +2641,16 @@ body::after {
 .iv-svg { width: 100%; height: auto; aspect-ratio: 360 / 240; display: block; }
 .iv-curve { transition: stroke-dashoffset 1.6s var(--ease); }
 .iv-axis { font-size: 12px; color: var(--text-muted); margin-top: 10px; text-align: center; }
+.iv-threshold { opacity: 0.7; }
+.iv-th-label { font-family: ui-monospace, monospace; letter-spacing: 0.02em; }
+/* 生活场景标记点：进入视口后依次弹入 */
+.iv-pt { opacity: 0; transform-origin: center; }
+.intensity-vis.in-view .iv-pt-a { animation: iv-pt-pop 0.6s 0.4s var(--ease) forwards; }
+.intensity-vis.in-view .iv-pt-b { animation: iv-pt-pop 0.6s 1s var(--ease) forwards; }
+@keyframes iv-pt-pop {
+  from { opacity: 0; transform: scale(0.4); }
+  to { opacity: 1; transform: scale(1); }
+}
 
 /* 架构数据流：光点包 */
 .arch-pkt { fill: #0A84FF; filter: drop-shadow(0 0 5px rgba(10,132,255,0.95)); }

@@ -169,7 +169,7 @@
   <section id="how" class="section how">
     <div class="container">
       <h2 class="section-title">它如何为你争取那几秒</h2>
-      <p class="section-lead">从地震发生到破坏性横波抵达你脚下，往往只有几秒到几十秒。地震哨兵做的，是把这一段最宝贵的时间可视化、可行动。</p>
+      <p class="section-lead">像「先见闪电、后闻雷声」一样，P 波快、S 波慢——地震哨兵做的，是把两者的时间差变成你能用的逃生窗口。</p>
       <div class="how-grid">
         <div class="how-step">
           <div class="how-num">1</div>
@@ -177,7 +177,7 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="2"/><path d="M7.5 7.5a7 7 0 0 0 0 9M16.5 7.5a7 7 0 0 1 0 9M4.5 4.5a11 11 0 0 0 0 15M19.5 4.5a11 11 0 0 1 0 15"/></svg>
           </div>
           <h3>秒级监测</h3>
-          <p>通过 WebSocket 直连多个相互独立的国家级预警源，震后数秒内收到原始报文，不经过人工转发。</p>
+          <p>像快递多点配送：WebSocket 直连多个相互独立的国家级预警源，震后数秒内收到原始报文，一条路堵了还有别的。</p>
         </div>
         <div class="how-arrow"><span class="flow-dot"></span>→</div>
         <div class="how-step">
@@ -186,7 +186,7 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.5-7-11a7 7 0 0 1 14 0c0 4.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
           </div>
           <h3>本地估算烈度</h3>
-          <p>用汪素云等（2000）短轴衰减模型，结合你授权的大致位置，估算所在地烈度，而非只看震中震级。</p>
+          <p>同一次 6.5 级地震，20 km 外吊灯猛晃、500 km 外毫无感觉。应用结合你的位置估算本地烈度，不看震中震级一刀切。</p>
         </div>
         <div class="how-arrow"><span class="flow-dot"></span>→</div>
         <div class="how-step">
@@ -261,8 +261,8 @@
     <div class="container reliability-inner">
       <div class="reliability-text">
         <h2 class="section-title left">为什么是「多源」而不是「一个源」</h2>
-        <p>地震预警依赖公共转发节点，单个节点可能因网络、限流或维护而短暂不可用。把全部希望押在一条链路上，意味着它挂掉的那一刻你就失去了预警。</p>
-        <p>地震哨兵的设计思路是<strong>冗余</strong>：它同时订阅多个相互独立的主机，只要任一主机可达，预警就能送达。后台还常驻一个备用实时源，作为主链路失效时的兜底。</p>
+        <p>想想家里的供水：不会只接一根水管。地震预警同样依赖公共转发节点，单个节点可能因网络、限流或维护而短暂不可用。把全部希望押在一条链路上，意味着它挂掉的那一刻你就失去了预警。</p>
+        <p>地震哨兵的设计思路是<strong>冗余</strong>：它同时订阅多个相互独立的主机，<strong>一条水管爆了，其它水管还在供水</strong>——只要任一主机可达，预警就能送达。后台还常驻一个备用实时源，作为主链路失效时的兜底。</p>
         <ul class="reliability-list">
           <li><span class="dot level-green"></span>相互独立的多路主机，不共享单点故障</li>
           <li><span class="dot level-green"></span>WebSocket 直连，震后数秒抵达</li>
@@ -355,7 +355,7 @@
     <div class="container voice-inner">
       <div class="voice-text">
         <h2 class="section-title left">真实大陆预警语音</h2>
-        <p>告警语音全部采用真实大陆预警录音，不使用 TTS 读数字，全链路走 STREAM_ALARM，锁屏/静音下最大音量。</p>
+        <p>像消防警报一样直通大脑：告警语音全部采用真实大陆预警录音，不使用 TTS 读数字，全链路走 STREAM_ALARM，锁屏/静音下最大音量。</p>
         <ul class="voice-list">
           <li><strong>短语循环</strong>「有感地震，请勿惊慌」等分级短语，倒计时前循环播放。</li>
           <li><strong>逐字倒计时</strong>将「10 秒倒计时」拆成 10 / 9 / … / 1 的独立音频，每秒播一个。</li>
