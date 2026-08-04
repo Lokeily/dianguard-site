@@ -275,24 +275,32 @@
             <svg class="rg-svg" viewBox="0 0 480 320" preserveAspectRatio="xMidYMid meet" role="img" aria-label="三条独立数据源汇聚至地震哨兵">
               <defs>
                 <radialGradient id="rgHubGlow" cx="50%" cy="50%" r="50%">
-                  <stop offset="0%" stop-color="#0a84ff" stop-opacity="0.8"/>
+                  <stop offset="0%" stop-color="#0a84ff" stop-opacity="0.85"/>
                   <stop offset="100%" stop-color="#0a84ff" stop-opacity="0"/>
                 </radialGradient>
+                <radialGradient id="rgCenterGlow" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stop-color="#0a84ff" stop-opacity="0.32"/>
+                  <stop offset="100%" stop-color="#0a84ff" stop-opacity="0"/>
+                </radialGradient>
+                <linearGradient id="rgFunnel" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#0a84ff" stop-opacity="0.10"/>
+                  <stop offset="100%" stop-color="#0a84ff" stop-opacity="0.02"/>
+                </linearGradient>
                 <linearGradient id="rgHubFill" x1="0" y1="0" x2="1" y2="1">
                   <stop offset="0%" stop-color="#2a9dff"/>
                   <stop offset="100%" stop-color="#0050b3"/>
                 </linearGradient>
                 <linearGradient id="rgEdgeBlue" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stop-color="#0a84ff" stop-opacity="0.85"/>
-                  <stop offset="100%" stop-color="#0a84ff" stop-opacity="0.2"/>
+                  <stop offset="0%" stop-color="#0a84ff" stop-opacity="0.9"/>
+                  <stop offset="100%" stop-color="#0a84ff" stop-opacity="0.35"/>
                 </linearGradient>
                 <linearGradient id="rgEdgeGreen" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stop-color="#34c759" stop-opacity="0.85"/>
-                  <stop offset="100%" stop-color="#34c759" stop-opacity="0.2"/>
+                  <stop offset="0%" stop-color="#34c759" stop-opacity="0.9"/>
+                  <stop offset="100%" stop-color="#34c759" stop-opacity="0.35"/>
                 </linearGradient>
                 <linearGradient id="rgEdgeOrange" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stop-color="#ff9500" stop-opacity="0.85"/>
-                  <stop offset="100%" stop-color="#ff9500" stop-opacity="0.2"/>
+                  <stop offset="0%" stop-color="#ff9500" stop-opacity="0.9"/>
+                  <stop offset="100%" stop-color="#ff9500" stop-opacity="0.35"/>
                 </linearGradient>
                 <filter id="rgGlow" x="-50%" y="-50%" width="200%" height="200%">
                   <feGaussianBlur stdDeviation="2.5" result="blur"/>
@@ -300,66 +308,71 @@
                 </filter>
               </defs>
 
-              <!-- background rings -->
-              <circle cx="240" cy="230" r="120" fill="none" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
-              <circle cx="240" cy="230" r="86" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+              <!-- central glow fills the middle dead-zone -->
+              <circle cx="240" cy="180" r="150" fill="url(#rgCenterGlow)"/>
+              <!-- subtle concentric arcs -->
+              <circle cx="240" cy="180" r="116" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+              <circle cx="240" cy="180" r="74" fill="none" stroke="rgba(255,255,255,0.09)" stroke-width="1"/>
+
+              <!-- convergence funnel: three sources merge into one hub -->
+              <polygon points="90,62 240,46 390,62 240,205" fill="url(#rgFunnel)"/>
 
               <!-- hub glow -->
-              <ellipse cx="240" cy="235" rx="150" ry="56" fill="url(#rgHubGlow)" opacity="0.7"/>
+              <ellipse cx="240" cy="206" rx="150" ry="58" fill="url(#rgHubGlow)" opacity="0.75"/>
 
-              <!-- connecting edges -->
-              <path class="rg-edge" d="M90,95 C 90,170 160,205 190,230" fill="none" stroke="url(#rgEdgeBlue)" stroke-width="2.2"/>
-              <path class="rg-edge" d="M240,80 C 240,150 240,190 240,230" fill="none" stroke="url(#rgEdgeGreen)" stroke-width="2.2"/>
-              <path class="rg-edge" d="M390,95 C 390,170 320,205 290,230" fill="none" stroke="url(#rgEdgeOrange)" stroke-width="2.2"/>
+              <!-- connecting edges (thicker, gradient) -->
+              <path class="rg-edge" d="M90,62 C 90,130 170,178 240,205" fill="none" stroke="url(#rgEdgeBlue)" stroke-width="3"/>
+              <path class="rg-edge" d="M240,46 C 240,108 240,150 240,205" fill="none" stroke="url(#rgEdgeGreen)" stroke-width="3"/>
+              <path class="rg-edge" d="M390,62 C 390,130 310,178 240,205" fill="none" stroke="url(#rgEdgeOrange)" stroke-width="3"/>
 
               <!-- animated data packets -->
               <circle r="5.5" fill="#0A84FF" filter="url(#rgGlow)">
-                <animateMotion dur="2.2s" repeatCount="indefinite" path="M90,95 C 90,170 160,205 190,230"/>
+                <animateMotion dur="2.2s" repeatCount="indefinite" path="M90,62 C 90,130 170,178 240,205"/>
               </circle>
               <circle r="5.5" fill="#34C759" filter="url(#rgGlow)">
-                <animateMotion dur="2.2s" begin="0.73s" repeatCount="indefinite" path="M240,80 C 240,150 240,190 240,230"/>
+                <animateMotion dur="2.2s" begin="0.73s" repeatCount="indefinite" path="M240,46 C 240,108 240,150 240,205"/>
               </circle>
               <circle r="5.5" fill="#FF9500" filter="url(#rgGlow)">
-                <animateMotion dur="2.2s" begin="1.47s" repeatCount="indefinite" path="M390,95 C 390,170 320,205 290,230"/>
+                <animateMotion dur="2.2s" begin="1.47s" repeatCount="indefinite" path="M390,62 C 390,130 310,178 240,205"/>
               </circle>
 
               <!-- source nodes -->
               <g class="rg-node">
-                <circle cx="90" cy="60" r="30" fill="rgba(10,132,255,0.14)" stroke="#0A84FF" stroke-width="2.2"/>
+                <circle cx="90" cy="60" r="30" fill="rgba(10,132,255,0.16)" stroke="#0A84FF" stroke-width="2.2"/>
                 <circle cx="90" cy="60" r="5" fill="#0A84FF">
                   <animate attributeName="r" values="5;8;5" dur="2s" repeatCount="indefinite"/>
                   <animate attributeName="opacity" values="1;0.4;1" dur="2s" repeatCount="indefinite"/>
                 </circle>
                 <text x="90" y="65" text-anchor="middle" fill="#fff" font-size="13" font-weight="800">Wolfx</text>
-                <text x="90" y="105" text-anchor="middle" fill="rgba(255,255,255,0.55)" font-size="10">CENC 官方</text>
+                <text x="90" y="105" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-size="10">CENC 官方</text>
               </g>
               <g class="rg-node">
-                <circle cx="240" cy="45" r="30" fill="rgba(52,199,89,0.14)" stroke="#34C759" stroke-width="2.2"/>
+                <circle cx="240" cy="45" r="30" fill="rgba(52,199,89,0.16)" stroke="#34C759" stroke-width="2.2"/>
                 <circle cx="240" cy="45" r="5" fill="#34C759">
                   <animate attributeName="r" values="5;8;5" dur="2s" begin="0.4s" repeatCount="indefinite"/>
                   <animate attributeName="opacity" values="1;0.4;1" dur="2s" begin="0.4s" repeatCount="indefinite"/>
                 </circle>
                 <text x="240" y="50" text-anchor="middle" fill="#fff" font-size="13" font-weight="800">ICL</text>
-                <text x="240" y="90" text-anchor="middle" fill="rgba(255,255,255,0.55)" font-size="10">减灾所</text>
+                <text x="240" y="90" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-size="10">减灾所</text>
               </g>
               <g class="rg-node">
-                <circle cx="390" cy="60" r="30" fill="rgba(255,149,0,0.14)" stroke="#FF9500" stroke-width="2.2"/>
+                <circle cx="390" cy="60" r="30" fill="rgba(255,149,0,0.16)" stroke="#FF9500" stroke-width="2.2"/>
                 <circle cx="390" cy="60" r="5" fill="#FF9500">
                   <animate attributeName="r" values="5;8;5" dur="2s" begin="0.8s" repeatCount="indefinite"/>
                   <animate attributeName="opacity" values="1;0.4;1" dur="2s" begin="0.8s" repeatCount="indefinite"/>
                 </circle>
                 <text x="390" y="65" text-anchor="middle" fill="#fff" font-size="13" font-weight="800">USGS</text>
-                <text x="390" y="105" text-anchor="middle" fill="rgba(255,255,255,0.55)" font-size="10">EMSC</text>
+                <text x="390" y="105" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-size="10">EMSC</text>
               </g>
 
               <!-- central hub -->
-              <rect x="160" y="218" width="160" height="64" rx="18" fill="url(#rgHubFill)" stroke="rgba(255,255,255,0.28)" stroke-width="1.2"/>
-              <text x="240" y="250" text-anchor="middle" fill="#fff" font-size="18" font-weight="800">地震哨兵</text>
-              <text x="240" y="272" text-anchor="middle" fill="rgba(255,255,255,0.78)" font-size="10.5">任一链路可达即触发预警</text>
+              <rect x="156" y="174" width="168" height="64" rx="18" fill="url(#rgHubFill)" stroke="rgba(255,255,255,0.3)" stroke-width="1.2"/>
+              <text x="240" y="202" text-anchor="middle" fill="#fff" font-size="18" font-weight="800">地震哨兵</text>
+              <text x="240" y="223" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="10.5">任一链路可达即触发预警</text>
 
               <!-- hub pulse -->
-              <circle cx="240" cy="250" r="34" fill="none" stroke="#0a84ff" stroke-width="1.5" opacity="0">
-                <animate attributeName="r" values="34;90" dur="2.4s" repeatCount="indefinite"/>
+              <circle cx="240" cy="206" r="34" fill="none" stroke="#0a84ff" stroke-width="1.5" opacity="0">
+                <animate attributeName="r" values="34;92" dur="2.4s" repeatCount="indefinite"/>
                 <animate attributeName="opacity" values="0.7;0" dur="2.4s" repeatCount="indefinite"/>
               </circle>
             </svg>
