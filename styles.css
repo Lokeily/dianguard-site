@@ -2703,33 +2703,108 @@ body::after {
 .pw-ring {
   position: absolute;
   top: 50%; left: 15%;
-  width: 0; height: 0;
+  width: 140%; height: 140%;   /* 直径 = 2 × 震中距(70%)，保证波前精确到达「你」 */
   border-radius: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) scale(0.01);
   pointer-events: none;
+  will-change: transform, opacity;
 }
 .pw-ring.p {
-  border: 2.5px solid rgba(10, 132, 255, 0.7);
-  animation: pw-expand 2.2s linear infinite;
+  border: 2.5px solid rgba(10, 132, 255, 0.75);
+  animation: pw-wave 2.12s linear infinite;   /* 20/34 × 3.6s */
 }
 .pw-ring.s {
-  border: 3.5px solid rgba(255, 59, 48, 0.75);
-  animation: pw-expand 3.6s linear infinite;
+  border: 3.5px solid rgba(255, 59, 48, 0.8);
+  animation: pw-wave 3.6s linear infinite;
 }
-@keyframes pw-expand {
-  0% { width: 0; height: 0; opacity: 0.9; }
-  100% { width: 72%; height: 72%; opacity: 0; }
+@keyframes pw-wave {
+  0% { transform: translate(-50%, -50%) scale(0.01); opacity: 0.95; }
+  100% { transform: translate(-50%, -50%) scale(1); opacity: 0; }
 }
+
+/* 台站：P 波经过时闪亮（约 40% 路径处，P 环 2.12s 的 40% ≈ 0.85s） */
+.pw-station {
+  position: absolute;
+  top: 50%; left: 43%;
+  transform: translate(-50%, -50%);
+  display: flex; flex-direction: column;
+  align-items: center; gap: 5px;
+  z-index: 3;
+}
+.st-dot {
+  width: 9px; height: 9px;
+  border-radius: 50%;
+  background: var(--text-muted);
+  border: 2px solid rgba(255,255,255,0.25);
+  transition: background 0.3s, box-shadow 0.3s;
+}
+.st-flash {
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 9px; height: 9px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  border: 2px solid rgba(10, 132, 255, 0.9);
+  opacity: 0;
+  animation: st-flash 2.12s linear infinite;
+}
+@keyframes st-flash {
+  0%, 36% { opacity: 0; transform: translate(-50%, -50%) scale(0.6); }
+  42%, 52% { opacity: 1; transform: translate(-50%, -50%) scale(1.6); }
+  60%, 100% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+}
+.pw-station .st-label {
+  font-size: 10px;
+  color: var(--text-muted);
+  white-space: nowrap;
+  letter-spacing: 0.04em;
+}
+.pw-station::before {
+  content: '';
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 9px; height: 9px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: var(--level-blue);
+  box-shadow: 0 0 10px var(--level-blue);
+  opacity: 0;
+  animation: st-core 2.12s linear infinite;
+}
+@keyframes st-core {
+  0%, 36% { opacity: 0; }
+  42%, 55% { opacity: 0.95; }
+  62%, 100% { opacity: 0; }
+}
+
+/* 你处：P 波到达后手机亮起显示倒计时，S 波到达前始终可见 */
 .pw-you {
   position: absolute;
   top: 50%; right: 10%;
   transform: translate(50%, -50%);
   display: flex; flex-direction: column;
-  align-items: center; gap: 5px;
+  align-items: center; gap: 6px;
   color: var(--text-soft); font-size: 12.5px; font-weight: 700;
   z-index: 3;
 }
 .pw-you svg { width: 26px; height: 26px; color: var(--level-blue); }
+.pw-phone {
+  font-size: 10.5px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: rgba(10, 132, 255, 0.16);
+  color: var(--blue-dark);
+  border: 1px solid rgba(10, 132, 255, 0.35);
+  white-space: nowrap;
+  opacity: 0;
+  animation: phone-count 3.6s linear infinite;
+}
+@keyframes phone-count {
+  0%, 56% { opacity: 0; transform: translateY(2px); }
+  60%, 90% { opacity: 1; transform: none; }
+  94%, 100% { opacity: 0; transform: translateY(-2px); }
+}
 .pw-hud {
   position: absolute;
   top: 16px; left: 18px; right: 18px;
@@ -2755,8 +2830,8 @@ body::after {
   white-space: nowrap;
 }
 @keyframes pw-alert-show {
-  0%, 87% { opacity: 0; transform: translate(-50%, -50%) scale(0.85); }
-  92%, 100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  0%, 90% { opacity: 0; transform: translate(-50%, -50%) scale(0.85); }
+  95%, 100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
 }
 .pw-legend {
   position: absolute;
