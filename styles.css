@@ -244,13 +244,13 @@ body::after {
 .nav-item > a {
   position: relative;
   color: var(--text-muted);
-  padding: 8px 11px 8px 13px;
+  padding: 8px 13px;
   border-radius: 10px;
   transition: color 0.22s, background 0.22s;
   white-space: nowrap;
   display: inline-flex;
   align-items: center;
-  gap: 2px;
+  gap: 3px;
   z-index: 1;
 }
 .nav-item > a:hover { color: var(--text); text-decoration: none; background: rgba(255,255,255,0.05); }
@@ -259,12 +259,13 @@ body::after {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  width: 14px; height: 14px;
   color: var(--text-muted);
   z-index: 1;
   transition: transform 0.3s var(--ease), color 0.22s;
-  cursor: pointer;
+  flex-shrink: 0;
 }
-.nav-caret svg { width: 13px; height: 13px; }
+.nav-caret svg { width: 100%; height: 100%; }
 .nav-item:hover .nav-caret,
 .nav-item.active .nav-caret { color: var(--text); }
 .nav-item.open .nav-caret,
@@ -2272,8 +2273,8 @@ body::after {
 .nav-indicator {
   position: absolute;
   top: 50%; left: 0;
-  height: 30px;
-  transform: translateY(-50%) translateX(0);
+  height: 32px;
+  margin-top: -16px;
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.085);
   border: 1px solid rgba(255, 255, 255, 0.12);
@@ -2284,6 +2285,7 @@ body::after {
   transition: opacity 0.3s, transform 0.45s var(--ease), width 0.45s var(--ease);
   will-change: transform, width;
 }
+.nav-caret { cursor: pointer; }
 
 /* ---- 页内锚点导航滑动指示条 ---- */
 .subnav { position: relative; }
