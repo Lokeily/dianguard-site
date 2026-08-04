@@ -238,7 +238,7 @@
     voiceIO.observe(voiceSeq);
   }
 
-  /* ---------- 8. 子页锚点导航高亮 ---------- */
+  /* ---------- 8. 子页锚点导航高亮 + 滑动指示条 ---------- */
   const subnav = document.getElementById('subnav');
   if (subnav) {
     const links = Array.from(subnav.querySelectorAll('a'));
@@ -250,12 +250,41 @@
         if (sec) map[href.slice(1)] = l;
       }
     });
+
+    // 滑动指示条（仅宽屏）：跟随 active / hover 平滑滑移，纯 transform 驱动
+    let subIndicator = null;
+    const isWide = () => window.innerWidth > 960;
+    if (isWide() && links.length) {
+      subIndicator = document.createElement('span');
+      subIndicator.className = 'subnav-indicator';
+      subnav.appendChild(subIndicator);
+      const moveSub = (el) => {
+        const r = el.getBoundingClientRect();
+        const c = subnav.getBoundingClientRect();
+        subIndicator.style.width = r.width + 'px';
+        subIndicator.style.transform = 'translateX(' + (r.left - c.left) + 'px)';
+      };
+      const syncSub = () => {
+        const act = links.find(x => x.classList.contains('active'));
+        if (act) { moveSub(act); subIndicator.style.opacity = 1; }
+        else subIndicator.style.opacity = 0;
+      };
+      links.forEach(a => a.addEventListener('mouseenter', () => { moveSub(a); subIndicator.style.opacity = 1; }));
+      subnav.addEventListener('mouseleave', syncSub);
+      window.addEventListener('resize', () => { if (isWide()) syncSub(); }, { passive: true });
+      syncSub();
+    }
+
     const subIO = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           links.forEach(l => l.classList.remove('active'));
           const l = map[entry.target.id];
           if (l) l.classList.add('active');
+          if (subIndicator) {
+            const act = links.find(x => x.classList.contains('active'));
+            if (act) { const r = act.getBoundingClientRect(); const c = subnav.getBoundingClientRect(); subIndicator.style.width = r.width + 'px'; subIndicator.style.transform = 'translateX(' + (r.left - c.left) + 'px)'; }
+          }
         }
       });
     }, { rootMargin: '-45% 0px -50% 0px' });
@@ -264,6 +293,89 @@
       if (s) subIO.observe(s);
     });
   }
+
+  /* ---------- 8.5 导航滑动指示条（宽屏桌面端） ---------- */
+  // 把静态的 active 下划线升级为可滑移的高亮胶囊：
+  // 初始停在当前页链接上，鼠标悬停其他链接时平滑滑过去。
+  const navLinksEl = document.getElementById('nav-links');
+  const navTabs = navLinksEl
+    ? Array.from(navLinksEl.querySelectorAll(':scope > a:not(.nav-github):not(.nav-cta)'))
+    : [];
+  if (navLinksEl && navTabs.length) {
+    const navIndicator = document.createElement('span');
+    navIndicator.className = 'nav-indicator';
+    navLinksEl.appendChild(navIndicator);
+
+    const moveNav = (el) => {
+      const r = el.getBoundingClientRect();
+      const c = navLinksEl.getBoundingClientRect();
+      navIndicator.style.width = r.width + 'px';
+      navIndicator.style.transform = 'translateX(' + (r.left - c.left) + 'px)';
+    };
+    const syncNav = () => {
+      if (window.innerWidth <= 960) { navIndicator.style.opacity = 0; return; }
+      const act = navTabs.find(x => x.classList.contains('active'));
+      if (act) { moveNav(act); navIndicator.style.opacity = 1; }
+      else navIndicator.style.opacity = 0;
+    };
+    navTabs.forEach(a => a.addEventListener('mouseenter', () => {
+      if (window.innerWidth > 960) { moveNav(a); navIndicator.style.opacity = 1; }
+    }));
+    navLinksEl.addEventListener('mouseleave', syncNav);
+    window.addEventListener('resize', syncNav, { passive: true });
+    syncNav();
+  }
+
+  /* ---------- 8.6 滚动回顶按钮 ---------- */
+  const backTop = document.createElement('button');
+  backTop.className = 'back-top';
+  backTop.type = 'button';
+  backTop.setAttribute('aria-label', '返回顶部');
+  backTop.innerHTML =
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5"/><path d="M5 12l7-7 7 7"/></svg>';
+  document.body.appendChild(backTop);
+  let btTicking = false;
+  function onBtScroll() {
+    const y = window.scrollY || document.documentElement.scrollTop;
+    backTop.classList.toggle('show', y > 600);
+    btTicking = false;
+  }
+  window.addEventListener('scroll', () => {
+    if (!btTicking) { btTicking = true; requestAnimationFrame(onBtScroll); }
+  }, { passive: true });
+  backTop.addEventListener('click', () => {
+    const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+  });
+
+  /* ---------- 8.7 首屏标题精致入场（一次性） ---------- */
+  // hero 徽章 / 标题 / 副标题 / 按钮依次上浮显现，带轻微模糊消散。
+  // 仅首屏存在，不重复播放，无滚动开销。
+  document.querySelectorAll('.hero-badge, .hero-title, .hero-subtitle, .hero-actions, .hero-note, .page-hero .kicker, .page-hero h1, .page-hero .lead, .page-hero .page-actions')
+    .forEach((el, i) => {
+      el.classList.add('hero-in');
+      el.style.setProperty('--hd', Math.min(i * 0.1, 0.5) + 's');
+    });
+
+  /* ---------- 8.8 FAQ 平滑展开 ---------- */
+  // details 展开/收起时按内容真实高度过渡，避免生硬跳变。
+  document.querySelectorAll('.faq-item').forEach(item => {
+    const summary = item.querySelector('summary');
+    const content = item.querySelector('p');
+    if (!summary || !content) return;
+    if (item.open) content.style.maxHeight = content.scrollHeight + 'px';
+    summary.addEventListener('click', () => {
+      requestAnimationFrame(() => {
+        content.style.maxHeight = item.open ? content.scrollHeight + 'px' : '0px';
+      });
+    });
+  });
+
+  /* ---------- 8.9 更新记录卡片入场错峰 ---------- */
+  // release 卡片按顺序依次浮现（仅 changelog 页），延迟随索引递增。
+  document.querySelectorAll('.release-card').forEach((el, i) => {
+    el.style.setProperty('--i', i);
+  });
 
   /* ---------- 9. GitHub Release 实时同步 ---------- */
   const REPO = 'Lokeily/Earthquake-Sentinel';
@@ -420,7 +532,10 @@
       '</article>';
     }).join('');
     list.setAttribute('data-baked', signature);
-    list.querySelectorAll('.release-card').forEach(el => { el.classList.add('reveal', 'revealed'); });
+    list.querySelectorAll('.release-card').forEach((el, i) => {
+      el.style.setProperty('--i', i);
+      el.classList.add('reveal', 'revealed');
+    });
   }
 
   function fetchReleases() {
