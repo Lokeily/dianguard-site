@@ -136,7 +136,7 @@
       const toggle = (e) => {
         if (!isMobile()) return;
         e.preventDefault();
-        e.stopPropagation();
+        e.stopImmediatePropagation();  // 阻止第149行的'关闭菜单'handler 误关
         const willOpen = !item.classList.contains('open');
         navLinks.querySelectorAll('.nav-item.open').forEach(el => el.classList.remove('open'));
         if (willOpen) item.classList.add('open');
@@ -147,14 +147,9 @@
 
     // 点击下拉里的二级链接 → 关闭整个移动菜单
     navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-      if (!isMobile() || a.closest('.nav-drop')) {
-        if (isMobile() && a.closest('.nav-drop')) {
-          navLinks.classList.remove('open');
-          navToggle.classList.remove('open');
-          navToggle.setAttribute('aria-expanded', 'false');
-        }
-        return;
-      }
+      // 仅处理 nav-drop 内的链接（二级链接），忽略 nav-item 父链接（已由 toggle 处理）
+      if (!a.closest('.nav-drop')) return;
+      if (!isMobile()) return;
       navLinks.classList.remove('open');
       navToggle.classList.remove('open');
       navToggle.setAttribute('aria-expanded', 'false');

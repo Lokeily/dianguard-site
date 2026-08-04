@@ -176,6 +176,11 @@ body::after {
 .nav-logo:hover { text-decoration: none; }
 .nav-logo img {
   width: 30px; height: 30px;
+  min-width: 30px; max-width: 30px;
+  min-height: 30px; max-height: 30px;
+  flex: 0 0 30px;
+  display: block;
+  object-fit: cover;
   border-radius: 9px;
   transition: transform 0.4s var(--ease);
 }
@@ -1043,6 +1048,23 @@ body::after {
 .footer-links a { color: var(--text-muted); font-size: 14px; }
 .footer-links a:hover { color: var(--text); }
 .footer-copy { color: var(--text-muted); font-size: 12.5px; margin: 0; }
+
+/* 数据来源栏（footer 底部） */
+.footer-sources {
+  margin-top: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+}
+.fs-label { color: var(--text-muted); font-size: 11.5px; letter-spacing: 0.06em; }
+.footer-sources a {
+  color: var(--text-muted);
+  font-size: 12.5px;
+  transition: color 0.22s;
+}
+.footer-sources a:hover { color: var(--text); text-decoration: none; }
 
 /* ---------- 等级色点 ---------- */
 .dot { width: 9px; height: 9px; border-radius: 50%; display: inline-block; flex: 0 0 auto; }
@@ -3052,3 +3074,5 @@ body::after {
   .bz-graph .z2 { width: 158px; height: 158px; }
   .bz-graph .z1 { width: 78px; height: 78px; }
 }
+
+/* test marker */
