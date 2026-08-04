@@ -3277,7 +3277,10 @@ body::after {
   width: 34px; height: 34px; flex: none;
   border-radius: 10px;
   box-shadow: inset 0 0 0 1px rgba(255,255,255,0.12);
+  display: flex; align-items: center; justify-content: center;
+  color: #fff;
 }
+.ef-ic svg { width: 18px; height: 18px; }
 .ef-ic.ic1 { background: linear-gradient(135deg,#0A84FF,#0a5cff); }
 .ef-ic.ic2 { background: linear-gradient(135deg,#34C759,#1aa34a); }
 .ef-ic.ic3 { background: linear-gradient(135deg,#FF9500,#ff7a00); }
@@ -3306,4 +3309,68 @@ body::after {
 }
 @media (max-width: 480px) {
   .ef-grid { grid-template-columns: 1fr; }
+}
+
+/* ============================================================
+   首页 EewFusion 自研核心引擎 · 全宽独立展示
+   ============================================================ */
+.eewfusion-hero {
+  padding: 92px 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 0%, rgba(255,159,10,0.10), transparent 55%),
+    radial-gradient(ellipse 50% 40% at 50% 100%, rgba(255,159,10,0.05), transparent 50%),
+    var(--bg);
+  position: relative;
+  overflow: hidden;
+}
+.eewfusion-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, black, transparent);
+  -webkit-mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, black, transparent);
+  pointer-events: none;
+}
+.ef-hero-head { text-align: center; max-width: 760px; margin: 0 auto 46px; position: relative; z-index: 1; }
+.ef-hero-head .section-title { margin-bottom: 18px; }
+.ef-hero-head .section-lead { color: var(--text-soft); font-size: 16.5px; line-height: 1.75; }
+.ef-hero-diagram { position: relative; z-index: 1; margin: 0 auto; }
+.ef-hero-svg { width: 100%; height: auto; max-width: 920px; margin: 0 auto; display: block; }
+.ef-hero-pills {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 36px;
+}
+.ef-pill {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 10px 17px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.045);
+  color: var(--text-soft);
+  font-size: 13px;
+  transition: transform .2s var(--ease), border-color .2s, background .2s;
+}
+.ef-pill:hover { transform: translateY(-2px); border-color: rgba(255,159,10,0.5); background: rgba(255,159,10,0.08); }
+.ef-pill b { color: var(--text); font-weight: 600; }
+.ef-hero-cta { position: relative; z-index: 1; text-align: center; margin-top: 42px; }
+.ef-hero-cta .btn svg { width: 18px; height: 18px; vertical-align: middle; margin-left: 6px; }
+
+@media (max-width: 760px) {
+  .eewfusion-hero { padding: 66px 0; }
+  .ef-hero-head { margin-bottom: 32px; }
+  .ef-hero-head .section-lead { font-size: 15px; }
+  .ef-hero-pills { gap: 8px; margin-top: 26px; }
+  .ef-pill { font-size: 12px; padding: 8px 13px; }
+  .ef-hero-cta { margin-top: 32px; }
 }

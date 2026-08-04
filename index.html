@@ -268,48 +268,7 @@
           <li><span class="dot level-green"></span>WebSocket 直连，震后数秒抵达</li>
           <li><span class="dot level-green"></span>红 / 橙 / 黄 / 蓝 四级，按本地烈度而非噱头</li>
         </ul>
-        <div class="eewfusion-spot">
-          <span class="fx-tag">EewFusion</span><span class="fx-tag self">自研核心</span>
-          <h3>多源融合决策引擎，由作者自研</h3>
-          <p>把每一条链路当作一位独立「专家」，借鉴<strong>集成学习</strong>思想：在 <strong>1.5 秒融合窗口</strong>内收集多源报文后<strong>加权融合</strong>，让单源异常无法主导结果，显著降低单源误报。这正是地震哨兵不同于「单源转发器」的根本所在。</p>
-          <div class="ef-mini">
-            <svg class="ef-mini-svg" viewBox="0 0 300 150" aria-hidden="true">
-              <defs>
-                <radialGradient id="efCore" cx="50%" cy="50%" r="50%">
-                  <stop offset="0%" stop-color="#ff9f0a" stop-opacity="0.95"/>
-                  <stop offset="100%" stop-color="#ff9f0a" stop-opacity="0"/>
-                </radialGradient>
-              </defs>
-              <path d="M30,30 L150,75" stroke="rgba(255,255,255,0.12)" stroke-width="1" fill="none"/>
-              <path d="M30,75 L150,75" stroke="rgba(255,255,255,0.12)" stroke-width="1" fill="none"/>
-              <path d="M30,120 L150,75" stroke="rgba(255,255,255,0.12)" stroke-width="1" fill="none"/>
-              <path d="M270,75 L150,75" stroke="rgba(255,255,255,0.12)" stroke-width="1" fill="none"/>
-              <circle cx="30" cy="30" r="7" fill="#0A84FF"/>
-              <circle cx="30" cy="75" r="7" fill="#34C759"/>
-              <circle cx="30" cy="120" r="7" fill="#FF9500"/>
-              <circle cx="270" cy="75" r="7" fill="#AF52DE"/>
-              <circle cx="150" cy="75" r="34" fill="url(#efCore)">
-                <animate attributeName="r" values="30;36;30" dur="2.8s" repeatCount="indefinite"/>
-              </circle>
-              <circle cx="150" cy="75" r="13" fill="#ff9f0a"/>
-              <text x="150" y="79" text-anchor="middle" fill="#1a1205" font-size="9" font-weight="700">EF</text>
-              <circle cx="150" cy="75" r="26" fill="none" stroke="#ff9f0a" stroke-width="2" stroke-dasharray="6 30" stroke-linecap="round">
-                <animateTransform attributeName="transform" type="rotate" from="0 150 75" to="360 150 75" dur="9s" repeatCount="indefinite"/>
-              </circle>
-              <circle r="3" fill="#fff"><animateMotion dur="2s" repeatCount="indefinite" path="M30,30 L150,75"/></circle>
-              <circle r="3" fill="#fff"><animateMotion dur="2s" begin="0.5s" repeatCount="indefinite" path="M30,75 L150,75"/></circle>
-              <circle r="3" fill="#fff"><animateMotion dur="2s" begin="1s" repeatCount="indefinite" path="M30,120 L150,75"/></circle>
-              <circle r="3" fill="#fff"><animateMotion dur="2s" begin="1.5s" repeatCount="indefinite" path="M270,75 L150,75"/></circle>
-            </svg>
-            <ul class="ef-micro">
-              <li><b>集成学习</b>每源是独立专家</li>
-              <li><b>1.5s 窗口</b>加权融合</li>
-              <li><b>抗单源误报</b>异常不主导</li>
-              <li><b>坐标防抖</b>· 跨源去重</li>
-            </ul>
-          </div>
-          <p class="ef-cta">想看它如何把四个源收敛成一个可信结论？<a class="link-arrow" href="how.html#eewfusion">深入 EewFusion 引擎<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></p>
-        </div>
+        
       </div>
       <div class="reliability-graph" aria-hidden="true">
         <div class="rg-source">Wolfx</div>
@@ -326,6 +285,122 @@
         </svg>
       </div>
       <p class="anim-caption">光点沿连线汇聚至「地震哨兵」，三条链路互不依赖——任一可达即触发预警</p>
+    </div>
+  </section>
+
+  <!-- EewFusion 自研核心引擎 -->
+  <section class="section eewfusion-hero" id="eewfusion-home">
+    <div class="container">
+      <div class="ef-hero-head">
+        <span class="fx-tag">EewFusion</span><span class="fx-tag self">自研核心</span>
+        <h2 class="section-title">把四条独立链路，收敛成一个可信结论</h2>
+        <p class="section-lead">地震哨兵不是简单的「多源转发器」。EewFusion 是作者自研的多源融合决策引擎——借鉴集成学习思想，把每个数据源视为独立「专家」；在 1.5 秒融合窗口内加权融合、相互印证，让单源异常无法主导结果。</p>
+      </div>
+
+      <div class="ef-hero-diagram">
+        <svg viewBox="0 0 900 320" class="ef-hero-svg" aria-hidden="true">
+          <defs>
+            <radialGradient id="efHeroHalo" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#ff9f0a" stop-opacity="0.45"/>
+              <stop offset="100%" stop-color="#ff9f0a" stop-opacity="0"/>
+            </radialGradient>
+            <linearGradient id="efHeroCore" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#ffb340"/>
+              <stop offset="100%" stop-color="#ff7a00"/>
+            </linearGradient>
+            <filter id="efHeroGlow" x="-50%" y="-50%" width="200%" height="200%">
+              <feGaussianBlur stdDeviation="4" result="blur"/>
+              <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+          </defs>
+
+          <line x1="110" y1="80" x2="450" y2="160" stroke="rgba(255,255,255,0.12)" stroke-width="1.5"/>
+          <line x1="110" y1="240" x2="450" y2="160" stroke="rgba(255,255,255,0.12)" stroke-width="1.5"/>
+          <line x1="790" y1="80" x2="450" y2="160" stroke="rgba(255,255,255,0.12)" stroke-width="1.5"/>
+          <line x1="790" y1="240" x2="450" y2="160" stroke="rgba(255,255,255,0.12)" stroke-width="1.5"/>
+
+          <g transform="translate(110,80)">
+            <circle r="28" fill="rgba(10,132,255,0.18)" stroke="#0A84FF" stroke-width="2"/>
+            <circle r="28" fill="none" stroke="#0A84FF" stroke-width="2" opacity="0.35">
+              <animate attributeName="r" values="28;36;28" dur="2.4s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values="0.35;0;0.35" dur="2.4s" repeatCount="indefinite"/>
+            </circle>
+            <text y="4" text-anchor="middle" fill="#fff" font-size="12" font-weight="700">Wolfx</text>
+            <text y="18" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-size="8">CENC</text>
+          </g>
+          <g transform="translate(110,240)">
+            <circle r="28" fill="rgba(52,199,89,0.18)" stroke="#34C759" stroke-width="2"/>
+            <circle r="28" fill="none" stroke="#34C759" stroke-width="2" opacity="0.35">
+              <animate attributeName="r" values="28;36;28" dur="2.4s" begin="0.6s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values="0.35;0;0.35" dur="2.4s" begin="0.6s" repeatCount="indefinite"/>
+            </circle>
+            <text y="4" text-anchor="middle" fill="#fff" font-size="12" font-weight="700">ICL</text>
+            <text y="18" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-size="8">减灾所</text>
+          </g>
+          <g transform="translate(790,80)">
+            <circle r="28" fill="rgba(255,149,0,0.18)" stroke="#FF9500" stroke-width="2"/>
+            <circle r="28" fill="none" stroke="#FF9500" stroke-width="2" opacity="0.35">
+              <animate attributeName="r" values="28;36;28" dur="2.4s" begin="1.2s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values="0.35;0;0.35" dur="2.4s" begin="1.2s" repeatCount="indefinite"/>
+            </circle>
+            <text y="4" text-anchor="middle" fill="#fff" font-size="12" font-weight="700">USGS</text>
+            <text y="18" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-size="8">备用源</text>
+          </g>
+          <g transform="translate(790,240)">
+            <circle r="28" fill="rgba(175,82,222,0.18)" stroke="#AF52DE" stroke-width="2"/>
+            <circle r="28" fill="none" stroke="#AF52DE" stroke-width="2" opacity="0.35">
+              <animate attributeName="r" values="28;36;28" dur="2.4s" begin="1.8s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values="0.35;0;0.35" dur="2.4s" begin="1.8s" repeatCount="indefinite"/>
+            </circle>
+            <text y="4" text-anchor="middle" fill="#fff" font-size="12" font-weight="700">EMSC</text>
+            <text y="18" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-size="8">备用源</text>
+          </g>
+
+          <circle r="4" fill="#0A84FF" filter="url(#efHeroGlow)"><animateMotion dur="2s" repeatCount="indefinite" path="M110,80 L450,160"/></circle>
+          <circle r="4" fill="#34C759" filter="url(#efHeroGlow)"><animateMotion dur="2s" begin="0.5s" repeatCount="indefinite" path="M110,240 L450,160"/></circle>
+          <circle r="4" fill="#FF9500" filter="url(#efHeroGlow)"><animateMotion dur="2s" begin="1s" repeatCount="indefinite" path="M790,80 L450,160"/></circle>
+          <circle r="4" fill="#AF52DE" filter="url(#efHeroGlow)"><animateMotion dur="2s" begin="1.5s" repeatCount="indefinite" path="M790,240 L450,160"/></circle>
+
+          <circle cx="450" cy="160" r="90" fill="url(#efHeroHalo)">
+            <animate attributeName="r" values="80;100;80" dur="3s" repeatCount="indefinite"/>
+          </circle>
+          <polygon points="450,108 502,138 502,182 450,212 398,182 398,138" fill="url(#efHeroCore)" filter="url(#efHeroGlow)"/>
+          <text x="450" y="155" text-anchor="middle" fill="#1a1205" font-size="16" font-weight="800">EF</text>
+          <text x="450" y="175" text-anchor="middle" fill="#1a1205" font-size="9" font-weight="700">Fusion</text>
+          <circle cx="450" cy="160" r="70" fill="none" stroke="#ff9f0a" stroke-width="2.5" stroke-dasharray="10 45" stroke-linecap="round" opacity="0.85">
+            <animateTransform attributeName="transform" type="rotate" from="0 450 160" to="360 450 160" dur="12s" repeatCount="indefinite"/>
+          </circle>
+
+          <line x1="540" y1="160" x2="660" y2="160" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"/>
+          <polygon points="660,156 670,160 660,164" fill="rgba(255,255,255,0.4)"/>
+          <g transform="translate(735,160)">
+            <rect x="-60" y="-26" width="120" height="52" rx="12" fill="rgba(255,59,48,0.12)" stroke="#FF3B30" stroke-width="1.5"/>
+            <text y="4" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">统一决策</text>
+            <text y="18" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-size="8">红 / 橙 / 黄 / 蓝</text>
+          </g>
+
+          <g transform="translate(450,260)">
+            <rect x="-60" y="0" width="120" height="8" rx="4" fill="rgba(255,255,255,0.08)"/>
+            <rect x="-60" y="0" width="84" height="8" rx="4" fill="#34C759">
+              <animate attributeName="width" values="60;108;78;108;84" dur="3.5s" repeatCount="indefinite"/>
+            </rect>
+            <text y="22" text-anchor="middle" fill="rgba(255,255,255,0.55)" font-size="10">置信度 = 源数×0.6 + 一致性×0.4</text>
+          </g>
+        </svg>
+      </div>
+
+      <div class="ef-hero-pills">
+        <div class="ef-pill"><b>集成学习</b>每源独立专家</div>
+        <div class="ef-pill"><b>1.5s 融合窗</b>毫秒级决策</div>
+        <div class="ef-pill"><b>加权中位数</b>抗异常值</div>
+        <div class="ef-pill"><b>置信度闸门</b>单源不触发红警</div>
+        <div class="ef-pill"><b>坐标防抖</b>定位更稳</div>
+        <div class="ef-pill"><b>10min 跨源去重</b>不重复打扰</div>
+      </div>
+
+      <div class="ef-hero-cta">
+        <a class="btn btn-primary" href="how.html#eewfusion">深入 EewFusion 技术原理<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
     </div>
   </section>
 
