@@ -3226,3 +3226,84 @@ body::after {
 @media (max-width: 760px) {
   .eewfusion-spot { padding: 18px 18px; }
 }
+
+/* ============================================================
+   EewFusion 自研核心 · 增强展示（首页聚光块 + 技术原理专页）
+   ============================================================ */
+/* 首页聚光块内：微型融合动画 + 能力微列表 */
+.ef-mini {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+}
+.ef-mini-svg { width: 150px; height: auto; flex: none; }
+.ef-micro { list-style: none; margin: 0; padding: 0; flex: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 14px; }
+.ef-micro li { font-size: 12.5px; color: var(--text-muted); line-height: 1.45; }
+.ef-micro b { color: var(--text-soft); font-weight: 600; margin-right: 4px; }
+.ef-cta { margin: 14px 0 0; font-size: 13.5px; color: var(--text-muted); }
+.ef-cta .link-arrow { color: #ff9f0a; }
+
+/* 技术原理页 · EewFusion 专页 */
+.ef-diagram {
+  margin: 26px 0 8px;
+  padding: 18px;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: radial-gradient(120% 120% at 50% 0%, rgba(255,159,10,0.06), rgba(255,255,255,0.015));
+}
+.ef-svg { width: 100%; height: auto; max-width: 760px; margin: 0 auto; display: block; }
+.ef-cap { text-align: center; color: var(--text-muted); font-size: 13px; margin: 14px 0 0; line-height: 1.6; }
+
+.ef-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin: 28px 0 4px;
+}
+.ef-feat {
+  display: flex;
+  gap: 13px;
+  padding: 17px 16px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: rgba(255,255,255,0.025);
+  transition: transform .25s var(--ease, ease), border-color .25s;
+}
+.ef-feat:hover { transform: translateY(-3px); border-color: rgba(255,159,10,0.4); }
+.ef-ic {
+  width: 34px; height: 34px; flex: none;
+  border-radius: 10px;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.12);
+}
+.ef-ic.ic1 { background: linear-gradient(135deg,#0A84FF,#0a5cff); }
+.ef-ic.ic2 { background: linear-gradient(135deg,#34C759,#1aa34a); }
+.ef-ic.ic3 { background: linear-gradient(135deg,#FF9500,#ff7a00); }
+.ef-ic.ic4 { background: linear-gradient(135deg,#AF52DE,#8a3ec0); }
+.ef-ic.ic5 { background: linear-gradient(135deg,#FF3B30,#d92018); }
+.ef-ic.ic6 { background: linear-gradient(135deg,#64D2FF,#39a8e0); }
+.ef-feat b { display: block; font-size: 14px; color: var(--text); margin-bottom: 4px; }
+.ef-feat p { margin: 0; font-size: 12.5px; color: var(--text-muted); line-height: 1.55; }
+
+.ef-callout {
+  margin: 26px 0 0;
+  padding: 20px 22px;
+  border-radius: 16px;
+  border: 1px solid rgba(255,159,10,0.35);
+  background: linear-gradient(180deg, rgba(255,159,10,0.10), rgba(255,159,10,0.03));
+}
+.ef-callout b { display: block; font-size: 16px; color: #ff9f0a; margin-bottom: 8px; letter-spacing: -0.01em; }
+.ef-callout p { margin: 0; font-size: 14px; color: var(--text-soft); line-height: 1.7; }
+.ef-callout strong { color: var(--text); font-weight: 600; }
+
+@media (max-width: 760px) {
+  .ef-grid { grid-template-columns: 1fr 1fr; }
+  .ef-mini { flex-direction: column; align-items: flex-start; }
+  .ef-mini-svg { width: 180px; }
+  .ef-micro { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 480px) {
+  .ef-grid { grid-template-columns: 1fr; }
+}

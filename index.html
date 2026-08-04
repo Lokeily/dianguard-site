@@ -59,7 +59,7 @@
     <div class="nav-links" id="nav-links">
       <a href="index.html" class="active">首页</a>
       <div class="nav-item"><a href="features.html">功能</a><span class="nav-caret" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span><div class="nav-drop" role="menu"><a href="features.html#alerting"><b>告警体验</b><span>全屏倒计时 · 锁屏之上</span></a><a href="features.html#levels"><b>四级预警</b><span>Ⅰ红Ⅱ橙Ⅲ黄Ⅳ蓝 · 按本地烈度</span></a><a href="features.html#voice"><b>预警语音</b><span>真实录音 · 三段式播报</span></a><a href="features.html#sources"><b>多源融合</b><span>双源独立 · EewFusion 决策</span></a><a href="features.html#control"><b>个性化</b><span>阈值可调 · 模拟演练</span></a><a href="features.html#permissions"><b>权限说明</b><span>每一项都对应一个功能</span></a></div></div>
-      <div class="nav-item"><a href="how.html">技术原理</a><span class="nav-caret" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span><div class="nav-drop" role="menu"><a href="how.html#mechanism"><b>地震波</b><span>先见闪电 · 后闻雷声</span></a><a href="how.html#timeline"><b>预警时间轴</b><span>从地动山摇到手机响铃</span></a><a href="how.html#intensity"><b>烈度公式</b><span>你这里有多晃</span></a><a href="how.html#arch"><b>四层数据流</b><span>双源融合 · 分区烈度</span></a><a href="how.html#blindzone"><b>预警盲区</b><span>离闪电太近来不及</span></a><a href="how.html#decision"><b>触发决策</b><span>要不要叫醒你</span></a></div></div>
+      <div class="nav-item"><a href="how.html">技术原理</a><span class="nav-caret" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span><div class="nav-drop" role="menu"><a href="how.html#mechanism"><b>地震波</b><span>先见闪电 · 后闻雷声</span></a><a href="how.html#timeline"><b>预警时间轴</b><span>从地动山摇到手机响铃</span></a><a href="how.html#intensity"><b>烈度公式</b><span>你这里有多晃</span></a><a href="how.html#eewfusion"><b>EewFusion 引擎</b><span>多源融合决策核心</span></a><a href="how.html#arch"><b>四层数据流</b><span>双源融合 · 分区烈度</span></a><a href="how.html#blindzone"><b>预警盲区</b><span>离闪电太近来不及</span></a><a href="how.html#decision"><b>触发决策</b><span>要不要叫醒你</span></a></div></div>
       <a href="changelog.html">版本更新</a>
       <a href="disclaimer.html">免责声明</a>
       <span class="nav-sep"></span>
@@ -272,6 +272,43 @@
           <span class="fx-tag">EewFusion</span><span class="fx-tag self">自研核心</span>
           <h3>多源融合决策引擎，由作者自研</h3>
           <p>把每一条链路当作一位独立「专家」，借鉴<strong>集成学习</strong>思想：在 <strong>1.5 秒融合窗口</strong>内收集多源报文后<strong>加权融合</strong>，让单源异常无法主导结果，显著降低单源误报。这正是地震哨兵不同于「单源转发器」的根本所在。</p>
+          <div class="ef-mini">
+            <svg class="ef-mini-svg" viewBox="0 0 300 150" aria-hidden="true">
+              <defs>
+                <radialGradient id="efCore" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stop-color="#ff9f0a" stop-opacity="0.95"/>
+                  <stop offset="100%" stop-color="#ff9f0a" stop-opacity="0"/>
+                </radialGradient>
+              </defs>
+              <path d="M30,30 L150,75" stroke="rgba(255,255,255,0.12)" stroke-width="1" fill="none"/>
+              <path d="M30,75 L150,75" stroke="rgba(255,255,255,0.12)" stroke-width="1" fill="none"/>
+              <path d="M30,120 L150,75" stroke="rgba(255,255,255,0.12)" stroke-width="1" fill="none"/>
+              <path d="M270,75 L150,75" stroke="rgba(255,255,255,0.12)" stroke-width="1" fill="none"/>
+              <circle cx="30" cy="30" r="7" fill="#0A84FF"/>
+              <circle cx="30" cy="75" r="7" fill="#34C759"/>
+              <circle cx="30" cy="120" r="7" fill="#FF9500"/>
+              <circle cx="270" cy="75" r="7" fill="#AF52DE"/>
+              <circle cx="150" cy="75" r="34" fill="url(#efCore)">
+                <animate attributeName="r" values="30;36;30" dur="2.8s" repeatCount="indefinite"/>
+              </circle>
+              <circle cx="150" cy="75" r="13" fill="#ff9f0a"/>
+              <text x="150" y="79" text-anchor="middle" fill="#1a1205" font-size="9" font-weight="700">EF</text>
+              <circle cx="150" cy="75" r="26" fill="none" stroke="#ff9f0a" stroke-width="2" stroke-dasharray="6 30" stroke-linecap="round">
+                <animateTransform attributeName="transform" type="rotate" from="0 150 75" to="360 150 75" dur="9s" repeatCount="indefinite"/>
+              </circle>
+              <circle r="3" fill="#fff"><animateMotion dur="2s" repeatCount="indefinite" path="M30,30 L150,75"/></circle>
+              <circle r="3" fill="#fff"><animateMotion dur="2s" begin="0.5s" repeatCount="indefinite" path="M30,75 L150,75"/></circle>
+              <circle r="3" fill="#fff"><animateMotion dur="2s" begin="1s" repeatCount="indefinite" path="M30,120 L150,75"/></circle>
+              <circle r="3" fill="#fff"><animateMotion dur="2s" begin="1.5s" repeatCount="indefinite" path="M270,75 L150,75"/></circle>
+            </svg>
+            <ul class="ef-micro">
+              <li><b>集成学习</b>每源是独立专家</li>
+              <li><b>1.5s 窗口</b>加权融合</li>
+              <li><b>抗单源误报</b>异常不主导</li>
+              <li><b>坐标防抖</b>· 跨源去重</li>
+            </ul>
+          </div>
+          <p class="ef-cta">想看它如何把四个源收敛成一个可信结论？<a class="link-arrow" href="how.html#eewfusion">深入 EewFusion 引擎<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></p>
         </div>
       </div>
       <div class="reliability-graph" aria-hidden="true">
