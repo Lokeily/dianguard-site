@@ -35,7 +35,7 @@
       "price": "0",
       "priceCurrency": "CNY"
     },
-    "softwareVersion": "v1.3.0",
+    "softwareVersion": "v1.3.2",
     "downloadUrl": "https://github.com/Lokeily/Earthquake-Sentinel/releases/latest",
     "codeRepository": "https://github.com/Lokeily/Earthquake-Sentinel",
     "author": {
@@ -58,8 +58,8 @@
     <button class="nav-toggle" id="nav-toggle" aria-label="打开菜单" aria-expanded="false"><i></i><i></i><i></i></button>
     <div class="nav-links" id="nav-links">
       <a href="index.html">首页</a>
-      <div class="nav-item active"><a href="features.html">功能</a><span class="nav-caret" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span><div class="nav-drop" role="menu"><a href="features.html#alerting"><b>告警体验</b><span>全屏倒计时 · 锁屏之上</span></a><a href="features.html#levels"><b>四级预警</b><span>Ⅰ红Ⅱ橙Ⅲ黄Ⅳ蓝 · 按本地烈度</span></a><a href="features.html#voice"><b>预警语音</b><span>真实录音 · 三段式播报</span></a><a href="features.html#sources"><b>多源融合</b><span>双源独立 · EewFusion 决策</span></a><a href="features.html#control"><b>个性化</b><span>阈值可调 · 模拟演练</span></a><a href="features.html#permissions"><b>权限说明</b><span>每一项都对应一个功能</span></a></div></div>
-      <div class="nav-item"><a href="how.html">技术原理</a><span class="nav-caret" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span><div class="nav-drop" role="menu"><a href="how.html#mechanism"><b>地震波</b><span>先见闪电 · 后闻雷声</span></a><a href="how.html#timeline"><b>预警时间轴</b><span>从地动山摇到手机响铃</span></a><a href="how.html#intensity"><b>烈度公式</b><span>你这里有多晃</span></a><a href="how.html#eewfusion"><b>EewFusion 引擎</b><span>多源融合决策核心</span></a><a href="how.html#arch"><b>四层数据流</b><span>双源融合 · 分区烈度</span></a><a href="how.html#blindzone"><b>预警盲区</b><span>离闪电太近来不及</span></a><a href="how.html#decision"><b>触发决策</b><span>要不要叫醒你</span></a></div></div>
+      <div class="nav-item active"><a href="features.html">功能</a><span class="nav-caret" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span><div class="nav-drop" role="menu"><a href="features.html#alerting"><b>告警体验</b><span>全屏倒计时 · 锁屏之上</span></a><a href="features.html#levels"><b>四级预警</b><span>Ⅰ红Ⅱ橙Ⅲ黄Ⅳ蓝 · 按本地烈度</span></a><a href="features.html#voice"><b>预警语音</b><span>真实录音 · 三段式播报</span></a><a href="features.html#sources"><b>多源融合</b><span>五源融合 · EewFusion 决策</span></a><a href="features.html#control"><b>个性化</b><span>阈值可调 · 模拟演练</span></a><a href="features.html#permissions"><b>权限说明</b><span>每一项都对应一个功能</span></a></div></div>
+      <div class="nav-item"><a href="how.html">技术原理</a><span class="nav-caret" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span><div class="nav-drop" role="menu"><a href="how.html#mechanism"><b>地震波</b><span>先见闪电 · 后闻雷声</span></a><a href="how.html#timeline"><b>预警时间轴</b><span>从地动山摇到手机响铃</span></a><a href="how.html#intensity"><b>烈度公式</b><span>你这里有多晃</span></a><a href="how.html#eewfusion"><b>EewFusion 引擎</b><span>多源融合决策核心</span></a><a href="how.html#arch"><b>五源数据流</b><span>五源融合 · 分区烈度</span></a><a href="how.html#blindzone"><b>预警盲区</b><span>离闪电太近来不及</span></a><a href="how.html#decision"><b>触发决策</b><span>要不要叫醒你</span></a></div></div>
       <a href="changelog.html">版本更新</a>
       <a href="disclaimer.html">免责声明</a>
       <span class="nav-sep"></span>
@@ -254,12 +254,27 @@
   <section id="sources" class="fx-block">
     <div class="container">
       <div class="fx-head">
-        <h2>多源融合：两条完全独立的链路，任一可达即触发</h2>
-        <p>地震预警报文需经公共转发节点到达手机。单一节点一旦限流、维护或断网，你就完全收不到——且不会知道。地震哨兵同时常驻两条<strong>域名完全独立</strong>的实时链路，并保留备用探测源兜底，把单点故障概率压到最低。</p>
+        <h2>多源融合：五路实时源，任一可达即触发</h2>
+        <p>地震预警报文需经公共转发节点到达手机。单一节点一旦限流、维护或断网，你就完全收不到——且不会知道。地震哨兵同时常驻<strong>五路实时源</strong>：CENC / SC / CQ / CWA 经 Wolfx 镜像、ICL 成都高新减灾所经<strong>完全独立的官方域名</strong>，任一可达即触发；USGS / Wolfx HTTP / EMSC 备用探测源在主链路全断时兜底。须坦诚：前四路共用 Wolfx 单一网关，该网关故障时 ICL 是唯一不中断的实时链路。</p>
       </div>
       <div class="source-grid">
         <div class="source-card">
-          <div class="source-name">Wolfx CENC</div>
+          <div class="source-name">CENC 中国地震台网</div>
+          <div class="source-url">wss://ws-api.wolfx.jp · WebSocket</div>
+          <span class="badge free">主实时源 · 秒级推送 · 免 Key</span>
+        </div>
+        <div class="source-card">
+          <div class="source-name">SC 四川省地震局</div>
+          <div class="source-url">wss://ws-api.wolfx.jp · WebSocket</div>
+          <span class="badge free">主实时源 · 秒级推送 · 免 Key</span>
+        </div>
+        <div class="source-card">
+          <div class="source-name">CQ 重庆市地震局</div>
+          <div class="source-url">wss://ws-api.wolfx.jp · WebSocket</div>
+          <span class="badge free">主实时源 · 秒级推送 · 免 Key</span>
+        </div>
+        <div class="source-card">
+          <div class="source-name">CWA 台湾地震测报</div>
           <div class="source-url">wss://ws-api.wolfx.jp · WebSocket</div>
           <span class="badge free">主实时源 · 秒级推送 · 免 Key</span>
         </div>
@@ -268,36 +283,38 @@
           <div class="source-url">mobile-new.chinaeew.cn · HTTP 3s 轮询</div>
           <span class="badge free">中国官方预警 · 域名完全独立</span>
         </div>
-        <div class="source-card">
-          <div class="source-name">USGS / EMSC</div>
+        <div class="source-card muted">
+          <div class="source-name">USGS · Wolfx HTTP · EMSC</div>
           <div class="source-url">FDSN · HTTP 30s 轮询</div>
           <span class="badge token">备用探测源 · 主链路全断时激活</span>
         </div>
         <div class="source-card muted">
-          <div class="source-name">BeeCLD · 2v8 / FAN Studio</div>
-          <div class="source-url">v1.3.0 已移除内置</div>
-          <span class="badge off">令牌 / 密钥改由用户自行填写，不再内置</span>
+          <div class="source-name">用户自建源（BeeCLD / 2v8 / FAN）</div>
+          <div class="source-url">令牌由用户自行填写</div>
+          <span class="badge off">v1.3.2 起不再内置，可手动添加</span>
         </div>
       </div>
       <div class="fx-row" style="margin-top:56px">
         <div class="fx-copy">
           <span class="fx-tag">EewFusion</span><span class="fx-tag self">自研核心</span>
           <h3>EewFusion — 自研多源融合决策引擎</h3>
-          <p>借鉴集成学习思想，每个数据源被视为独立「专家」。在 <strong>1.5s 融合窗口</strong>内收集多源报文后加权融合，单源异常不会主导结果：</p>
+          <p>借鉴集成学习思想，每个数据源被视为独立「专家」。在 <strong>1.0–1.5s 动态融合窗口</strong>内收集多源报文后加权融合、震级校准与趋势融合，单源异常不会主导结果：</p>
           <p class="fx-lead">这是地震哨兵区别于「单源转发器」的核心能力，完全由作者<strong>自研</strong>：让多源相互印证，而非盲信单一来源。</p>
           <ul class="fx-points">
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span><b>震级融合</b>：加权中位数，比算术平均更抗异常值，单源偏差异常不主导结果。</span></li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span><b>坐标选优</b>：取权重最高源的原始坐标，严禁加权平均（避免物理意义错误）。</span></li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span><b>置信度</b>：多源一致→高置信；单源初报→低置信并标记 <code>isPreliminary</code>，禁止触发红色。</span></li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span><b>交叉验证</b>：双源以上一致才触发高等级告警，单源伪造报文被加权中位数 / 置信度机制抑制。</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span><b>震级融合 + 校准</b>：加权中位数更抗异常值；并按「源 × 震级桶」预训练修正，偏差钳制在 ±0.5 内。</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span><b>坐标选优</b>：取权重最高源的原始坐标，严禁加权平均（避免物理意义错误）；并带坐标死区防抖。</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span><b>初报 / 终报双轨</b>：多源一致→高置信触发；单源初报标记 <code>isPreliminary</code> 禁止触发红色；修正量 &gt;±0.4 强制推送版本更新。</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span><b>趋势融合</b>：按各源相对共识偏移量动态加权，捕捉震级 / 位置修正；单源伪造报文被中位数 + 置信度机制抑制。</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span><b>动态融合窗</b>：1.0–1.5s 自适应——多源在线时自动缩短，单源时延长以积累证据。</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span><b>状态 TTL 淘汰</b>：按事件版本隔离，30 分钟超时状态自动回收，杜绝内存泄漏（v1.3.2 修复）。</span></li>
           </ul>
-          <p class="fx-note">工程保障：坐标防抖 · 按事件版本隔离 · 超时强制输出 · 10 分钟跨源去重，确保不重复、不漏报。</p>
-          <p class="fx-license">EewFusion 为地震哨兵自研核心算法。当前版本随开源仓库以 <strong>精简兼容实现</strong>（加权融合 + 坐标选优）发布；其 <strong>完整引擎将在后续版本转为闭源专有</strong>，不再随仓库分发。</p>
+          <p class="fx-note">工程保障：动态融合窗 · 震级校准 · 趋势融合 · 坐标防抖 · 按版本隔离 · 状态 TTL 30min 淘汰 · 10 分钟跨源去重，确保不重复、不漏报。</p>
+          <p class="fx-license">EewFusion 为地震哨兵自研核心算法。仓库以 <strong>Apache-2.0</strong> 协议开源（UI / 解析 / 烈度衰减 / 告警 / 历史 / 证书固定 / 构建），其核心融合与 FusionCalibration 以 <strong>专有协议</strong>分发、不随仓库公开；仓库内含接口一致的<strong>精简兼容实现</strong>（<code>ingest</code> / <code>forceFlush</code> / <code>FusionResult</code>），便于审阅与二次开发。</p>
           <p style="margin-top:20px"><a class="link-arrow" href="how.html#arch">查看完整数据流架构<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></p>
         </div>
         <div class="fx-visual">
           <div class="reliability-graph" aria-hidden="true">
-            <svg class="rg-svg" viewBox="0 0 360 320" preserveAspectRatio="xMidYMid meet" role="img" aria-label="三条独立数据源汇聚至地震哨兵">
+            <svg class="rg-svg" viewBox="0 0 360 320" preserveAspectRatio="xMidYMid meet" role="img" aria-label="五路实时数据源汇聚至地震哨兵：CENC / SC / CQ / CWA 经 Wolfx 网关，ICL 经独立域名">
               <defs>
                 <radialGradient id="rgHubGlow2" cx="50%" cy="50%" r="50%">
                   <stop offset="0%" stop-color="#0a84ff" stop-opacity="0.55"/>
@@ -308,31 +325,50 @@
                   <stop offset="100%" stop-color="#0050b3"/>
                 </linearGradient>
               </defs>
-              <path class="rg-edge" d="M70,55 C 70,140 120,200 150,214" fill="none" stroke="rgba(10,132,255,0.5)" stroke-width="1.6"/>
-              <path class="rg-edge" d="M180,40 C 180,120 180,175 180,210" fill="none" stroke="rgba(52,199,89,0.5)" stroke-width="1.6"/>
-              <path class="rg-edge" d="M290,55 C 290,140 240,200 210,214" fill="none" stroke="rgba(255,149,0,0.5)" stroke-width="1.6"/>
-              <circle r="4" fill="#0A84FF" filter="url(#rgHubGlow2)"><animateMotion dur="2.4s" repeatCount="indefinite" path="M70,55 C 70,140 120,200 150,214"/></circle>
-              <circle r="4" fill="#34C759"><animateMotion dur="2.4s" begin="0.8s" repeatCount="indefinite" path="M180,40 C 180,120 180,175 180,210"/></circle>
-              <circle r="4" fill="#FF9500"><animateMotion dur="2.4s" begin="1.6s" repeatCount="indefinite" path="M290,55 C 290,140 240,200 210,214"/></circle>
+              <!-- edges: 4 Wolfx (blue) + ICL (green) -->
+              <path class="rg-edge" d="M50,52 C 70,140 120,200 150,214" fill="none" stroke="rgba(10,132,255,0.5)" stroke-width="1.6"/>
+              <path class="rg-edge" d="M133,42 C 140,130 160,185 175,212" fill="none" stroke="rgba(10,132,255,0.5)" stroke-width="1.6"/>
+              <path class="rg-edge" d="M227,42 C 220,130 200,185 185,212" fill="none" stroke="rgba(10,132,255,0.5)" stroke-width="1.6"/>
+              <path class="rg-edge" d="M310,52 C 290,140 240,200 210,214" fill="none" stroke="rgba(10,132,255,0.5)" stroke-width="1.6"/>
+              <path class="rg-edge" d="M40,182 C 90,200 140,215 160,228" fill="none" stroke="rgba(52,199,89,0.6)" stroke-width="1.8"/>
+
+              <!-- packets -->
+              <circle r="4" fill="#0A84FF" filter="url(#rgHubGlow2)"><animateMotion dur="2.4s" repeatCount="indefinite" path="M50,52 C 70,140 120,200 150,214"/></circle>
+              <circle r="4" fill="#0A84FF"><animateMotion dur="2.4s" begin="0.6s" repeatCount="indefinite" path="M133,42 C 140,130 160,185 175,212"/></circle>
+              <circle r="4" fill="#0A84FF"><animateMotion dur="2.4s" begin="1.2s" repeatCount="indefinite" path="M227,42 C 220,130 200,185 185,212"/></circle>
+              <circle r="4" fill="#0A84FF"><animateMotion dur="2.4s" begin="1.8s" repeatCount="indefinite" path="M310,52 C 290,140 240,200 210,214"/></circle>
+              <circle r="4" fill="#34C759"><animateMotion dur="2.4s" begin="0.3s" repeatCount="indefinite" path="M40,182 C 90,200 140,215 160,228"/></circle>
+
+              <!-- Wolfx source nodes -->
               <g class="rg-node">
-                <circle cx="70" cy="55" r="22" fill="rgba(10,132,255,0.16)" stroke="#0A84FF" stroke-width="2"/>
-                <text x="70" y="59" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">Wolfx</text>
-                <text x="70" y="92" text-anchor="middle" fill="rgba(255,255,255,0.55)" font-size="9">CENC</text>
+                <circle cx="50" cy="50" r="18" fill="rgba(10,132,255,0.16)" stroke="#0A84FF" stroke-width="2"/>
+                <text x="50" y="54" text-anchor="middle" fill="#fff" font-size="9" font-weight="700">CENC</text>
               </g>
               <g class="rg-node">
-                <circle cx="180" cy="40" r="22" fill="rgba(52,199,89,0.16)" stroke="#34C759" stroke-width="2"/>
-                <text x="180" y="44" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">ICL</text>
-                <text x="180" y="77" text-anchor="middle" fill="rgba(255,255,255,0.55)" font-size="9">减灾所</text>
+                <circle cx="133" cy="40" r="18" fill="rgba(10,132,255,0.16)" stroke="#0A84FF" stroke-width="2"/>
+                <text x="133" y="44" text-anchor="middle" fill="#fff" font-size="9" font-weight="700">SC</text>
               </g>
               <g class="rg-node">
-                <circle cx="290" cy="55" r="22" fill="rgba(255,149,0,0.16)" stroke="#FF9500" stroke-width="2"/>
-                <text x="290" y="59" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">USGS</text>
-                <text x="290" y="92" text-anchor="middle" fill="rgba(255,255,255,0.55)" font-size="9">EMSC</text>
+                <circle cx="227" cy="40" r="18" fill="rgba(10,132,255,0.16)" stroke="#0A84FF" stroke-width="2"/>
+                <text x="227" y="44" text-anchor="middle" fill="#fff" font-size="9" font-weight="700">CQ</text>
               </g>
+              <g class="rg-node">
+                <circle cx="310" cy="50" r="18" fill="rgba(10,132,255,0.16)" stroke="#0A84FF" stroke-width="2"/>
+                <text x="310" y="54" text-anchor="middle" fill="#fff" font-size="9" font-weight="700">CWA</text>
+              </g>
+
+              <!-- ICL independent node -->
+              <g class="rg-node">
+                <circle cx="40" cy="180" r="20" fill="rgba(52,199,89,0.16)" stroke="#34C759" stroke-width="2"/>
+                <text x="40" y="184" text-anchor="middle" fill="#fff" font-size="10" font-weight="700">ICL</text>
+                <text x="40" y="206" text-anchor="middle" fill="rgba(255,255,255,0.55)" font-size="8">独立域名</text>
+              </g>
+
+              <!-- hub -->
               <ellipse cx="180" cy="248" rx="92" ry="32" fill="url(#rgHubGlow2)"/>
               <rect x="122" y="222" width="116" height="52" rx="14" fill="url(#rgHubFill2)" stroke="rgba(255,255,255,0.25)" stroke-width="1"/>
               <text x="180" y="246" text-anchor="middle" fill="#fff" font-size="14" font-weight="800">地震哨兵</text>
-              <text x="180" y="263" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="9">任一可达即触发</text>
+              <text x="180" y="263" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="9">五路实时源·任一可达即触发</text>
             </svg>
           </div>
         </div>

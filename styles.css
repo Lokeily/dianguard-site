@@ -3071,7 +3071,7 @@ body::after {
 
 /* ============================================================
    地震哨兵 v1.3.0 新增组件样式
-   （GB 18306-2015 六分区系数表 / 四层架构步骤 / 移除源卡片 / off 徽标）
+   （GB 18306-2015 六分区系数表 / 五源数据流架构步骤 / 移除源卡片 / off 徽标）
    ============================================================ */
 
 /* ----- GB 18306-2015 六分区短轴衰减系数表 ----- */
@@ -3109,7 +3109,7 @@ body::after {
 .zone-table tbody tr:last-child td { border-bottom: none; }
 .zone-table tbody tr:hover { background: rgba(255,255,255,0.035); }
 
-/* ----- 四层数据流架构步骤 ----- */
+/* ----- 五源数据流架构步骤 ----- */
 .arch-steps {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -3362,3 +3362,12 @@ body::after {
   .ef-pill { font-size: 12px; padding: 8px 13px; }
   .ef-hero-cta { margin-top: 32px; }
 }
+
+/* 可靠性与安全工程 */
+.rs-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; margin-top: 8px; }
+.rs-col { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 18px; padding: 26px 28px; }
+.rs-col h3 { margin: 0 0 14px; font-size: 18px; font-weight: 800; color: #fff; }
+.rs-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 13px; }
+.rs-list li { font-size: 14px; line-height: 1.6; color: rgba(255,255,255,0.88); padding-left: 14px; border-left: 2px solid rgba(10,132,255,0.5); }
+.rs-list li b { color: #fff; font-weight: 700; }
+@media (max-width: 760px) { .rs-grid { grid-template-columns: 1fr; } }

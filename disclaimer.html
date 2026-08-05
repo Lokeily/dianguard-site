@@ -35,7 +35,7 @@
       "price": "0",
       "priceCurrency": "CNY"
     },
-    "softwareVersion": "v1.3.0",
+    "softwareVersion": "v1.3.2",
     "downloadUrl": "https://github.com/Lokeily/Earthquake-Sentinel/releases/latest",
     "codeRepository": "https://github.com/Lokeily/Earthquake-Sentinel",
     "author": {
@@ -58,8 +58,8 @@
     <button class="nav-toggle" id="nav-toggle" aria-label="打开菜单" aria-expanded="false"><i></i><i></i><i></i></button>
     <div class="nav-links" id="nav-links">
       <a href="index.html">首页</a>
-      <div class="nav-item"><a href="features.html">功能</a><span class="nav-caret" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span><div class="nav-drop" role="menu"><a href="features.html#alerting"><b>告警体验</b><span>全屏倒计时 · 锁屏之上</span></a><a href="features.html#levels"><b>四级预警</b><span>Ⅰ红Ⅱ橙Ⅲ黄Ⅳ蓝 · 按本地烈度</span></a><a href="features.html#voice"><b>预警语音</b><span>真实录音 · 三段式播报</span></a><a href="features.html#sources"><b>多源融合</b><span>双源独立 · EewFusion 决策</span></a><a href="features.html#control"><b>个性化</b><span>阈值可调 · 模拟演练</span></a><a href="features.html#permissions"><b>权限说明</b><span>每一项都对应一个功能</span></a></div></div>
-      <div class="nav-item"><a href="how.html">技术原理</a><span class="nav-caret" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span><div class="nav-drop" role="menu"><a href="how.html#mechanism"><b>地震波</b><span>先见闪电 · 后闻雷声</span></a><a href="how.html#timeline"><b>预警时间轴</b><span>从地动山摇到手机响铃</span></a><a href="how.html#intensity"><b>烈度公式</b><span>你这里有多晃</span></a><a href="how.html#arch"><b>四层数据流</b><span>双源融合 · 分区烈度</span></a><a href="how.html#blindzone"><b>预警盲区</b><span>离闪电太近来不及</span></a><a href="how.html#decision"><b>触发决策</b><span>要不要叫醒你</span></a></div></div>
+      <div class="nav-item"><a href="features.html">功能</a><span class="nav-caret" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span><div class="nav-drop" role="menu"><a href="features.html#alerting"><b>告警体验</b><span>全屏倒计时 · 锁屏之上</span></a><a href="features.html#levels"><b>四级预警</b><span>Ⅰ红Ⅱ橙Ⅲ黄Ⅳ蓝 · 按本地烈度</span></a><a href="features.html#voice"><b>预警语音</b><span>真实录音 · 三段式播报</span></a><a href="features.html#sources"><b>多源融合</b><span>五源融合 · EewFusion 决策</span></a><a href="features.html#control"><b>个性化</b><span>阈值可调 · 模拟演练</span></a><a href="features.html#permissions"><b>权限说明</b><span>每一项都对应一个功能</span></a></div></div>
+      <div class="nav-item"><a href="how.html">技术原理</a><span class="nav-caret" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span><div class="nav-drop" role="menu"><a href="how.html#mechanism"><b>地震波</b><span>先见闪电 · 后闻雷声</span></a><a href="how.html#timeline"><b>预警时间轴</b><span>从地动山摇到手机响铃</span></a><a href="how.html#intensity"><b>烈度公式</b><span>你这里有多晃</span></a><a href="how.html#arch"><b>五源数据流</b><span>五源融合 · 分区烈度</span></a><a href="how.html#blindzone"><b>预警盲区</b><span>离闪电太近来不及</span></a><a href="how.html#decision"><b>触发决策</b><span>要不要叫醒你</span></a></div></div>
       <a href="changelog.html">版本更新</a>
       <a href="disclaimer.html" class="active">免责声明</a>
       <span class="nav-sep"></span>
@@ -97,10 +97,13 @@
           <p>本服务地震预警由中国地震台网中心提供（信息源展示为「中国地震预警网」）。本软件作为第三方信息聚合与展示工具，通过网络从多个相互独立的公共聚合转发服务接收官方预警报文，<strong>不生产数据、不修改内容</strong>。</p>
           <p>当前接入的转发链路包括：</p>
           <ul class="disclaimer-sources">
-            <li><b>Wolfx</b>（ws-api.wolfx.jp）—— 转发国家级 CENC 及四川、重庆区域预警，免密钥；</li>
-            <li><b>ICL 成都高新减灾所</b>（mobile-new.chinaeew.cn）—— 官方预警源，HTTP 3 秒轮询，免密钥；</li>
-            <li><b>备用探测链路</b>（USGS、EMSC 等）—— 仅在上述主链路全部失效时激活，用于地震事件兜底探测，<strong>不具备预警时效性</strong>。</li>
+            <li><b>CENC 中国地震台网</b>（经 ws-api.wolfx.jp 转发）—— 国家级预警，WebSocket 秒级推送，免密钥；</li>
+            <li><b>SC 四川省地震局 / CQ 重庆市地震局 / CWA 台湾地震测报</b>（均经 ws-api.wolfx.jp 转发）—— 区域预警，WebSocket 秒级推送，免密钥；须注意：上述四路虽分属不同机构，但共用 Wolfx 单一网关，该网关故障时将同时失联。</li>
+            <li><b>ICL 成都高新减灾所</b>（mobile-new.chinaeew.cn）—— 官方预警源，HTTP 3 秒轮询，域名完全独立，是 Wolfx 网关故障时唯一的实时兜底；</li>
+            <li><b>备用探测链路</b>（USGS、Wolfx HTTP、EMSC 等）—— 仅在上述主链路全部失效时激活，用于地震事件兜底探测，<strong>不具备预警时效性</strong>。</li>
+            <li><b>用户自建源</b>（BeeCLD / 2v8 / FAN 等）—— v1.3.2 起不再内置，令牌由您自行填写，密钥不随软件分发。</li>
           </ul>
+          <p>本软件以 <strong>Apache-2.0</strong> 协议开源其 UI / 解析 / 烈度衰减 / 告警 / 历史 / 证书固定 / 构建等部分；其核心融合引擎 EewFusion 与 FusionCalibration 以<strong>专有协议</strong>分发，不随仓库公开。仓库内含接口一致的精简兼容实现（<code>ingest</code> / <code>forceFlush</code> / <code>FusionResult</code>），便于审阅与二次开发。</p>
           <p>上述转发服务均为第三方独立运营，本软件与其不存在隶属或合作关系，亦无法保证其可用性、稳定性与持续性。任一或全部链路中断均可能导致您无法收到预警。</p>
           <p>您可自愿接受是否选择启用预警服务，且在开启后，您仍可随时在主页面关闭「开启预警监听」按钮来关闭服务。</p>
         </section>
@@ -175,10 +178,11 @@
       </div>
       <p class="footer-copy">© 2026 地震哨兵 Dianguard · 地震预警信息源自中国地震台网中心（经公共聚合转发），请以官方渠道为准。</p>
       <div class="footer-sources">
-        <span class="fs-label">数据来源</span>
-        <a href="https://www.cenc.ac.cn/" target="_blank" rel="noopener">中国地震台网中心</a>
-        <a href="https://wolfx.jp/" target="_blank" rel="noopener">Wolfx（CENC）</a>
+        <span class="fs-label">实时数据来源</span>
+        <a href="https://www.cenc.ac.cn/" target="_blank" rel="noopener">CENC 中国地震台网</a>
+        <a href="https://wolfx.jp/" target="_blank" rel="noopener">Wolfx 聚合（SC / CQ / CWA）</a>
         <a href="https://www.cnee.net/" target="_blank" rel="noopener">ICL 成都高新减灾所</a>
+        <span class="fs-label">备用探测源</span>
         <a href="https://earthquake.usgs.gov/" target="_blank" rel="noopener">USGS</a>
         <a href="https://www.seismicportal.eu/" target="_blank" rel="noopener">EMSC</a>
       </div>

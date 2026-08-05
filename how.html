@@ -35,7 +35,7 @@
       "price": "0",
       "priceCurrency": "CNY"
     },
-    "softwareVersion": "v1.3.0",
+    "softwareVersion": "v1.3.2",
     "downloadUrl": "https://github.com/Lokeily/Earthquake-Sentinel/releases/latest",
     "codeRepository": "https://github.com/Lokeily/Earthquake-Sentinel",
     "author": {
@@ -58,8 +58,8 @@
     <button class="nav-toggle" id="nav-toggle" aria-label="打开菜单" aria-expanded="false"><i></i><i></i><i></i></button>
     <div class="nav-links" id="nav-links">
       <a href="index.html">首页</a>
-      <div class="nav-item"><a href="features.html">功能</a><span class="nav-caret" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span><div class="nav-drop" role="menu"><a href="features.html#alerting"><b>告警体验</b><span>全屏倒计时 · 锁屏之上</span></a><a href="features.html#levels"><b>四级预警</b><span>Ⅰ红Ⅱ橙Ⅲ黄Ⅳ蓝 · 按本地烈度</span></a><a href="features.html#voice"><b>预警语音</b><span>真实录音 · 三段式播报</span></a><a href="features.html#sources"><b>多源融合</b><span>双源独立 · EewFusion 决策</span></a><a href="features.html#control"><b>个性化</b><span>阈值可调 · 模拟演练</span></a><a href="features.html#permissions"><b>权限说明</b><span>每一项都对应一个功能</span></a></div></div>
-      <div class="nav-item active"><a href="how.html">技术原理</a><span class="nav-caret" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span><div class="nav-drop" role="menu"><a href="how.html#mechanism"><b>地震波</b><span>先见闪电 · 后闻雷声</span></a><a href="how.html#timeline"><b>预警时间轴</b><span>从地动山摇到手机响铃</span></a><a href="how.html#intensity"><b>烈度公式</b><span>你这里有多晃</span></a><a href="how.html#eewfusion"><b>EewFusion 引擎</b><span>多源融合决策核心</span></a><a href="how.html#arch"><b>四层数据流</b><span>双源融合 · 分区烈度</span></a><a href="how.html#blindzone"><b>预警盲区</b><span>离闪电太近来不及</span></a><a href="how.html#decision"><b>触发决策</b><span>要不要叫醒你</span></a></div></div>
+      <div class="nav-item"><a href="features.html">功能</a><span class="nav-caret" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span><div class="nav-drop" role="menu"><a href="features.html#alerting"><b>告警体验</b><span>全屏倒计时 · 锁屏之上</span></a><a href="features.html#levels"><b>四级预警</b><span>Ⅰ红Ⅱ橙Ⅲ黄Ⅳ蓝 · 按本地烈度</span></a><a href="features.html#voice"><b>预警语音</b><span>真实录音 · 三段式播报</span></a><a href="features.html#sources"><b>多源融合</b><span>五源融合 · EewFusion 决策</span></a><a href="features.html#control"><b>个性化</b><span>阈值可调 · 模拟演练</span></a><a href="features.html#permissions"><b>权限说明</b><span>每一项都对应一个功能</span></a></div></div>
+      <div class="nav-item active"><a href="how.html">技术原理</a><span class="nav-caret" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span><div class="nav-drop" role="menu"><a href="how.html#mechanism"><b>地震波</b><span>先见闪电 · 后闻雷声</span></a><a href="how.html#timeline"><b>预警时间轴</b><span>从地动山摇到手机响铃</span></a><a href="how.html#intensity"><b>烈度公式</b><span>你这里有多晃</span></a><a href="how.html#eewfusion"><b>EewFusion 引擎</b><span>多源融合决策核心</span></a><a href="how.html#arch"><b>五源数据流</b><span>五源融合 · 分区烈度</span></a><a href="how.html#reliability-security"><b>可靠性与安全</b><span>工程化与防伪造</span></a><a href="how.html#blindzone"><b>预警盲区</b><span>离闪电太近来不及</span></a><a href="how.html#decision"><b>触发决策</b><span>要不要叫醒你</span></a></div></div>
       <a href="changelog.html">版本更新</a>
       <a href="disclaimer.html">免责声明</a>
       <span class="nav-sep"></span>
@@ -74,7 +74,7 @@
     <div class="container">
       <span class="kicker"><span class="dot level-purple"></span>技术原理</span>
       <h1>它到底，是怎么<span class="gradient-text">替你抢时间</span>的</h1>
-      <p class="lead">地震预警不是预测地震，而是在地震已经发生后，抢在破坏性震动抵达你脚下之前，把那几秒到几十秒变成可以行动的时间。下面用六个部分，把它讲清楚。</p>
+      <p class="lead">地震预警不是预测地震，而是在地震已经发生后，抢在破坏性震动抵达你脚下之前，把那几秒到几十秒变成可以行动的时间。下面用八个部分，把它讲清楚。</p>
       <div class="page-actions">
         <a class="btn btn-primary" data-release-download href="https://github.com/Lokeily/Earthquake-Sentinel/releases/latest">
           <span class="dl-label">立即下载 APK</span>
@@ -89,6 +89,8 @@
     <a href="#timeline">预警时间轴</a>
     <a href="#intensity">烈度公式</a>
     <a href="#arch">数据流架构</a>
+    <a href="#eewfusion">EewFusion 引擎</a>
+    <a href="#reliability-security">可靠性与安全</a>
     <a href="#blindzone">预警盲区</a>
     <a href="#decision">触发决策</a>
   </div>
@@ -152,7 +154,7 @@
   <section id="timeline" class="fx-block">
     <div class="container">
       <div class="fx-head">
-        <span class="fx-eyebrow">02 — 链路</span>
+        <span class="fx-eyebrow">02 — 预警时间轴</span>
         <h2>从地动山摇，到手机响铃，只有几十秒</h2>
         <p>以震中距 120 km 的一次地震为例，把链路拆开看：每一步都以「秒」计，而破坏性 S 波要 <strong>34 秒</strong>才到——预警要做的，就是抢在这之前把警报送进你的手机。</p>
       </div>
@@ -195,7 +197,7 @@
   <section id="intensity" class="fx-block">
     <div class="container">
       <div class="fx-head">
-        <span class="fx-eyebrow">03 — 烈度</span>
+        <span class="fx-eyebrow">03 — 烈度公式</span>
         <h2>同一次地震，为什么有人被晃醒，有人毫无感觉？</h2>
         <p>因为离震中的距离不同。地震哨兵算的不是「震级」（地震本身多大），而是<strong>你这里有多晃</strong>（本地烈度），再决定要不要打扰你。</p>
       </div>
@@ -284,26 +286,29 @@
   <section id="arch" class="fx-block">
     <div class="container">
       <div class="fx-head">
-        <span class="fx-eyebrow">04 — 架构</span>
-        <h2>从地动山摇到手机响铃：四层数据流</h2>
-        <p>预警报文需经公共转发节点到达手机。地震哨兵常驻两条<strong>域名完全独立</strong>的实时链路（Wolfx CENC + ICL 减灾所），任一可达即触发；主链路全断时，USGS / EMSC 备用探测源兜底。所有报文汇入自研 <strong>EewFusion 融合引擎</strong> 统一决策。</p>
+        <span class="fx-eyebrow">04 — 数据流架构</span>
+        <h2>从地动山摇到手机响铃：五源数据流</h2>
+        <p>预警报文需经公共转发节点到达手机。地震哨兵常驻<strong>五路实时源</strong>：CENC / SC / CQ / CWA 经 Wolfx 镜像、ICL 减灾所经<strong>完全独立的官方域名</strong>，任一可达即触发；主链路全断时，USGS / Wolfx HTTP / EMSC 备用探测源兜底。所有报文汇入自研 <strong>EewFusion 融合引擎</strong> 统一决策。须坦诚：前四路共用 Wolfx 单一网关，ICL 是唯一不依赖它的实时链路。</p>
       </div>
       <div class="arch reveal">
         <div class="arch-row">
-          <div class="arch-node"><b>Wolfx CENC</b><span>wss · 秒级推送</span></div>
+          <div class="arch-node"><b>CENC</b><span>wss · 秒级推送</span></div>
+          <div class="arch-node"><b>SC</b><span>wss · 秒级推送</span></div>
+          <div class="arch-node"><b>CQ</b><span>wss · 秒级推送</span></div>
+          <div class="arch-node"><b>CWA</b><span>wss · 秒级推送</span></div>
           <div class="arch-node"><b>ICL 减灾所</b><span>HTTP 3s · 官方源</span></div>
-          <div class="arch-node"><b>USGS</b><span>备用 · 30s 轮询</span></div>
-          <div class="arch-node"><b>EMSC</b><span>备用 · 30s 轮询</span></div>
+          <div class="arch-node muted"><b>USGS / EMSC</b><span>备用 · 30s 轮询</span></div>
         </div>
         <div class="arch-steps">
           <div class="arch-step"><b>① 解析层</b><span>parseEew / parseIclEew 等，统一多源报文格式</span></div>
-          <div class="arch-step"><b>② EewFusion 融合 · 自研</b><span>集成学习：每源如独立「专家」；1.5s 融合窗内加权融合，抗单源误报 · 坐标选优</span></div>
+          <div class="arch-step"><b>② EewFusion 融合 · 自研</b><span>集成学习：每源如独立「专家」；1.0–1.5s 动态融合窗内加权融合、震级校准与趋势融合，抗单源误报 · 坐标选优</span></div>
           <div class="arch-step"><b>③ GB 18306-2015 分区烈度</b><span>6 分区短轴衰减 · 边界防抖 · +0.5σ 安全边际</span></div>
           <div class="arch-step"><b>④ AlertActivity</b><span>全屏锁屏 · 四级真实语音 · 倒计时 · 震级渐进升级</span></div>
         </div>
         <div class="arch-flow">
           <svg viewBox="0 0 600 58" preserveAspectRatio="none">
             <path d="M100 6 C 200 6, 220 52, 300 52"/>
+            <path d="M150 6 C 240 6, 270 52, 300 52"/>
             <path d="M233 6 C 280 6, 290 52, 300 52"/>
             <path d="M366 6 C 320 6, 310 52, 300 52"/>
             <path d="M500 6 C 400 6, 380 52, 300 52"/>
@@ -311,12 +316,15 @@
               <animateMotion dur="2.2s" repeatCount="indefinite" path="M100 6 C 200 6, 220 52, 300 52"/>
             </circle>
             <circle class="arch-pkt p2" r="3.4" fill="#0A84FF">
+              <animateMotion dur="2.2s" begin="0.28s" repeatCount="indefinite" path="M150 6 C 240 6, 270 52, 300 52"/>
+            </circle>
+            <circle class="arch-pkt p3" r="3.4" fill="#0A84FF">
               <animateMotion dur="2.2s" begin="0.55s" repeatCount="indefinite" path="M233 6 C 280 6, 290 52, 300 52"/>
             </circle>
-            <circle class="arch-pkt p3" r="3.4" fill="#FF9500">
+            <circle class="arch-pkt p4" r="3.4" fill="#0A84FF">
               <animateMotion dur="2.2s" begin="1.1s" repeatCount="indefinite" path="M366 6 C 320 6, 310 52, 300 52"/>
             </circle>
-            <circle class="arch-pkt p4" r="3.4" fill="#34C759">
+            <circle class="arch-pkt p5" r="3.4" fill="#34C759">
               <animateMotion dur="2.2s" begin="1.65s" repeatCount="indefinite" path="M500 6 C 400 6, 380 52, 300 52"/>
             </circle>
           </svg>
@@ -324,20 +332,20 @@
         <div class="arch-row">
           <div class="arch-node hub"><b>地震哨兵</b><span>WebSocket 并行汇聚 · 自动去重</span></div>
         </div>
-        <p class="arch-caption">四条链路同时在线，谁先送达就用谁的；同一次地震从多个源到达时只弹一次告警，绝不重复打扰。</p>
+        <p class="arch-caption">五路实时源同时在线，谁先送达就用谁的；同一次地震从多个源到达时只弹一次告警，绝不重复打扰。</p>
       </div>
-      <p class="anim-caption">四色光点沿各自弧线持续汇聚——即使某一条链路临时中断，其余链路仍照常送达，无单点故障</p>
+      <p class="anim-caption">五路光点沿各自弧线持续汇聚——前四路共用 Wolfx 单一网关，ICL 因域名独立成为唯一的实时兜底；即便 Wolfx 或任一机构链路中断，ICL 与其余源仍照常送达。</p>
     </div>
   </section>
 
 
-  <!-- 4.5 EewFusion 引擎 -->
+  <!-- 5. EewFusion 引擎 -->
   <section id="eewfusion" class="fx-block">
     <div class="container">
       <div class="fx-head">
-        <span class="fx-eyebrow">核心引擎 · EewFusion</span>
+        <span class="fx-eyebrow">05 — 核心引擎 · EewFusion</span>
         <h2>EewFusion：地震哨兵的心脏</h2>
-        <p>如果说数据源是眼睛、手机是嘴巴，EewFusion 就是大脑。它借鉴<strong>集成学习（Ensemble Learning）</strong>思想，把每一条链路当作一位独立「专家」，在 <strong>1.5 秒融合窗口</strong>内收集多源报文、加权融合、相互印证——单源的抖动、造假或误报，都无法单独左右最终结论。没有它，「多源预警」不过是把几个单源转发器简单并列；正是它，把「看得见」变成了「判断得准」。</p>
+        <p>如果说数据源是眼睛、手机是嘴巴，EewFusion 就是大脑。它借鉴<strong>集成学习（Ensemble Learning）</strong>思想，把每一条链路当作一位独立「专家」，在 <strong>1.0–1.5 秒动态融合窗口</strong>内收集多源报文、加权融合、震级校准与趋势融合、相互印证——单源的抖动、造假或误报，都无法单独左右最终结论。没有它，「多源预警」不过是把几个单源转发器简单并列；正是它，把「看得见」变成了「判断得准」。</p>
       </div>
 
       <div class="ef-diagram">
@@ -370,50 +378,60 @@
 
           <!-- 专家 → 窗口 的常驻引导线 -->
           <g fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="1.2">
-            <path d="M80,55 L235,160"/>
-            <path d="M80,130 L235,160"/>
-            <path d="M80,190 L235,160"/>
-            <path d="M80,265 L235,160"/>
+            <path d="M80,45 L235,160"/>
+            <path d="M80,108 L235,160"/>
+            <path d="M80,171 L235,160"/>
+            <path d="M80,234 L235,160"/>
+            <path d="M80,290 L235,160"/>
           </g>
 
-          <!-- 专家列 -->
+          <!-- 专家列（5 路实时源） -->
           <g class="ef-expert">
-            <circle cx="80" cy="55" r="16" fill="#0A84FF"><animate attributeName="r" values="15;17.5;15" dur="2.6s" repeatCount="indefinite"/></circle>
-            <text x="80" y="59" text-anchor="middle" fill="#fff" font-size="9" font-weight="700">W</text>
-            <text x="104" y="59" fill="rgba(255,255,255,0.8)" font-size="11">Wolfx CENC</text>
+            <circle cx="80" cy="45" r="16" fill="#0A84FF"><animate attributeName="r" values="15;17.5;15" dur="2.6s" repeatCount="indefinite"/></circle>
+            <text x="80" y="49" text-anchor="middle" fill="#fff" font-size="9" font-weight="700">C</text>
+            <text x="104" y="49" fill="rgba(255,255,255,0.8)" font-size="11">CENC 中国台网</text>
           </g>
           <g class="ef-expert">
-            <circle cx="80" cy="130" r="16" fill="#34C759"><animate attributeName="r" values="15;17.5;15" dur="2.6s" begin="0.4s" repeatCount="indefinite"/></circle>
-            <text x="80" y="134" text-anchor="middle" fill="#06210f" font-size="9" font-weight="700">I</text>
-            <text x="104" y="134" fill="rgba(255,255,255,0.8)" font-size="11">ICL 减灾所</text>
+            <circle cx="80" cy="108" r="16" fill="#0A84FF"><animate attributeName="r" values="15;17.5;15" dur="2.6s" begin="0.4s" repeatCount="indefinite"/></circle>
+            <text x="80" y="112" text-anchor="middle" fill="#fff" font-size="9" font-weight="700">S</text>
+            <text x="104" y="112" fill="rgba(255,255,255,0.8)" font-size="11">SC 四川省台</text>
           </g>
           <g class="ef-expert">
-            <circle cx="80" cy="190" r="16" fill="#FF9500"><animate attributeName="r" values="15;17.5;15" dur="2.6s" begin="0.8s" repeatCount="indefinite"/></circle>
-            <text x="80" y="194" text-anchor="middle" fill="#1a1205" font-size="9" font-weight="700">U</text>
-            <text x="104" y="194" fill="rgba(255,255,255,0.8)" font-size="11">USGS</text>
+            <circle cx="80" cy="171" r="16" fill="#0A84FF"><animate attributeName="r" values="15;17.5;15" dur="2.6s" begin="0.8s" repeatCount="indefinite"/></circle>
+            <text x="80" y="175" text-anchor="middle" fill="#fff" font-size="9" font-weight="700">Q</text>
+            <text x="104" y="175" fill="rgba(255,255,255,0.8)" font-size="11">CQ 重庆市台</text>
           </g>
           <g class="ef-expert">
-            <circle cx="80" cy="265" r="16" fill="#AF52DE"><animate attributeName="r" values="15;17.5;15" dur="2.6s" begin="1.2s" repeatCount="indefinite"/></circle>
-            <text x="80" y="269" text-anchor="middle" fill="#fff" font-size="9" font-weight="700">E</text>
-            <text x="104" y="269" fill="rgba(255,255,255,0.8)" font-size="11">EMSC</text>
+            <circle cx="80" cy="234" r="16" fill="#0A84FF"><animate attributeName="r" values="15;17.5;15" dur="2.6s" begin="1.2s" repeatCount="indefinite"/></circle>
+            <text x="80" y="238" text-anchor="middle" fill="#fff" font-size="9" font-weight="700">T</text>
+            <text x="104" y="238" fill="rgba(255,255,255,0.8)" font-size="11">CWA 台湾测报</text>
+          </g>
+          <g class="ef-expert">
+            <circle cx="80" cy="290" r="16" fill="#34C759"><animate attributeName="r" values="15;17.5;15" dur="2.6s" begin="1.6s" repeatCount="indefinite"/></circle>
+            <text x="80" y="294" text-anchor="middle" fill="#06210f" font-size="9" font-weight="700">I</text>
+            <text x="104" y="294" fill="rgba(255,255,255,0.8)" font-size="11">ICL 减灾所</text>
           </g>
 
-          <!-- 汇聚光点：专家 → 1.5s 窗口（错峰到达） -->
+          <!-- 汇聚光点：专家 → 动态窗口（错峰到达） -->
           <circle r="4" fill="#0A84FF" filter="url(#efSoft)">
-            <animateMotion dur="4.5s" repeatCount="indefinite" calcMode="linear" keyTimes="0;0.18;0.42;1" keyPoints="0;0;1;1" path="M80,55 L235,160"/>
+            <animateMotion dur="4.5s" repeatCount="indefinite" calcMode="linear" keyTimes="0;0.18;0.42;1" keyPoints="0;0;1;1" path="M80,45 L235,160"/>
             <animate attributeName="opacity" dur="4.5s" repeatCount="indefinite" keyTimes="0;0.17;0.18;0.42;0.44;1" values="0;0;1;1;0;0"/>
           </circle>
-          <circle r="4" fill="#34C759" filter="url(#efSoft)">
-            <animateMotion dur="4.5s" repeatCount="indefinite" calcMode="linear" keyTimes="0;0.22;0.46;1" keyPoints="0;0;1;1" path="M80,130 L235,160"/>
+          <circle r="4" fill="#0A84FF" filter="url(#efSoft)">
+            <animateMotion dur="4.5s" repeatCount="indefinite" calcMode="linear" keyTimes="0;0.22;0.46;1" keyPoints="0;0;1;1" path="M80,108 L235,160"/>
             <animate attributeName="opacity" dur="4.5s" repeatCount="indefinite" keyTimes="0;0.21;0.22;0.46;0.48;1" values="0;0;1;1;0;0"/>
           </circle>
-          <circle r="4" fill="#FF9500" filter="url(#efSoft)">
-            <animateMotion dur="4.5s" repeatCount="indefinite" calcMode="linear" keyTimes="0;0.26;0.50;1" keyPoints="0;0;1;1" path="M80,190 L235,160"/>
+          <circle r="4" fill="#0A84FF" filter="url(#efSoft)">
+            <animateMotion dur="4.5s" repeatCount="indefinite" calcMode="linear" keyTimes="0;0.26;0.50;1" keyPoints="0;0;1;1" path="M80,171 L235,160"/>
             <animate attributeName="opacity" dur="4.5s" repeatCount="indefinite" keyTimes="0;0.25;0.26;0.50;0.52;1" values="0;0;1;1;0;0"/>
           </circle>
-          <circle r="4" fill="#AF52DE" filter="url(#efSoft)">
-            <animateMotion dur="4.5s" repeatCount="indefinite" calcMode="linear" keyTimes="0;0.30;0.54;1" keyPoints="0;0;1;1" path="M80,265 L235,160"/>
+          <circle r="4" fill="#0A84FF" filter="url(#efSoft)">
+            <animateMotion dur="4.5s" repeatCount="indefinite" calcMode="linear" keyTimes="0;0.30;0.54;1" keyPoints="0;0;1;1" path="M80,234 L235,160"/>
             <animate attributeName="opacity" dur="4.5s" repeatCount="indefinite" keyTimes="0;0.29;0.30;0.54;0.56;1" values="0;0;1;1;0;0"/>
+          </circle>
+          <circle r="4" fill="#34C759" filter="url(#efSoft)">
+            <animateMotion dur="4.5s" repeatCount="indefinite" calcMode="linear" keyTimes="0;0.34;0.58;1" keyPoints="0;0;1;1" path="M80,290 L235,160"/>
+            <animate attributeName="opacity" dur="4.5s" repeatCount="indefinite" keyTimes="0;0.33;0.34;0.58;0.60;1" values="0;0;1;1;0;0"/>
           </circle>
 
           <!-- 融合窗口 -->
@@ -421,9 +439,9 @@
           <rect x="190" y="120" width="90" height="80" rx="14" fill="#ff9f0a" pointer-events="none">
             <animate attributeName="fill-opacity" dur="4.5s" repeatCount="indefinite" keyTimes="0;0.4;0.5;0.62;1" values="0;0;0.28;0;0"/>
           </rect>
-          <text x="235" y="150" text-anchor="middle" fill="#ff9f0a" font-size="11" font-weight="700">1.5s</text>
-          <text x="235" y="166" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="9">融合窗口</text>
-          <text x="235" y="182" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="8">加权中位数</text>
+          <text x="235" y="150" text-anchor="middle" fill="#ff9f0a" font-size="11" font-weight="700">1.0–1.5s</text>
+          <text x="235" y="166" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="9">动态融合窗</text>
+          <text x="235" y="182" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="8">加权中位数·校准</text>
 
           <!-- 融合信号：窗口 → 核心 -->
           <circle r="5.5" fill="#ffb340" filter="url(#efSoft)">
@@ -473,30 +491,63 @@
             </circle>
           </g>
         </svg>
-<p class="ef-cap">四路专家并行 → 1.5s 窗口加权融合 → 质心坐标 + 置信度闸门 → 统一分级告警。单源报告会被标记 isPreliminary，无法单独触发红色警报。</p>
+<p class="ef-cap">五路实时源并行 → 1.0–1.5s 动态窗口加权融合、震级校准与趋势融合 → 坐标选优 + 置信度闸门 → 统一分级告警。单源报告会被标记 isPreliminary，无法单独触发红色警报。</p>
       </div>
 
       <div class="ef-grid">
-        <div class="ef-feat"><span class="ef-ic ic1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.7 10.7 15.3 6.3M8.7 13.3l6.6 4.4"/></svg></span><div><b>集成学习框架</b><p>每个数据源都是一位独立「专家」，结论由集体交叉验证得出，而非某一源独裁。</p></div></div>
-        <div class="ef-feat"><span class="ef-ic ic2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><div><b>1.5 秒融合窗口</b><p>短到不拖慢预警、长到足以完成多源交叉验证，毫秒级权衡。</p></div></div>
-        <div class="ef-feat"><span class="ef-ic ic3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 7 5v8l-7 5-7-5V8l7-5z"/><path d="M12 12h.01"/></svg></span><div><b>加权中位数</b><p>抗异常值设计：单个离群报文无法绑架震级估计，从源头压制误报。</p></div></div>
-        <div class="ef-feat"><span class="ef-ic ic4"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/><circle cx="12" cy="12" r="2"/></svg></span><div><b>坐标质心选优</b><p>取多源震中的「质心」而非简单平均，天然抗单源定位抖动。</p></div></div>
-        <div class="ef-feat"><span class="ef-ic ic5"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg></span><div><b>置信度闸门</b><p>置信 = 源数×0.6 + 一致性×0.4；单源报告标记 isPreliminary，不触发红色。</p></div></div>
-        <div class="ef-feat"><span class="ef-ic ic6"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20a8 8 0 1 0 0-16 8 8 0 0 0 0 16z"/><path d="M12 14a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></span><div><b>工程级稳健</b><p>坐标防抖 · 事件版本隔离 · 超时强制输出 · 10 分钟跨源去重。</p></div></div>
+        <div class="ef-feat"><span class="ef-ic ic1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.7 10.7 15.3 6.3M8.7 13.3l6.6 4.4"/></svg></span><div><b>集成学习框架</b><p>五路实时源各为一位独立「专家」，结论由集体交叉验证得出，而非某一源独裁。</p></div></div>
+        <div class="ef-feat"><span class="ef-ic ic2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><div><b>1.0–1.5s 动态融合窗</b><p>多源在线时自动缩短、单源时延长，短到不拖慢预警、长到完成多源交叉验证。</p></div></div>
+        <div class="ef-feat"><span class="ef-ic ic3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 7 5v8l-7 5-7-5V8l7-5z"/><path d="M12 12h.01"/></svg></span><div><b>加权中位数 + 震级校准</b><p>抗异常值设计，并按「源 × 震级桶」预训练修正，偏差钳制 ±0.5，从源头压制误报。</p></div></div>
+        <div class="ef-feat"><span class="ef-ic ic4"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/><circle cx="12" cy="12" r="2"/></svg></span><div><b>坐标选优 + 死区防抖</b><p>取权重最高源的原始坐标（非平均），带坐标死区防抖，天然抗单源定位抖动。</p></div></div>
+        <div class="ef-feat"><span class="ef-ic ic5"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg></span><div><b>初报 / 终报双轨</b><p>置信 = 源数×0.6 + 一致性×0.4；单源报告标记 isPreliminary，不触发红色；修正 &gt;±0.4 强制推送。</p></div></div>
+        <div class="ef-feat"><span class="ef-ic ic6"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20a8 8 0 1 0 0-16 8 8 0 0 0 0 16z"/><path d="M12 14a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></span><div><b>工程级稳健</b><p>震级校准 · 趋势融合 · 坐标防抖 · 事件版本隔离 · 状态 TTL 30min 淘汰 · 10min 跨源去重。</p></div></div>
       </div>
 
       <div class="ef-callout">
         <b>为什么这是我们的护城河</b>
-        <p>单源转发器，谁都能接；把四个相互独立的源收敛成一个可信结论，才需要一套自研的融合决策逻辑。EewFusion 当前以<strong>精简兼容实现</strong>随仓库开源，其<strong>完整引擎将在后续版本转为闭源专有</strong>——这正是产品不可替代的核心。</p>
+        <p>单源转发器，谁都能接；把五路实时源收敛成一个可信结论，才需要一套自研的融合决策逻辑。EewFusion 以<strong>Apache-2.0</strong> 协议开源（UI / 解析 / 烈度衰减 / 告警 / 历史 / 证书固定 / 构建），其核心融合与 FusionCalibration 以<strong>专有协议</strong>分发、不随仓库公开——这正是产品不可替代的核心。</p>
       </div>
     </div>
   </section>
 
-  <!-- 5. 盲区 -->
+  <!-- 6. 可靠性与安全工程 -->
+  <section id="reliability-security" class="fx-block">
+    <div class="container">
+      <div class="fx-head">
+        <span class="fx-eyebrow">06 — 可靠性与安全</span>
+        <h2>可靠性工程与安全架构</h2>
+        <p>预警系统最坏的情况不是「没收到」，而是「收到假的」或「撑久了崩」。地震哨兵在可靠性工程与安全架构两端都做了专门设计，让它在长时间后台运行与不可信网络下依然可信。</p>
+      </div>
+      <div class="rs-grid">
+        <div class="rs-col">
+          <h3>可靠性工程</h3>
+          <ul class="rs-list">
+            <li><b>状态 TTL 淘汰</b>：按事件版本隔离，30 分钟超时状态自动回收，杜绝内存泄漏（v1.3.2 修复）。</li>
+            <li><b>跨源去重</b>：10 分钟窗口内同一地震只弹一次，不重复打扰。</li>
+            <li><b>事件版本隔离</b>：每次地震独立成「版本」，初报与终报互不污染。</li>
+            <li><b>超时强制输出</b>：融合窗口到点必出结论，绝不无限等待。</li>
+            <li><b>坐标防抖 / 死区</b>：低于阈值的位移不更新坐标，抑制抖动与跳变。</li>
+          </ul>
+        </div>
+        <div class="rs-col">
+          <h3>安全架构</h3>
+          <ul class="rs-list">
+            <li><b>证书固定（Cert Pinning）</b>：对 6 个关键域名固定证书指纹，中间人替换证书即断连。</li>
+            <li><b>抗伪造</b>：单源报文须通过加权中位数 + 置信度闸门，伪造初报无法单独触发红色。</li>
+            <li><b>组件暴露面最小化</b>：Receiver / Service 仅做最小权限声明，敏感能力不对外暴露。</li>
+            <li><b>密钥管理</b>：第三方令牌不再内置，改由用户自行填写，密钥不随仓库分发。</li>
+            <li><b>版本一致性</b>：修正量 &gt;±0.4 强制推送新版本，避免旧结论滞留。</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. 盲区 -->
   <section id="blindzone" class="fx-block">
     <div class="container">
       <div class="fx-head">
-        <span class="fx-eyebrow">05 — 局限</span>
+        <span class="fx-eyebrow">07 — 预警盲区</span>
         <h2>离闪电太近，雷声和闪电几乎同时到</h2>
         <p>预警依赖「地震已经发生、但破坏波还没到」这件事。越靠近震中，S 波越快抵达，留给预警的时间越短——近到一定程度，预警根本来不及发出。这是所有地震预警系统共有的物理局限。</p>
       </div>
@@ -534,11 +585,11 @@
     </div>
   </section>
 
-  <!-- 6. 决策 -->
+  <!-- 8. 决策 -->
   <section id="decision" class="fx-block">
     <div class="container">
       <div class="fx-head">
-        <span class="fx-eyebrow">06 — 决策</span>
+        <span class="fx-eyebrow">08 — 触发决策</span>
         <h2>一次预警，怎么决定要不要叫醒你？</h2>
         <p>从一段原始报文到一次全屏告警，中间只有几个<strong>确定性</strong>的判断，没有任何「猜」。下面这条流程，就是每次预警都会走的逻辑。</p>
       </div>
@@ -593,10 +644,11 @@
       </div>
       <p class="footer-copy">© 2026 地震哨兵 Dianguard · 地震预警信息源自中国地震台网中心（经公共聚合转发），请以官方渠道为准。</p>
       <div class="footer-sources">
-        <span class="fs-label">数据来源</span>
-        <a href="https://www.cenc.ac.cn/" target="_blank" rel="noopener">中国地震台网中心</a>
-        <a href="https://wolfx.jp/" target="_blank" rel="noopener">Wolfx（CENC）</a>
+        <span class="fs-label">实时数据来源</span>
+        <a href="https://www.cenc.ac.cn/" target="_blank" rel="noopener">CENC 中国地震台网</a>
+        <a href="https://wolfx.jp/" target="_blank" rel="noopener">Wolfx 聚合（SC / CQ / CWA）</a>
         <a href="https://www.cnee.net/" target="_blank" rel="noopener">ICL 成都高新减灾所</a>
+        <span class="fs-label">备用探测源</span>
         <a href="https://earthquake.usgs.gov/" target="_blank" rel="noopener">USGS</a>
         <a href="https://www.seismicportal.eu/" target="_blank" rel="noopener">EMSC</a>
       </div>
