@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>功能详解 — 地震哨兵 Dianguard</title>
-  <meta name="description" content="地震哨兵的完整功能说明：全屏倒计时告警、四级预警体系、真实大陆预警语音、多源冗余、烈度阈值、模拟演练、历史记录、深色省电与隐私策略。">
+  <meta name="description" content="地震哨兵的完整功能说明：自研 EewFusion v2.4 融合引擎、五路实时源并行、全屏倒计时告警、四级烈度预警、真实大陆预警语音、模拟演练、历史记录、隐私省电与双许可声明。">
   <meta name="theme-color" content="#050508">
   <meta name="color-scheme" content="dark">
   <link rel="icon" type="image/png" href="assets/ic_launcher.png">
@@ -12,7 +12,7 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="地震哨兵 Dianguard">
   <meta property="og:title" content="功能详解 — 地震哨兵 Dianguard">
-  <meta property="og:description" content="地震哨兵的完整功能说明：全屏倒计时告警、四级预警体系、真实大陆预警语音、多源冗余、烈度阈值、模拟演练、历史记录、深色省电与隐私策略。">
+  <meta property="og:description" content="地震哨兵的完整功能说明：自研 EewFusion v2.4 融合引擎、五路实时源并行、全屏倒计时告警、四级烈度预警、真实大陆预警语音、模拟演练、历史记录、隐私省电与双许可声明。">
   <meta property="og:url" content="https://lokeily.github.io/dianguard-site/features.html">
   <meta property="og:image" content="https://lokeily.github.io/dianguard-site/assets/og-cover.png">
   <meta property="og:image:width" content="1200">
@@ -20,7 +20,7 @@
   <meta property="og:locale" content="zh_CN">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="功能详解 — 地震哨兵 Dianguard">
-  <meta name="twitter:description" content="地震哨兵的完整功能说明：全屏倒计时告警、四级预警体系、真实大陆预警语音、多源冗余、烈度阈值、模拟演练、历史记录、深色省电与隐私策略。">
+  <meta name="twitter:description" content="地震哨兵的完整功能说明：自研 EewFusion v2.4 融合引擎、五路实时源并行、全屏倒计时告警、四级烈度预警、真实大陆预警语音、模拟演练、历史记录、隐私省电与双许可声明。">
   <meta name="twitter:image" content="https://lokeily.github.io/dianguard-site/assets/og-cover.png">
   <link rel="stylesheet" href="styles.css">
   <script type="application/ld+json">
@@ -202,6 +202,7 @@
         <div>
           <b>等级由「本地烈度」决定，不是震级</b>
           <p>一次远方的 6 级地震，你这里的预估烈度可能不到 2 度，只会进通知栏；一次近处的 4.5 级小震却可能触发全屏。阈值可在 <strong>3° / 2°（默认推荐）/ 4°</strong> 间切换：调高更安静，调低更灵敏。单源初报会被标记为 <code>isPreliminary</code>，禁止触发红色，防止误报。</p>
+          <p style="margin-top:10px"><b>两套分级标准并存：</b>历史列表按<strong>震级</strong>着色（红 ≥6.0 / 橙 5.0–5.9 / 黄 3.0–4.9 / 蓝 &lt;3.0），告诉你地震本身有多强；倒计时弹窗按<strong>你所在地的预估烈度</strong>着色（红 ≥7° / 橙 5–6° / 黄 3–4° / 蓝 &lt;3°），告诉你该怎么避险。二者服务不同的认知目的，不可混用。</p>
         </div>
       </div>
     </div>
@@ -537,7 +538,7 @@
             <tr><th>对比项</th><th>地震哨兵</th><th>系统自带预警</th></tr>
           </thead>
           <tbody>
-            <tr><td>数据链路</td><td>多个相互独立的公共转发源并行</td><td>厂商 / 运营商单一链路</td></tr>
+            <tr><td>数据链路</td><td>五路实时源并行（CENC/SC/CQ/CWA 经 Wolfx 镜像 + ICL 独立域名），USGS/Wolfx HTTP/EMSC 备用探测</td><td>厂商 / 运营商单一链路</td></tr>
             <tr><td>触发条件</td><td><span class="cmp-yes">按本地估算烈度，阈值可调</span></td><td>由厂商策略决定，通常不可调</td></tr>
             <tr><td>告警形式</td><td>全屏倒计时 + 真实预警语音 + 震动</td><td>因机型而异，部分仅弹窗提示</td></tr>
             <tr><td>模拟演练</td><td><span class="cmp-yes">支持，真实城市 + 随机 ETA</span></td><td><span class="cmp-no">通常不支持</span></td></tr>
