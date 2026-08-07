@@ -105,11 +105,13 @@
             <div class="alert-level">红色预警</div>
             <div class="alert-mag">6.4 级地震</div>
             <div class="alert-eta">
-              <svg class="eta-ring" viewBox="0 0 100 100" aria-hidden="true">
-                <circle class="eta-ring-bg" cx="50" cy="50" r="44"></circle>
-                <circle class="eta-ring-fg" cx="50" cy="50" r="44"></circle>
-              </svg>
-              <span class="count">12</span>
+              <div class="eta-clock">
+                <svg class="eta-ring" viewBox="0 0 100 100" aria-hidden="true">
+                  <circle class="eta-ring-bg" cx="50" cy="50" r="44"></circle>
+                  <circle class="eta-ring-fg" cx="50" cy="50" r="44"></circle>
+                </svg>
+                <span class="count">12</span>
+              </div>
               <span class="eta-label">秒后 S 波到达</span>
             </div>
             <div class="alert-tip">就近避险 · 保护头部</div>
@@ -146,7 +148,7 @@
 
   <section class="section sources">
     <div class="container">
-      <h2 class="section-title">多源实时预警，<span class="text-muted">任一主机可达即触发。</span></h2>
+      <h2 class="section-title">多源实时预警，<span class="text-muted">任一数据源可达即触发。</span></h2>
       <div class="source-grid">
         <div class="source-card">
           <span class="source-live"><span class="pulse-dot"></span>LIVE</span>
@@ -168,7 +170,7 @@
         </div>
         <div class="source-card">
           <span class="source-live"><span class="pulse-dot"></span>LIVE</span>
-          <div class="source-name">CWA 台湾地震测报</div>
+          <div class="source-name">CWA 中国台湾测报</div>
           <div class="source-url">ws-api.wolfx.jp · WebSocket</div>
           <span class="badge free">东南沿海补盲 · 免 Key</span>
         </div>
@@ -381,7 +383,7 @@
                 <circle cx="402" cy="54" r="26" fill="rgba(10,132,255,0.16)" stroke="#0A84FF" stroke-width="2.2"/>
                 <circle cx="402" cy="54" r="4.5" fill="#0A84FF"><animate attributeName="r" values="4.5;7;4.5" dur="2s" begin="1.2s" repeatCount="indefinite"/><animate attributeName="opacity" values="1;0.4;1" dur="2s" begin="1.2s" repeatCount="indefinite"/></circle>
                 <text x="402" y="59" text-anchor="middle" fill="#fff" font-size="11" font-weight="800">CWA</text>
-                <text x="402" y="84" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-size="8">台湾测报</text>
+                <text x="402" y="84" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-size="8">中国台湾</text>
               </g>
 
               <!-- ICL independent node -->
@@ -404,7 +406,7 @@
               </circle>
             </svg>
           </div>
-          <p class="anim-caption">4 路实时源经 Wolfx 单一网关 + 1 路 ICL 独立域名，共 5 路实时源汇聚至「地震哨兵」。Wolfx 为单一网关风险，ICL 是主链路全断时唯一的独立实时备份。</p>
+          <p class="anim-caption">4 路实时源经 Wolfx 单一网关 + 1 路 ICL 独立域名，共 5 路实时源汇聚至「地震哨兵」。Wolfx 是前四路共用的单一网关，存在单点风险；ICL 是主链路全断时唯一的独立实时备份。</p>
         </div>
     </div>
   </section>
@@ -462,7 +464,7 @@
             <circle r="18" fill="rgba(10,132,255,0.18)" stroke="#0A84FF" stroke-width="1.8"/>
             <circle r="18" fill="none" stroke="#0A84FF" stroke-width="1.8" opacity="0.35"><animate attributeName="r" values="18;24;18" dur="2.4s" begin="1.5s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.35;0;0.35" dur="2.4s" begin="1.5s" repeatCount="indefinite"/></circle>
             <text y="3" text-anchor="middle" fill="#fff" font-size="9" font-weight="700">CWA</text>
-            <text y="13" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-size="7">台湾测报</text>
+            <text y="13" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-size="7">中国台湾</text>
           </g>
 
           <!-- Wolfx single-gateway -->

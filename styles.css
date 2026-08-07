@@ -603,14 +603,18 @@ body::after {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 7px;
   margin: 8px 0 4px;
-  min-height: 102px;
+}
+.eta-clock {
+  position: relative;
+  width: 96px; height: 96px;
+  display: flex; align-items: center; justify-content: center;
 }
 .alert-eta .eta-ring {
   position: absolute;
-  top: 50%; left: 50%;
-  width: 94px; height: 94px;
-  transform: translate(-50%, -58%);
+  inset: 0;
+  width: 100%; height: 100%;
 }
 .alert-eta .eta-ring-bg { fill: none; stroke: rgba(255,255,255,0.26); stroke-width: 7; }
 .alert-eta .eta-ring-fg {
@@ -625,7 +629,7 @@ body::after {
   transition: stroke-dashoffset 1s linear;
 }
 .alert-eta .count { font-size: 40px; font-weight: 800; line-height: 1; position: relative; z-index: 1; }
-.alert-eta .eta-label { font-size: 11.5px; opacity: 0.92; margin-top: 3px; z-index: 1; }
+.alert-eta .eta-label { font-size: 11.5px; opacity: 0.92; position: relative; z-index: 1; }
 
 /* 首页 hero：倒计时归零后弹出的分级提醒 */
 .alert-popup {

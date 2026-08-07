@@ -98,7 +98,7 @@
           <p>当前接入的转发链路包括：</p>
           <ul class="disclaimer-sources">
             <li><b>CENC 中国地震台网</b>（经 ws-api.wolfx.jp 转发）—— 国家级预警，WebSocket 秒级推送，免密钥；</li>
-            <li><b>SC 四川省地震局 / CQ 重庆市地震局 / CWA 台湾地震测报</b>（均经 ws-api.wolfx.jp 转发）—— 区域预警，WebSocket 秒级推送，免密钥；须注意：上述四路虽分属不同机构，但共用 Wolfx 单一网关，该网关故障时将同时失联。</li>
+            <li><b>SC 四川省地震局 / CQ 重庆市地震局 / CWA 中国台湾测报</b>（均经 ws-api.wolfx.jp 转发）—— 区域预警，WebSocket 秒级推送，免密钥；须注意：上述四路虽分属不同机构，但共用 Wolfx 单一网关，该网关故障时将同时失联。</li>
             <li><b>ICL 成都高新减灾所</b>（mobile-new.chinaeew.cn）—— 官方预警源，HTTP 3 秒轮询，域名完全独立，是 Wolfx 网关故障时唯一的实时兜底；</li>
             <li><b>备用探测链路</b>（USGS、Wolfx HTTP、EMSC 等）—— 仅在上述主链路全部失效时激活，用于地震事件兜底探测，<strong>不具备预警时效性</strong>。</li>
             <li><b>用户自建源</b>（BeeCLD / 2v8 / FAN 等）—— v1.3.2 起不再内置，令牌由您自行填写，密钥不随软件分发。</li>
