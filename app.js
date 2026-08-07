@@ -84,19 +84,131 @@
     else rafId = requestAnimationFrame(loop);
   }
 
-  /* ---------- 2. 首屏倒计时进度环 ---------- */
+  /* ---------- 2. 首屏倒计时进度环 + 分级提醒 ---------- */
   const countEl = document.querySelector('.alert-eta .count');
   const ringFgEl = document.querySelector('.eta-ring-fg');
   const C = 2 * Math.PI * 44; // r=44
   let cd = 12;
+
+  // 分级提醒（仅首页 hero 含 .hero-levels）
+  const heroLevelsWrap = document.querySelector('.hero-levels');
+  const heroCard = document.querySelector('.alert-card');
+  const heroPopup = document.getElementById('heroPopup');
+  const heroPopupTitle = document.getElementById('heroPopupTitle');
+  const heroPopupSub = document.getElementById('heroPopupSub');
+  const heroLvs = heroLevelsWrap ? Array.from(heroLevelsWrap.querySelectorAll('.hero-lv')) : [];
+  const HERO_META = {
+    blue:   { label: '蓝色预警', mag: '3.2 级地震', title: '有感地震',     sub: '注意防范 · 保持镇定' },
+    yellow: { label: '黄色预警', mag: '4.1 级地震', title: '强有感',       sub: '请就近避险' },
+    orange: { label: '橙色预警', mag: '5.2 级地震', title: '破坏性地震',   sub: '立即避险' },
+    red:    { label: '红色预警', mag: '6.4 级地震', title: '强破坏性地震', sub: '紧急避险 · S 波已抵达' },
+  };
+  let heroLevel = 'red';
+  let heroPopupTimer = null;
+
+  function setHeroLevel(lv) {
+    heroLevel = lv;
+    heroLvs.forEach(c => c.classList.toggle('is-active', c.dataset.level === lv));
+    if (heroCard) heroCard.dataset.level = lv;
+    const m = HERO_META[lv];
+    const lvlEl = document.querySelector('.alert-level');
+    const magEl = document.querySelector('.alert-mag');
+    if (lvlEl) lvlEl.textContent = m.label;
+    if (magEl) magEl.textContent = m.mag;
+    if (heroPopup) {
+      heroPopup.dataset.level = lv;
+      heroPopupTitle.textContent = m.title;
+      heroPopupSub.textContent = m.sub;
+    }
+  }
+  function showHeroPopup() {
+    if (!heroPopup) return;
+    heroPopup.classList.add('show');
+    clearTimeout(heroPopupTimer);
+    heroPopupTimer = setTimeout(() => heroPopup.classList.remove('show'), 2800);
+  }
   function setCountdown(n) {
     if (countEl) countEl.textContent = n;
     if (ringFgEl) ringFgEl.style.strokeDashoffset = (C * (1 - n / 12)).toFixed(2);
+    if (n === 0) showHeroPopup();
   }
   if (countEl || ringFgEl) {
+    if (heroLevelsWrap) setHeroLevel(heroLevel);
     setCountdown(12);
     setInterval(() => { cd = cd <= 0 ? 12 : cd - 1; setCountdown(cd); }, 1000);
   }
+  heroLvs.forEach(c => c.addEventListener('click', () => {
+    setHeroLevel(c.dataset.level);
+    showHeroPopup();
+  }));
+
+  /* ---------- 2.5 技术原理页：倒计时归零弹出分级提醒 ---------- */
+  (function () {
+    const demo = document.querySelector('.pw-demo');
+    if (!demo) return;
+    const countEl = demo.querySelector('.pw-count');
+    const alertEl = document.getElementById('pwAlert');
+    const titleEl = document.getElementById('pwAlertTitle');
+    const subEl = document.getElementById('pwAlertSub');
+    const chips = Array.from(document.querySelectorAll('.pw-lv'));
+    const replayBtn = document.getElementById('pwReplay');
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const LEVELS = {
+      blue:   { title: '有感地震',     sub: '注意防范 · 保持镇定' },
+      yellow: { title: '强有感',       sub: '请就近避险' },
+      orange: { title: '破坏性地震',   sub: '立即避险' },
+      red:    { title: '强破坏性地震', sub: '紧急避险 · S 波已抵达' },
+    };
+    const START = 14;
+    let level = 'red';
+    let value = START;
+    let loopTimer = null, holdTimer = null;
+
+    function setLevel(lv) {
+      level = lv;
+      chips.forEach(c => c.classList.toggle('is-active', c.dataset.level === lv));
+      if (alertEl) {
+        alertEl.dataset.level = lv;
+        titleEl.textContent = LEVELS[lv].title;
+        subEl.textContent = LEVELS[lv].sub;
+      }
+    }
+    function render(n) {
+      if (!countEl) return;
+      countEl.textContent = n;
+      if (!reduce) {
+        countEl.classList.remove('roll');
+        void countEl.offsetWidth;
+        countEl.classList.add('roll');
+      }
+    }
+    function tick() {
+      value -= 1;
+      if (value < 0) value = 0;
+      render(value);
+      if (value === 0) {
+        clearInterval(loopTimer); loopTimer = null;
+        if (alertEl) alertEl.classList.add('show');
+        holdTimer = setTimeout(() => {
+          if (alertEl) alertEl.classList.remove('show');
+          value = START; render(value); startLoop();
+        }, 2800);
+      }
+    }
+    function startLoop() {
+      clearInterval(loopTimer);
+      loopTimer = setInterval(tick, reduce ? 600 : 1000);
+    }
+    function startDemo() {
+      clearTimeout(holdTimer);
+      if (alertEl) alertEl.classList.remove('show');
+      value = START; render(value); startLoop();
+    }
+    chips.forEach(c => c.addEventListener('click', () => { setLevel(c.dataset.level); startDemo(); }));
+    if (replayBtn) replayBtn.addEventListener('click', startDemo);
+    setLevel(level);
+    startDemo();
+  })();
 
   /* ---------- 3. 滚动进度条 + 导航栏悬浮态 ---------- */
   const progressBar = document.querySelector('.scroll-progress i');

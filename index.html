@@ -125,9 +125,20 @@
               <span class="dot level-orange"></span>
               <span class="dot level-red"></span>
             </div>
-            <button class="mock-btn">开启预警监听</button>
+              <button class="mock-btn">开启预警监听</button>
+            </div>
+            <div class="alert-popup" id="heroPopup" data-level="red" role="alert" aria-live="assertive">
+              <span class="ap-ico">⚠</span>
+              <span class="ap-title" id="heroPopupTitle">强破坏性地震</span>
+              <span class="ap-sub" id="heroPopupSub">紧急避险 · S 波已抵达</span>
+            </div>
           </div>
-        </div>
+      </div>
+      <div class="hero-levels" role="group" aria-label="选择要演示的预警等级">
+        <button class="hero-lv is-active" type="button" data-level="red"><i></i>红 · 强破坏性</button>
+        <button class="hero-lv" type="button" data-level="orange"><i></i>橙 · 破坏性</button>
+        <button class="hero-lv" type="button" data-level="yellow"><i></i>黄 · 强有感</button>
+        <button class="hero-lv" type="button" data-level="blue"><i></i>蓝 · 有感</button>
       </div>
       <p class="hero-caption">模拟界面 · 倒计时与预警等级仅供演示</p>
     </div>
