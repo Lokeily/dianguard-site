@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>地震哨兵 Dianguard — 私人地震预警哨兵</title>
-  <meta name="description" content="地震哨兵是一款面向中国大陆用户的 Android 地震预警应用。五路实时源并行（CENC / SC / CQ / CWA + ICL），自研 EewFusion v2.4 融合引擎，在破坏性 S 波到达前以全屏倒计时 + 真实大陆预警语音告警。">
+  <meta name="description" content="地震哨兵是一款面向中国大陆用户的 Android 应用，定位为官方地震预警信息的接收与转发展示终端。订阅五路实时源（CENC / SC / CQ / CWA + ICL），在破坏性 S 波到达前以全屏倒计时 + 真实大陆预警语音提醒。预警信息以官方渠道为准。">
   <meta name="theme-color" content="#050508">
   <meta name="color-scheme" content="dark">
   <link rel="icon" type="image/png" href="assets/ic_launcher.png">
@@ -12,7 +12,7 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="地震哨兵 Dianguard">
   <meta property="og:title" content="地震哨兵 Dianguard — 私人地震预警哨兵">
-  <meta property="og:description" content="地震哨兵是一款面向中国大陆用户的 Android 地震预警应用。五路实时源并行（CENC / SC / CQ / CWA + ICL），自研 EewFusion v2.4 融合引擎，在破坏性 S 波到达前以全屏倒计时 + 真实大陆预警语音告警。">
+  <meta property="og:description" content="地震哨兵是一款面向中国大陆用户的 Android 应用，定位为官方地震预警信息的接收与转发展示终端。订阅五路实时源（CENC / SC / CQ / CWA + ICL），在破坏性 S 波到达前以全屏倒计时 + 真实大陆预警语音提醒。预警信息以官方渠道为准。">
   <meta property="og:url" content="https://lokeily.github.io/dianguard-site/">
   <meta property="og:image" content="https://lokeily.github.io/dianguard-site/assets/og-cover.png">
   <meta property="og:image:width" content="1200">
@@ -20,7 +20,7 @@
   <meta property="og:locale" content="zh_CN">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="地震哨兵 Dianguard — 私人地震预警哨兵">
-  <meta name="twitter:description" content="地震哨兵是一款面向中国大陆用户的 Android 地震预警应用。五路实时源并行（CENC / SC / CQ / CWA + ICL），自研 EewFusion v2.4 融合引擎，在破坏性 S 波到达前以全屏倒计时 + 真实大陆预警语音告警。">
+  <meta name="twitter:description" content="地震哨兵是一款面向中国大陆用户的 Android 应用，定位为官方地震预警信息的接收与转发展示终端。订阅五路实时源（CENC / SC / CQ / CWA + ICL），在破坏性 S 波到达前以全屏倒计时 + 真实大陆预警语音提醒。预警信息以官方渠道为准。">
   <meta name="twitter:image" content="https://lokeily.github.io/dianguard-site/assets/og-cover.png">
   <link rel="stylesheet" href="styles.css">
   <script type="application/ld+json">
@@ -80,7 +80,7 @@
         变成守护家人的<span class="gradient-text">地震预警哨兵</span>。
       </h1>
       <p class="hero-subtitle">
-        7×24 小时监听中国大陆国家级地震预警，在破坏性横波到达前弹出全屏倒计时告警。<br>
+        7×24 小时接收并转发官方地震预警信息，在破坏性横波到达前弹出全屏倒计时提示。<br>
         真实大陆预警语音 · 五源冗余 · 红/橙/黄/蓝四级响应。
       </p>
       <div class="hero-actions">
@@ -626,7 +626,7 @@
       <div class="faq-grid">
         <details class="faq-item">
           <summary>为什么需要定位权限？</summary>
-          <p>预警的价值在于「你所在地」会有多大影响，而非震中震级。应用用你的位置估算所在地烈度并推算 S 波到达倒计时。坐标仅保存在本机，不上传。</p>
+          <p>预警的价值在于「你所在地」会有多大影响，而非震中震级。应用用你的位置估算所在地烈度并推算 S 波到达倒计时。坐标用于本机计算震中距；生成中文地名时会调用系统或第三方地理编码服务（详见免责声明）。</p>
         </details>
         <details class="faq-item">
           <summary>和手机系统自带的地震预警有什么区别？</summary>
@@ -642,7 +642,7 @@
         </details>
         <details class="faq-item">
           <summary>我的数据隐私安全吗？</summary>
-          <p>应用不收集、不统计、不上报任何个人信息，除网络请求必须的 URL 路径外无任何数据上报行为。详见<a href="disclaimer.html">免责声明与用户协议</a>。</p>
+          <p>应用无埋点、无统计 SDK、无广告、无推送 SDK；除地震预警数据订阅与逆地理编码所必需的坐标参数外，不收集、不上报您的其他个人信息。详见<a href="disclaimer.html">免责声明与用户协议</a>。</p>
         </details>
         <details class="faq-item">
           <summary>下载到的一定是最新版吗？</summary>
