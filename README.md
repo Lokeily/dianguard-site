@@ -1,6 +1,6 @@
 # 地震哨兵 Dianguard 官网
 
-Android 地震预警应用「地震哨兵」的官方展示与下载站点（GitHub Pages）。
+地震哨兵（Dianguard）的官方展示与下载站点（GitHub Pages）。本项目定位为「官方地震预警信息的接收与转发展示终端」，声明遵循中国大陆法律法规，为公益公开的 GitHub 开源项目。
 
 - 在线访问: https://lokeily.github.io/dianguard-site/
 - 版本更新页: https://lokeily.github.io/dianguard-site/changelog.html
