@@ -5,31 +5,25 @@
   const canvas = document.getElementById('wave-canvas');
   if (canvas) {
     const ctx = canvas.getContext('2d');
-    const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    let width, height, dpr = 1;
-    let isVisible = true;
-    let rafId = null;
+    let width, height;
     const waves = [];
 
     function resize() {
-      const rect = canvas.getBoundingClientRect();
-      dpr = Math.min(window.devicePixelRatio || 1, 2);
-      width = rect.width; height = rect.height;
-      canvas.width = Math.max(1, Math.round(width * dpr));
-      canvas.height = Math.max(1, Math.round(height * dpr));
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      if (reduceMotion) drawStill();
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
     }
+    window.addEventListener('resize', resize);
+    resize();
 
     class Wave {
       constructor() { this.reset(); this.y = Math.random() * height; }
       reset() {
         this.x = -Math.random() * 200;
         this.y = Math.random() * height;
-        this.speed = 0.3 + Math.random() * 0.5;
-        this.amplitude = 18 + Math.random() * 34;
-        this.wavelength = 140 + Math.random() * 200;
-        this.opacity = 0.04 + Math.random() * 0.10;
+        this.speed = 0.4 + Math.random() * 0.8;
+        this.amplitude = 20 + Math.random() * 40;
+        this.wavelength = 120 + Math.random() * 180;
+        this.opacity = 0.05 + Math.random() * 0.12;
         this.hue = Math.random() > 0.7 ? 0 : 210;
       }
       update() {
@@ -42,8 +36,8 @@
           ? `rgba(255, 59, 48, ${this.opacity})`
           : `rgba(10, 132, 255, ${this.opacity})`;
         ctx.strokeStyle = color;
-        ctx.lineWidth = 1.3;
-        for (let px = 0; px <= width; px += 7) {
+        ctx.lineWidth = 1.5;
+        for (let px = 0; px <= width; px += 6) {
           const dy = Math.sin((px - this.x) / this.wavelength * Math.PI * 2) * this.amplitude;
           if (px === 0) ctx.moveTo(px, this.y + dy);
           else ctx.lineTo(px, this.y + dy);
@@ -51,168 +45,32 @@
         ctx.stroke();
       }
     }
+    for (let i = 0; i < 8; i++) waves.push(new Wave());
 
-    for (let i = 0; i < 7; i++) waves.push(new Wave());
-
-    function drawFrame() {
+    (function animate() {
       ctx.clearRect(0, 0, width, height);
       waves.forEach(w => { w.update(); w.draw(); });
-    }
-    function drawStill() {
-      ctx.clearRect(0, 0, width, height);
-      waves.forEach((w, i) => { w.x = i * (width / waves.length); w.draw(); });
-    }
-    function loop() {
-      if (!isVisible) return;
-      drawFrame();
-      rafId = requestAnimationFrame(loop);
-    }
-
-    window.addEventListener('resize', resize);
-    document.addEventListener('visibilitychange', () => {
-      isVisible = document.visibilityState === 'visible';
-      if (isVisible && !reduceMotion) {
-        if (rafId) cancelAnimationFrame(rafId);
-        rafId = requestAnimationFrame(loop);
-      } else if (!isVisible && rafId) {
-        cancelAnimationFrame(rafId); rafId = null;
-      }
-    });
-
-    resize();
-    if (reduceMotion) drawStill();
-    else rafId = requestAnimationFrame(loop);
+      requestAnimationFrame(animate);
+    })();
   }
 
-  /* ---------- 2. 首屏倒计时进度环 + 分级提醒 ---------- */
+  /* ---------- 2. 首屏倒计时进度环 ---------- */
   const countEl = document.querySelector('.alert-eta .count');
   const ringFgEl = document.querySelector('.eta-ring-fg');
   const C = 2 * Math.PI * 44; // r=44
   let cd = 12;
-
-  // 分级提醒（仅首页 hero 含 .hero-levels）
-  const heroLevelsWrap = document.querySelector('.hero-levels');
-  const heroCard = document.querySelector('.alert-card');
-  const heroPopup = document.getElementById('heroPopup');
-  const heroPopupTitle = document.getElementById('heroPopupTitle');
-  const heroPopupSub = document.getElementById('heroPopupSub');
-  const heroLvs = heroLevelsWrap ? Array.from(heroLevelsWrap.querySelectorAll('.hero-lv')) : [];
-  const HERO_META = {
-    blue:   { label: '蓝色预警', mag: '3.2 级地震', title: '有感地震',     sub: '注意防范 · 保持镇定' },
-    yellow: { label: '黄色预警', mag: '4.1 级地震', title: '强有感',       sub: '请就近避险' },
-    orange: { label: '橙色预警', mag: '5.2 级地震', title: '破坏性地震',   sub: '立即避险' },
-    red:    { label: '红色预警', mag: '6.4 级地震', title: '强破坏性地震', sub: '紧急避险 · S 波已抵达' },
-  };
-  let heroLevel = 'red';
-  let heroPopupTimer = null;
-
-  function setHeroLevel(lv) {
-    heroLevel = lv;
-    heroLvs.forEach(c => c.classList.toggle('is-active', c.dataset.level === lv));
-    if (heroCard) heroCard.dataset.level = lv;
-    const m = HERO_META[lv];
-    const lvlEl = document.querySelector('.alert-level');
-    const magEl = document.querySelector('.alert-mag');
-    if (lvlEl) lvlEl.textContent = m.label;
-    if (magEl) magEl.textContent = m.mag;
-    if (heroPopup) {
-      heroPopup.dataset.level = lv;
-      heroPopupTitle.textContent = m.title;
-      heroPopupSub.textContent = m.sub;
-    }
-  }
-  function showHeroPopup() {
-    if (!heroPopup) return;
-    heroPopup.classList.add('show');
-    clearTimeout(heroPopupTimer);
-    heroPopupTimer = setTimeout(() => heroPopup.classList.remove('show'), 2800);
-  }
   function setCountdown(n) {
     if (countEl) countEl.textContent = n;
     if (ringFgEl) ringFgEl.style.strokeDashoffset = (C * (1 - n / 12)).toFixed(2);
-    if (n === 0) showHeroPopup();
   }
-  if (countEl || ringFgEl) {
-    if (heroLevelsWrap) setHeroLevel(heroLevel);
-    setCountdown(12);
-    setInterval(() => { cd = cd <= 0 ? 12 : cd - 1; setCountdown(cd); }, 1000);
-  }
-  heroLvs.forEach(c => c.addEventListener('click', () => {
-    setHeroLevel(c.dataset.level);
-    showHeroPopup();
-  }));
-
-  /* ---------- 2.5 技术原理页：倒计时归零弹出分级提醒 ---------- */
-  (function () {
-    const demo = document.querySelector('.pw-demo');
-    if (!demo) return;
-    const countEl = demo.querySelector('.pw-count');
-    const alertEl = document.getElementById('pwAlert');
-    const titleEl = document.getElementById('pwAlertTitle');
-    const subEl = document.getElementById('pwAlertSub');
-    const chips = Array.from(document.querySelectorAll('.pw-lv'));
-    const replayBtn = document.getElementById('pwReplay');
-    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const LEVELS = {
-      blue:   { title: '有感地震',     sub: '注意防范 · 保持镇定' },
-      yellow: { title: '强有感',       sub: '请就近避险' },
-      orange: { title: '破坏性地震',   sub: '立即避险' },
-      red:    { title: '强破坏性地震', sub: '紧急避险 · S 波已抵达' },
-    };
-    const START = 14;
-    let level = 'red';
-    let value = START;
-    let loopTimer = null, holdTimer = null;
-
-    function setLevel(lv) {
-      level = lv;
-      chips.forEach(c => c.classList.toggle('is-active', c.dataset.level === lv));
-      if (alertEl) {
-        alertEl.dataset.level = lv;
-        titleEl.textContent = LEVELS[lv].title;
-        subEl.textContent = LEVELS[lv].sub;
-      }
-    }
-    function render(n) {
-      if (!countEl) return;
-      countEl.textContent = n;
-      if (!reduce) {
-        countEl.classList.remove('roll');
-        void countEl.offsetWidth;
-        countEl.classList.add('roll');
-      }
-    }
-    function tick() {
-      value -= 1;
-      if (value < 0) value = 0;
-      render(value);
-      if (value === 0) {
-        clearInterval(loopTimer); loopTimer = null;
-        if (alertEl) alertEl.classList.add('show');
-        holdTimer = setTimeout(() => {
-          if (alertEl) alertEl.classList.remove('show');
-          value = START; render(value); startLoop();
-        }, 2800);
-      }
-    }
-    function startLoop() {
-      clearInterval(loopTimer);
-      loopTimer = setInterval(tick, reduce ? 600 : 1000);
-    }
-    function startDemo() {
-      clearTimeout(holdTimer);
-      if (alertEl) alertEl.classList.remove('show');
-      value = START; render(value); startLoop();
-    }
-    chips.forEach(c => c.addEventListener('click', () => { setLevel(c.dataset.level); startDemo(); }));
-    if (replayBtn) replayBtn.addEventListener('click', startDemo);
-    setLevel(level);
-    startDemo();
-  })();
+  setCountdown(12);
+  setInterval(() => { cd = cd <= 0 ? 12 : cd - 1; setCountdown(cd); }, 1000);
 
   /* ---------- 3. 滚动进度条 + 导航栏悬浮态 ---------- */
   const progressBar = document.querySelector('.scroll-progress i');
   const siteNav = document.getElementById('site-nav');
+  // 时间轴滚动联动引用（仅技术原理页）
+  let tlFill = null, tlRunner = null, tlSection = null;
 
   function onScroll() {
     const doc = document.documentElement;
@@ -223,11 +81,25 @@
       progressBar.style.width = (Math.min(1, Math.max(0, p)) * 100).toFixed(2) + '%';
     }
     if (siteNav) siteNav.classList.toggle('scrolled', scrolled > 12);
+
+    // 时间轴：进度随滚动填充 + 光点行进
+    if (tlSection && tlFill) {
+      const r = tlSection.getBoundingClientRect();
+      const vh = window.innerHeight;
+      let p = (vh - r.top) / (vh + r.height);
+      p = Math.max(0, Math.min(1, p));
+      tlFill.style.width = (p * 100).toFixed(1) + '%';
+      if (tlRunner) {
+        tlRunner.style.left = (p * 100).toFixed(1) + '%';
+        if (p > 0.02 && p < 0.99) tlSection.classList.add('running');
+        else tlSection.classList.remove('running');
+      }
+    }
   }
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
 
-  /* ---------- 4. 移动端导航菜单 + 二级下拉 ---------- */
+  /* ---------- 4. 移动端导航菜单 ---------- */
   const navToggle = document.getElementById('nav-toggle');
   const navLinks = document.getElementById('nav-links');
   if (navToggle && navLinks) {
@@ -235,48 +107,12 @@
       const open = navLinks.classList.toggle('open');
       navToggle.classList.toggle('open', open);
       navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-      if (!open) {
-        navLinks.querySelectorAll('.nav-item.open').forEach(el => el.classList.remove('open'));
-      }
     });
-
-    // 移动端：点击「功能 / 技术原理」父项或其箭头 → 折叠展开二级菜单
-    const isMobile = () => window.innerWidth <= 960;
-    navLinks.querySelectorAll('.nav-item').forEach(item => {
-      const link = item.querySelector(':scope > a');
-      const caret = item.querySelector('.nav-caret');
-      const toggle = (e) => {
-        if (!isMobile()) return;
-        e.preventDefault();
-        e.stopImmediatePropagation();  // 阻止第149行的'关闭菜单'handler 误关
-        const willOpen = !item.classList.contains('open');
-        navLinks.querySelectorAll('.nav-item.open').forEach(el => el.classList.remove('open'));
-        if (willOpen) item.classList.add('open');
-      };
-      if (link) link.addEventListener('click', toggle);
-      if (caret) caret.addEventListener('click', toggle);
-    });
-
-    // 点击下拉里的二级链接 → 关闭整个移动菜单
     navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-      // 仅处理 nav-drop 内的链接（二级链接），忽略 nav-item 父链接（已由 toggle 处理）
-      if (!a.closest('.nav-drop')) return;
-      if (!isMobile()) return;
       navLinks.classList.remove('open');
       navToggle.classList.remove('open');
       navToggle.setAttribute('aria-expanded', 'false');
     }));
-
-    // 点击页面其他区域：收起移动菜单与二级下拉
-    document.addEventListener('click', (e) => {
-      if (navLinks.classList.contains('open') &&
-          !e.target.closest('.nav-links') && !e.target.closest('.nav-toggle')) {
-        navLinks.classList.remove('open');
-        navToggle.classList.remove('open');
-        navToggle.setAttribute('aria-expanded', 'false');
-        navLinks.querySelectorAll('.nav-item.open').forEach(el => el.classList.remove('open'));
-      }
-    }, { passive: true });
   }
 
   /* ---------- 5. 光标跟随高光 (spotlight) ---------- */
@@ -316,7 +152,7 @@
   const REVEAL_SELECTOR = [
     '.fade-block', '.fx-block', '.fx-row', '.fx-copy', '.fx-visual',
     '.feature-card', '.source-card', '.level-row', '.perm-card', '.stat-cell',
-    '.stat-strip', '.arch', '.arch-node', '.tl-step', '.tl-track', '.pw-demo',
+    '.stat-strip', '.arch', '.arch-node', '.tl-step', '.tl-track', '.wave-demo',
     '.formula-card', '.bz-graph', '.bz-legend', '.flow-node', '.flow-split',
     '.callout', '.cmp-table', '.cta-inner', '.how-step', '.how-arrow',
     '.reliability-text', '.reliability-graph', '.release-card', '.disclaimer-block',
@@ -346,47 +182,24 @@
 
   revealTargets.forEach(el => io.observe(el));
 
-  /* ---------- 7.5 增强动效：in-view 触发 ---------- */
-  // 以下元素的 CSS 动画需要 .in-view 类才会启动。
-  // 用一个独立的 IntersectionObserver 在元素进入视口时添加该类，
-  // 首次触发后不再移除（动画持续播放或按 CSS 定义一次性完成）。
-  const ENHANCE_SELECTOR = [
-    '.hero-device', '.how-grid', '.reliability-graph',
-    '.screen-showcase', '.voice-seq', '.cmp-table',
-    '.flow', '.level-row', '.intensity-vis', '.pw-demo'
-  ].join(', ');
-  const enhanceEls = document.querySelectorAll(ENHANCE_SELECTOR);
-  const enhanceIO = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('in-view');
-        enhanceIO.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.15, rootMargin: '0px 0px -5% 0px' });
-  enhanceEls.forEach(el => enhanceIO.observe(el));
-
-  /* ---------- 7.6 功能详解 · 语音序列轮播 ---------- */
-  // 三段语音序列依次「激活」，模拟逐段播报的真实流程。
-  const voiceSeq = document.querySelector('.voice-seq');
-  if (voiceSeq) {
-    const items = voiceSeq.querySelectorAll('.vs-item');
-    let vIdx = 0;
-    const voiceIO = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (!e.isIntersecting) return;
-        voiceIO.unobserve(e.target);
-        setInterval(() => {
-          items.forEach(it => it.classList.remove('active'));
-          if (items[vIdx]) items[vIdx].classList.add('active');
-          vIdx = (vIdx + 1) % items.length;
-        }, 2200);
+  /* ---------- 7.5 网格卡片交错入场（stagger）----------
+     同一网格容器内的卡片按序延迟显现，视觉更有节奏；
+     显现完成后移除行内延迟，避免影响 hover 等后续过渡。 */
+  document.querySelectorAll(
+    '.source-grid, .feature-grid, .faq-grid, .how-grid, .install-steps'
+  ).forEach(grid => {
+    Array.from(grid.children).forEach((child, i) => {
+      if (i === 0) return;
+      child.style.transitionDelay = Math.min(i * 70, 420) + 'ms';
+      child.addEventListener('transitionend', function onEnd(ev) {
+        if (ev.propertyName !== 'opacity') return;
+        child.style.transitionDelay = '';
+        child.removeEventListener('transitionend', onEnd);
       });
-    }, { threshold: 0.3 });
-    voiceIO.observe(voiceSeq);
-  }
+    });
+  });
 
-  /* ---------- 8. 子页锚点导航高亮 + 滑动指示条 ---------- */
+  /* ---------- 8. 子页锚点导航高亮 ---------- */
   const subnav = document.getElementById('subnav');
   if (subnav) {
     const links = Array.from(subnav.querySelectorAll('a'));
@@ -398,41 +211,12 @@
         if (sec) map[href.slice(1)] = l;
       }
     });
-
-    // 滑动指示条（仅宽屏）：跟随 active / hover 平滑滑移，纯 transform 驱动
-    let subIndicator = null;
-    const isWide = () => window.innerWidth > 960;
-    if (isWide() && links.length) {
-      subIndicator = document.createElement('span');
-      subIndicator.className = 'subnav-indicator';
-      subnav.appendChild(subIndicator);
-      const moveSub = (el) => {
-        const r = el.getBoundingClientRect();
-        const c = subnav.getBoundingClientRect();
-        subIndicator.style.width = r.width + 'px';
-        subIndicator.style.transform = 'translateX(' + (r.left - c.left) + 'px)';
-      };
-      const syncSub = () => {
-        const act = links.find(x => x.classList.contains('active'));
-        if (act) { moveSub(act); subIndicator.style.opacity = 1; }
-        else subIndicator.style.opacity = 0;
-      };
-      links.forEach(a => a.addEventListener('mouseenter', () => { moveSub(a); subIndicator.style.opacity = 1; }));
-      subnav.addEventListener('mouseleave', syncSub);
-      window.addEventListener('resize', () => { if (isWide()) syncSub(); }, { passive: true });
-      syncSub();
-    }
-
     const subIO = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           links.forEach(l => l.classList.remove('active'));
           const l = map[entry.target.id];
           if (l) l.classList.add('active');
-          if (subIndicator) {
-            const act = links.find(x => x.classList.contains('active'));
-            if (act) { const r = act.getBoundingClientRect(); const c = subnav.getBoundingClientRect(); subIndicator.style.width = r.width + 'px'; subIndicator.style.transform = 'translateX(' + (r.left - c.left) + 'px)'; }
-          }
         }
       });
     }, { rootMargin: '-45% 0px -50% 0px' });
@@ -442,91 +226,270 @@
     });
   }
 
-  /* ---------- 8.5 导航滑动指示条（宽屏桌面端） ---------- */
-  // 把静态的 active 下划线升级为可滑移的高亮胶囊：
-  // 初始停在当前页链接上，鼠标悬停其他链接时平滑滑过去。
-  // 支持普通链接与带二级菜单的 .nav-item > a。
-  const navLinksEl = document.getElementById('nav-links');
-  const navTabs = navLinksEl
-    ? Array.from(navLinksEl.querySelectorAll(':scope > a:not(.nav-github):not(.nav-cta), :scope > .nav-item > a'))
-    : [];
-  if (navLinksEl && navTabs.length) {
-    const navIndicator = document.createElement('span');
-    navIndicator.className = 'nav-indicator';
-    navLinksEl.appendChild(navIndicator);
-
-    const moveNav = (el) => {
-      const r = el.getBoundingClientRect();
-      const c = navLinksEl.getBoundingClientRect();
-      navIndicator.style.width = r.width + 'px';
-      navIndicator.style.transform = 'translateX(' + (r.left - c.left) + 'px)';
-    };
-    const syncNav = () => {
-      if (window.innerWidth <= 960) { navIndicator.style.opacity = 0; return; }
-      // active 可能在普通链接上，也可能在带下拉的 .nav-item.active 上
-      const act = navTabs.find(x => x.classList.contains('active')) ||
-                  (navLinksEl.querySelector('.nav-item.active > a') || null);
-      if (act) { moveNav(act); navIndicator.style.opacity = 1; }
-      else navIndicator.style.opacity = 0;
-    };
-    navTabs.forEach(a => a.addEventListener('mouseenter', () => {
-      if (window.innerWidth > 960) { moveNav(a); navIndicator.style.opacity = 1; }
-    }));
-    navLinksEl.addEventListener('mouseleave', syncNav);
-    window.addEventListener('resize', syncNav, { passive: true });
-    syncNav();
-  }
-
-  /* ---------- 8.6 滚动回顶按钮 ---------- */
-  const backTop = document.createElement('button');
-  backTop.className = 'back-top';
-  backTop.type = 'button';
-  backTop.setAttribute('aria-label', '返回顶部');
-  backTop.innerHTML =
-    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5"/><path d="M5 12l7-7 7 7"/></svg>';
-  document.body.appendChild(backTop);
-  let btTicking = false;
-  function onBtScroll() {
-    const y = window.scrollY || document.documentElement.scrollTop;
-    backTop.classList.toggle('show', y > 600);
-    btTicking = false;
-  }
-  window.addEventListener('scroll', () => {
-    if (!btTicking) { btTicking = true; requestAnimationFrame(onBtScroll); }
-  }, { passive: true });
-  backTop.addEventListener('click', () => {
+  /* ---------- 8.5 技术原理页动效（仅 how.html） ---------- */
+  function initHowPage() {
     const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
-  });
 
-  /* ---------- 8.7 首屏标题精致入场（一次性） ---------- */
-  // hero 徽章 / 标题 / 副标题 / 按钮依次上浮显现，带轻微模糊消散。
-  // 仅首屏存在，不重复播放，无滚动开销。
-  document.querySelectorAll('.hero-badge, .hero-title, .hero-subtitle, .hero-actions, .hero-note, .page-hero .kicker, .page-hero h1, .page-hero .lead, .page-hero .page-actions')
-    .forEach((el, i) => {
-      el.classList.add('hero-in');
-      el.style.setProperty('--hd', Math.min(i * 0.1, 0.5) + 's');
-    });
+    tlFill = document.querySelector('.page-how #timeline .tl-fill');
+    tlRunner = document.querySelector('.page-how #timeline .tl-runner');
+    tlSection = document.querySelector('.page-how #timeline');
 
-  /* ---------- 8.8 FAQ 平滑展开 ---------- */
-  // details 展开/收起时按内容真实高度过渡，避免生硬跳变。
-  document.querySelectorAll('.faq-item').forEach(item => {
-    const summary = item.querySelector('summary');
-    const content = item.querySelector('p');
-    if (!summary || !content) return;
-    if (item.open) content.style.maxHeight = content.scrollHeight + 'px';
-    summary.addEventListener('click', () => {
-      requestAnimationFrame(() => {
-        content.style.maxHeight = item.open ? content.scrollHeight + 'px' : '0px';
+    initWaveDemo(reduce);
+    initIntensityVis(reduce);
+    initArchPackets(reduce);
+    initDecisionFlow(reduce);
+  }
+
+  // 波纹 demo：P/S 波前扩张 + 你处受击 + 计时
+  function initWaveDemo(reduce) {
+    const wrap = document.getElementById('wave-demo');
+    if (!wrap) return;
+    const canvas = wrap.querySelector('.wd-canvas');
+    const youEl = wrap.querySelector('.wd-you');
+    const timeEl = wrap.querySelector('.wd-time b');
+    if (!canvas || !timeEl) return;
+    const ctx = canvas.getContext('2d');
+    let W = 0, H = 0, dpr = 1;
+
+    function resize() {
+      const r = wrap.getBoundingClientRect();
+      W = r.width; H = r.height;
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = Math.max(1, Math.round(W * dpr));
+      canvas.height = Math.max(1, Math.round(H * dpr));
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+    function ecX() { return W * 0.13; }
+    function youX() { return W * 0.88; }
+    function cy() { return H * 0.5; }
+
+    const D_KM = 480, P_SPEED = 6, S_SPEED = 3.5;
+    const T_LOOP = 7.0;
+    const T_P = T_LOOP * (S_SPEED / P_SPEED);
+    const ppk = () => Math.abs(youX() - ecX()) / D_KM;
+
+    let pBirths = [], sBirths = [];
+    for (let b = 0; b <= T_LOOP; b += 1.0) pBirths.push(b);
+    for (let b = 0; b <= T_LOOP; b += 1.7) sBirths.push(b);
+
+    function drawRing(cx, cyy, radius, type, frac) {
+      if (radius <= 0.5) return;
+      ctx.beginPath();
+      ctx.arc(cx, cyy, radius, 0, Math.PI * 2);
+      if (type === 'p') {
+        ctx.strokeStyle = 'rgba(10,132,255,' + (0.5 * (1 - frac) + 0.05).toFixed(3) + ')';
+        ctx.lineWidth = 1.6;
+      } else {
+        ctx.strokeStyle = 'rgba(255,59,48,' + (0.7 * (1 - frac) + 0.07).toFixed(3) + ')';
+        ctx.lineWidth = 3;
+      }
+      ctx.stroke();
+    }
+
+    let t = 0, last = 0, running = false, arrived = false;
+
+    function frame(now) {
+      if (!running) return;
+      const dt = Math.min(0.05, (now - last) / 1000); last = now;
+      t += dt;
+      if (t > T_LOOP) {
+        t = 0; arrived = false;
+        wrap.classList.remove('hit');
+        if (youEl) youEl.classList.remove('hit');
+      }
+      ctx.clearRect(0, 0, W, H);
+      const cx = ecX(), cyy = cy(), dist = youX() - cx, k = ppk();
+      pBirths.forEach(b => {
+        const age = t - b; if (age < 0) return;
+        const frac = Math.min(1, age / T_P);
+        drawRing(cx, cyy, dist * frac * 1.05, 'p', frac);
       });
-    });
-  });
+      sBirths.forEach(b => {
+        const age = t - b; if (age < 0) return;
+        const frac = Math.min(1, age / T_LOOP);
+        drawRing(cx, cyy, dist * frac * 1.05, 's', frac);
+      });
+      if (!arrived && t >= T_LOOP - 0.001) {
+        arrived = true;
+        wrap.classList.add('hit');
+        if (youEl) youEl.classList.add('hit');
+      }
+      if (timeEl) timeEl.textContent = (t / T_LOOP * (D_KM / S_SPEED)).toFixed(1);
+      requestAnimationFrame(frame);
+    }
 
-  /* ---------- 8.9 更新记录卡片入场错峰 ---------- */
-  // release 卡片按顺序依次浮现（仅 changelog 页），延迟随索引递增。
-  document.querySelectorAll('.release-card').forEach((el, i) => {
-    el.style.setProperty('--i', i);
-  });
+    resize();
+    window.addEventListener('resize', resize);
+
+    if (reduce) {
+      const cx = ecX(), cyy = cy(), dist = youX() - cx;
+      ctx.clearRect(0, 0, W, H);
+      drawRing(cx, cyy, dist * 0.6, 'p', 0.6);
+      drawRing(cx, cyy, dist * 0.9, 's', 0.9);
+      if (timeEl) timeEl.textContent = '0.0';
+      return;
+    }
+
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          if (!running) { running = true; last = performance.now(); requestAnimationFrame(frame); }
+        } else { running = false; }
+      });
+    }, { threshold: 0.12 });
+    io.observe(wrap);
+  }
+
+  // 烈度曲线：绘制 + 扫描标记
+  function initIntensityVis(reduce) {
+    const vis = document.getElementById('intensity-vis');
+    if (!vis) return;
+    const svg = vis.querySelector('.iv-svg');
+    const curve = vis.querySelector('.iv-curve');
+    const area = vis.querySelector('.iv-area');
+    const marker = vis.querySelector('.iv-marker');
+    const vline = vis.querySelector('.iv-vline');
+    const valEl = vis.querySelector('.iv-value');
+    const subEl = vis.querySelector('.iv-sub');
+    if (!svg || !curve || !marker) return;
+
+    const M = 6.5, R_MIN = 5, R_MAX = 600;
+    const X0 = 38, X1 = 344, Y0 = 210, Y1 = 22, IMIN = 0, IMAX = 9.2;
+    const Iof = (R) => 2.941 + 1.363 * M - 1.494 * Math.log(R + 7);
+    const xOf = (R) => X0 + (R - R_MIN) / (R_MAX - R_MIN) * (X1 - X0);
+    const yOf = (I) => Y0 - (I - IMIN) / (IMAX - IMIN) * (Y0 - Y1);
+
+    let d = '';
+    const STEPS = 80;
+    for (let i = 0; i <= STEPS; i++) {
+      const R = R_MIN + (R_MAX - R_MIN) * i / STEPS;
+      d += (i === 0 ? 'M' : 'L') + xOf(R).toFixed(1) + ' ' + yOf(Iof(R)).toFixed(1) + ' ';
+    }
+    d = d.trim();
+    curve.setAttribute('d', d);
+    area.setAttribute('d', d + 'L' + X1.toFixed(1) + ' ' + Y0 + ' L' + X0.toFixed(1) + ' ' + Y0 + ' Z');
+
+    const L = curve.getTotalLength();
+    curve.style.strokeDasharray = L;
+    curve.style.strokeDashoffset = reduce ? 0 : L;
+
+    function setMarker(R) {
+      const x = xOf(R), y = yOf(Iof(R));
+      marker.setAttribute('cx', x.toFixed(1));
+      marker.setAttribute('cy', y.toFixed(1));
+      vline.setAttribute('x1', x.toFixed(1));
+      vline.setAttribute('x2', x.toFixed(1));
+      const I = Iof(R);
+      if (valEl) valEl.textContent = I.toFixed(1);
+      if (subEl) {
+        let q = '微震感';
+        if (I >= 6) q = '强 · 需避险'; else if (I >= 4) q = '中 · 明显'; else if (I >= 2) q = '弱 · 有感';
+        subEl.textContent = '震级 M ' + M + ' · 距离 R ' + Math.round(R) + ' km · ' + q;
+      }
+    }
+
+    if (reduce) { setMarker(120); return; }
+
+    let raf = null, running = false, start = 0;
+    const DUR = 6000;
+    function loop(now) {
+      if (!running) return;
+      const p = ((now - start) % DUR) / DUR;
+      setMarker(R_MAX - (R_MAX - R_MIN) * p);
+      raf = requestAnimationFrame(loop);
+    }
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          curve.style.strokeDashoffset = 0;
+          if (!running) { running = true; start = performance.now(); raf = requestAnimationFrame(loop); }
+        } else { running = false; if (raf) cancelAnimationFrame(raf); }
+      });
+    }, { threshold: 0.2 });
+    io.observe(vis);
+  }
+
+  // 架构数据流：沿路径行进的光点包
+  function initArchPackets(reduce) {
+    const arch = document.querySelector('.page-how .arch');
+    if (!arch) return;
+    const svg = arch.querySelector('.arch-flow svg');
+    if (!svg) return;
+    const paths = svg.querySelectorAll('path');
+    if (!paths.length) return;
+    const NS = 'http://www.w3.org/2000/svg';
+    const packets = [];
+    paths.forEach(p => {
+      const len = p.getTotalLength();
+      const c = document.createElementNS(NS, 'circle');
+      c.setAttribute('r', '3.4');
+      c.setAttribute('class', 'arch-pkt');
+      svg.appendChild(c);
+      packets.push({ p: p, c: c, len: len, off: Math.random() });
+    });
+    if (reduce) {
+      packets.forEach(pk => { const pt = pk.p.getPointAtLength(0); pk.c.setAttribute('cx', pt.x); pk.c.setAttribute('cy', pt.y); });
+      return;
+    }
+    let raf = null, running = false, start = 0;
+    const SPEED = 0.12;
+    function loop(now) {
+      if (!running) return;
+      const tt = (now - start) / 1000;
+      packets.forEach(pk => {
+        const f = (pk.off + tt * SPEED) % 1;
+        const pt = pk.p.getPointAtLength(f * pk.len);
+        pk.c.setAttribute('cx', pt.x);
+        pk.c.setAttribute('cy', pt.y);
+      });
+      raf = requestAnimationFrame(loop);
+    }
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { if (!running) { running = true; start = performance.now(); raf = requestAnimationFrame(loop); } }
+        else { running = false; if (raf) cancelAnimationFrame(raf); }
+      });
+    }, { threshold: 0.25 });
+    io.observe(arch);
+  }
+
+  // 决策流程：当前步高亮 + 行进光点
+  function initDecisionFlow(reduce) {
+    const flow = document.querySelector('.page-how .flow');
+    if (!flow) return;
+    const nodes = flow.querySelectorAll('.flow-node');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          nodes.forEach(n => n.classList.remove('active'));
+          e.target.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-45% 0px -45% 0px', threshold: 0 });
+    nodes.forEach(n => io.observe(n));
+
+    if (reduce) return;
+    const pkt = flow.querySelector('.flow-pkt');
+    if (!pkt) return;
+    let raf = null, running = false;
+    function loop() {
+      if (!running) return;
+      const r = flow.getBoundingClientRect();
+      let p = (window.innerHeight * 0.5 - r.top) / r.height;
+      p = Math.max(0, Math.min(1, p));
+      pkt.style.top = (p * r.height) + 'px';
+      raf = requestAnimationFrame(loop);
+    }
+    const vio = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          flow.classList.add('running');
+          if (!running) { running = true; raf = requestAnimationFrame(loop); }
+        } else { flow.classList.remove('running'); running = false; if (raf) cancelAnimationFrame(raf); }
+      });
+    }, { threshold: 0.15 });
+    vio.observe(flow);
+  }
 
   /* ---------- 9. GitHub Release 实时同步 ---------- */
   const REPO = 'Lokeily/Earthquake-Sentinel';
@@ -576,50 +539,28 @@
     if (line) line.innerHTML = '当前最新版本 <strong>v' + ver + '</strong> · 发布于 ' + date;
   }
 
-  // 极简 Markdown 渲染（标题 / 列表 / 加粗 / 行内代码 / 链接 / 分割线 / 引用）
-  //
-  // 标题：支持 # ~ ###### 全部六级。卡片头部已展示版本号，故整体降级两档
-  // 映射到 h3~h5，避免与页面 h1/h2 抢层级；四级以上统一收敛到 h5。
-  // （旧实现只认 # / ## / ###，Release 里常用的 #### 会被当成正文，
-  //   直接把「#### 标题」四个井号原样渲染出来。）
+  // 极简 Markdown 渲染（标题 / 列表 / 加粗 / 行内代码 / 链接 / 分割线）
   function renderMarkdown(md) {
     if (!md) return '';
     const lines = md.replace(/\r/g, '').split('\n');
-    let html = '', inUl = false, inOl = false, inCode = false;
+    let html = '', inUl = false, inOl = false;
     const closeLists = () => {
       if (inUl) { html += '</ul>'; inUl = false; }
       if (inOl) { html += '</ol>'; inOl = false; }
     };
-    const esc = t => t.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-    const inline = t => esc(t)
+    const inline = t => t
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
       .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
       .replace(/`([^`]+)`/g, '<code>$1</code>')
-      .replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
-    const HTAG = { 1: 'h3', 2: 'h3', 3: 'h4', 4: 'h5', 5: 'h5', 6: 'h5' };
-
+      .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
     for (const raw of lines) {
       const line = raw.trimEnd();
       let m;
-
-      // 围栏代码块：内部内容原样转义，不参与其他规则
-      if (/^\s*```/.test(line)) {
-        closeLists();
-        html += inCode ? '</code></pre>' : '<pre class="release-pre"><code>';
-        inCode = !inCode;
-        continue;
-      }
-      if (inCode) { html += esc(raw) + '\n'; continue; }
-
-      if ((m = line.match(/^(#{1,6})\s+(.*)$/))) {
-        closeLists();
-        const tag = HTAG[m[1].length];
-        html += '<' + tag + '>' + inline(m[2]) + '</' + tag + '>';
-      }
-      else if (/^\s*(?:---+|\*\*\*+|___+)\s*$/.test(line)) { closeLists(); html += '<hr>'; }
-      else if ((m = line.match(/^\s*>\s?(.*)$/))) {
-        closeLists(); html += '<blockquote>' + inline(m[1]) + '</blockquote>';
-      }
-      else if ((m = line.match(/^\s*[-*+]\s+(.*)$/))) {
+      if ((m = line.match(/^###\s+(.*)$/))) { closeLists(); html += '<h4>' + inline(m[1]) + '</h4>'; }
+      else if ((m = line.match(/^##\s+(.*)$/))) { closeLists(); html += '<h3>' + inline(m[1]) + '</h3>'; }
+      else if ((m = line.match(/^#\s+(.*)$/))) { closeLists(); html += '<h2>' + inline(m[1]) + '</h2>'; }
+      else if (/^---+\s*$/.test(line)) { closeLists(); html += '<hr>'; }
+      else if ((m = line.match(/^\s*[-*]\s+(.*)$/))) {
         if (inOl) { html += '</ol>'; inOl = false; }
         if (!inUl) { html += '<ul>'; inUl = true; }
         html += '<li>' + inline(m[1]) + '</li>';
@@ -632,48 +573,29 @@
       else if (line === '') { closeLists(); }
       else { closeLists(); html += '<p>' + inline(line) + '</p>'; }
     }
-    if (inCode) html += '</code></pre>';
     closeLists();
     return html;
-  }
-
-  // Release 正文首行常是「## v1.2.0 更新说明」，与卡片头部的版本号重复，去掉。
-  function stripRedundantTitle(body, ver) {
-    if (!body) return body;
-    const lines = body.replace(/\r/g, '').split('\n');
-    let i = 0;
-    while (i < lines.length && lines[i].trim() === '') i++;
-    const first = (lines[i] || '').trim();
-    if (/^#{1,6}\s/.test(first) && first.indexOf(ver) !== -1) {
-      lines.splice(i, 1);
-      return lines.join('\n');
-    }
-    return body;
   }
 
   function renderChangelog(releases) {
     const list = document.getElementById('release-list');
     if (!list) return;
-
-    // 拿不到数据时，保留页面内已烘焙的静态更新记录，不做任何改动。
-    if (!releases || !releases.length) return;
-
-    // 与页面内烘焙的版本完全一致时跳过重绘，避免打开页面时闪一下。
-    const signature = releases.map(versionOf).join(',');
-    if (list.getAttribute('data-baked') === signature) return;
-
+    if (!releases || !releases.length) {
+      list.innerHTML = '<div class="release-error">暂时无法加载更新记录，请稍后重试，或直接前往 ' +
+        '<a href="https://github.com/' + REPO + '/releases" target="_blank" rel="noopener">GitHub Release</a> 查看。</div>';
+      return;
+    }
     list.innerHTML = releases.map((rel, i) => {
       const ver = versionOf(rel);
       const date = fmtDate(rel.published_at);
-      const body = stripRedundantTitle(rel.body || '', ver);
-      const notes = renderMarkdown(body.trim() || '（本次发布未附文字说明，详见 GitHub Release 页面。）');
+      const notes = renderMarkdown(rel.body || '（暂无文字说明，详见 GitHub Release）');
       const dl = findApk(rel);
       const dlHtml = dl
-        ? '<p class="release-dl"><a class="btn btn-secondary btn-small" href="' + dl + '" target="_blank" rel="noopener">下载 v' + ver + ' APK</a></p>'
+        ? '<p class="release-dl"><a class="btn btn-secondary btn-small" href="' + dl + '" target="_blank" rel="noopener">下载此版本 APK</a></p>'
         : '';
       const latest = i === 0 ? ' latest' : '';
       const badge = i === 0 ? '<span class="release-badge">最新</span>' : '';
-      return '<article class="release-card' + latest + '">' +
+      return '<article class="release-card' + latest + ' reveal">' +
         '<div class="release-head">' +
           '<span class="release-version">v' + ver + '</span>' + badge +
           '<span class="release-date">' + date + '</span>' +
@@ -682,11 +604,22 @@
         dlHtml +
       '</article>';
     }).join('');
-    list.setAttribute('data-baked', signature);
-    list.querySelectorAll('.release-card').forEach((el, i) => {
-      el.style.setProperty('--i', i);
-      el.classList.add('reveal', 'revealed');
-    });
+    list.querySelectorAll('.release-card').forEach(el => { el.classList.add('revealed'); });
+  }
+
+  function loadFallback() {
+    // 接口不可用时，用页面内嵌快照兜底（保证页面不空白）
+    try {
+      const raw = document.getElementById('fallback-releases');
+      if (raw) {
+        const fb = JSON.parse(raw.textContent);
+        const mapped = fb.map(r => ({
+          tag_name: r.tag, name: r.tag, published_at: r.date + 'T00:00:00Z',
+          body: r.notes, assets: [], prerelease: false, draft: false
+        }));
+        renderChangelog(mapped);
+      }
+    } catch (e) { /* ignore */ }
   }
 
   function fetchReleases() {
@@ -719,11 +652,13 @@
         renderChangelog(list);
       })
       .catch(() => {
-        // 失败时静默降级：首页保持静态默认版本号，更新页保留已烘焙的静态记录。
-        // GitHub API 对未认证请求限流 60 次/小时/IP，校园网、公司网等
-        // 共享出口 IP 很容易触发，因此页面内容不能依赖这次请求。
+        // 失败时：首页保持静态默认值，更新页用内嵌快照兜底
+        if (document.getElementById('release-list')) loadFallback();
       });
   }
 
   fetchReleases();
+
+  // 技术原理页专属动效
+  if (document.querySelector('.page-how')) initHowPage();
 })();
