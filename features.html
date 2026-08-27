@@ -4,46 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>功能详解 — 地震哨兵 Dianguard</title>
-  <meta name="description" content="地震哨兵的完整功能说明：官方地震预警信息接收与转发展示终端、五路实时源并行、全屏倒计时提示、四级烈度、真实大陆预警语音、模拟演练、历史记录、隐私省电与许可声明。">
-  <meta name="theme-color" content="#050508">
-  <meta name="color-scheme" content="dark">
+  <meta name="description" content="地震哨兵的完整功能说明：全屏倒计时告警、四级预警体系、真实大陆预警语音、多源冗余、烈度阈值、模拟演练、历史记录、深色省电与隐私策略。">
   <link rel="icon" type="image/png" href="assets/ic_launcher.png">
-  <link rel="canonical" href="https://lokeily.github.io/dianguard-site/features.html">
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="地震哨兵 Dianguard">
-  <meta property="og:title" content="功能详解 — 地震哨兵 Dianguard">
-  <meta property="og:description" content="地震哨兵的完整功能说明：官方地震预警信息接收与转发展示终端、五路实时源并行、全屏倒计时提示、四级烈度、真实大陆预警语音、模拟演练、历史记录、隐私省电与许可声明。">
-  <meta property="og:url" content="https://lokeily.github.io/dianguard-site/features.html">
-  <meta property="og:image" content="https://lokeily.github.io/dianguard-site/assets/og-cover.png">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:locale" content="zh_CN">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="功能详解 — 地震哨兵 Dianguard">
-  <meta name="twitter:description" content="地震哨兵的完整功能说明：官方地震预警信息接收与转发展示终端、五路实时源并行、全屏倒计时提示、四级烈度、真实大陆预警语音、模拟演练、历史记录、隐私省电与许可声明。">
-  <meta name="twitter:image" content="https://lokeily.github.io/dianguard-site/assets/og-cover.png">
   <link rel="stylesheet" href="styles.css">
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "地震哨兵 Dianguard",
-    "applicationCategory": "UtilityApplication",
-    "operatingSystem": "Android",
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "CNY"
-    },
-    "softwareVersion": "v1.3.2",
-    "downloadUrl": "https://github.com/Lokeily/Earthquake-Sentinel/releases/latest",
-    "codeRepository": "https://github.com/Lokeily/Earthquake-Sentinel",
-    "author": {
-      "@type": "Organization",
-      "name": "Lokeily"
-    }
-  }
-  </script>
 </head>
 <body class="page-features">
   <div class="scroll-progress"><i></i></div>
@@ -58,8 +21,8 @@
     <button class="nav-toggle" id="nav-toggle" aria-label="打开菜单" aria-expanded="false"><i></i><i></i><i></i></button>
     <div class="nav-links" id="nav-links">
       <a href="index.html">首页</a>
-      <div class="nav-item active"><a href="features.html">功能</a><span class="nav-caret" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span><div class="nav-drop" role="menu"><a href="features.html#alerting"><b>告警体验</b><span>全屏倒计时 · 锁屏之上</span></a><a href="features.html#levels"><b>四级预警</b><span>Ⅰ红Ⅱ橙Ⅲ黄Ⅳ蓝 · 按本地烈度</span></a><a href="features.html#voice"><b>预警语音</b><span>真实录音 · 三段式播报</span></a><a href="features.html#sources"><b>多源融合</b><span>五源融合 · EewFusion 决策</span></a><a href="features.html#control"><b>个性化</b><span>阈值可调 · 模拟演练</span></a><a href="features.html#permissions"><b>权限说明</b><span>每一项都对应一个功能</span></a></div></div>
-      <div class="nav-item"><a href="how.html">技术原理</a><span class="nav-caret" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span><div class="nav-drop" role="menu"><a href="how.html#mechanism"><b>地震波</b><span>先见闪电 · 后闻雷声</span></a><a href="how.html#timeline"><b>预警时间轴</b><span>从地动山摇到手机响铃</span></a><a href="how.html#intensity"><b>烈度公式</b><span>你这里有多晃</span></a><a href="how.html#eewfusion"><b>EewFusion 引擎</b><span>多源融合决策核心</span></a><a href="how.html#arch"><b>五源数据流</b><span>五源融合 · 分区烈度</span></a><a href="how.html#blindzone"><b>预警盲区</b><span>离闪电太近来不及</span></a><a href="how.html#decision"><b>触发决策</b><span>要不要叫醒你</span></a></div></div>
+      <a href="features.html" class="active">功能</a>
+      <a href="how.html">技术原理</a>
       <a href="changelog.html">版本更新</a>
       <a href="disclaimer.html">免责声明</a>
       <span class="nav-sep"></span>
@@ -74,7 +37,7 @@
     <div class="container">
       <span class="kicker"><span class="dot level-blue"></span>功能详解</span>
       <h1>每一个功能，<br>都是为了<span class="gradient-text">争取那几秒</span></h1>
-      <p class="lead">地震哨兵不追求功能数量，只做一件事：在破坏性 S 波（横波）抵达你脚下之前，用最不可能被忽略的方式提醒你，并告诉你还剩多少秒。以下是它全部能力的完整说明。</p>
+      <p class="lead">地震哨兵不追求功能数量，只做一件事：在破坏性震动抵达你脚下之前，用最不可能被忽略的方式提醒你，并告诉你还剩多少秒。以下是它全部能力的完整说明。</p>
       <div class="page-actions">
         <a class="btn btn-primary" data-release-download href="https://github.com/Lokeily/Earthquake-Sentinel/releases/latest">
           <span class="dl-label">立即下载 APK</span>
@@ -100,7 +63,7 @@
     <div class="container">
       <div class="fx-head">
         <h2>告警体验：不可能被忽略</h2>
-        <p>普通通知会被免打扰、静音、锁屏挡下。地震预警利用 P 波先于 S 波到达的时间差，只有几秒到几十秒，任何一次「没看到」都可能是致命的。</p>
+        <p>普通通知会被免打扰、静音、锁屏挡下。地震预警只有几秒到几十秒，任何一次「没看到」都可能是致命的。</p>
       </div>
 
       <div class="fx-row">
@@ -150,7 +113,7 @@
           <h3>算的是「你这里有多晃」</h3>
           <p>很多预警只告诉你震级，但 6.0 级地震在 500 公里外和 20 公里外完全是两回事。地震哨兵用震级、震中距与震源深度估算<strong>你所在位置</strong>的烈度，再决定是否打扰你。</p>
           <ul class="fx-points">
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span>基于 <b>GB 18306-2015《中国地震动参数区划图》六分区短轴衰减模型</b>估算本地烈度。</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span>基于<b>汪素云等（2000）</b>中国地区烈度衰减关系估算本地烈度。</span></li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span>低于阈值的远震<b>只进通知栏和历史记录</b>，不打断你。</span></li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span>详情行完整给出<b>震中距、预估本地震感、震源深度</b>三项关键数据。</span></li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span>服务启动后有 <b>15 秒冷静期</b>，避免数据源补发历史报文造成误报惊吓。</span></li>
@@ -172,37 +135,36 @@
   <section id="levels" class="fx-block">
     <div class="container">
       <div class="fx-head">
-        <h2>Ⅰ 红 · Ⅱ 橙 · Ⅲ 黄 · Ⅳ 蓝 四级预警</h2>
-        <p>等级按<strong>你所在地的预估烈度</strong>（中国地震局官方标准）划分，决定告警页配色与语音内容；是否触发全屏，由预估烈度与你设定的阈值共同决定。</p>
+        <h2>蓝 · 黄 · 橙 · 红 四级响应</h2>
+        <p>等级按<strong>震级</strong>划分，决定告警页的配色与语音内容；是否触发全屏，则由你所在地的<strong>估算烈度</strong>和你设定的阈值共同决定。</p>
       </div>
       <div class="level-table">
-        <div class="level-row red">
-          <div class="level-name"><span class="dot level-red"></span>Ⅰ级 红色</div>
-          <div class="level-mag">预估烈度 ≥ 7°</div>
-          <div class="level-desc">灾害性。可能造成建筑损毁，请立即就近躲避、保护头部，震后有序撤离。</div>
-        </div>
-        <div class="level-row orange">
-          <div class="level-name"><span class="dot level-orange"></span>Ⅱ级 橙色</div>
-          <div class="level-mag">5° ≤ 预估烈度 &lt; 7°</div>
-          <div class="level-desc">灾害性。可能造成物品倾倒、墙体开裂，请立即采取防护措施并准备避险。</div>
+        <div class="level-row blue">
+          <div class="level-name"><span class="dot level-blue"></span>蓝色</div>
+          <div class="level-mag">M &lt; 4.0</div>
+          <div class="level-desc">轻微地震。多数人可能仅感到轻微晃动，无需惊慌，留意后续信息即可。</div>
         </div>
         <div class="level-row yellow">
-          <div class="level-name"><span class="dot level-yellow"></span>Ⅲ级 黄色</div>
-          <div class="level-mag">3° ≤ 预估烈度 &lt; 5°</div>
-          <div class="level-desc">告知性。室内物品可能轻微晃动，请提高警惕，远离玻璃、吊灯与高处物品。</div>
+          <div class="level-name"><span class="dot level-yellow"></span>黄色</div>
+          <div class="level-mag">4.0 ≤ M &lt; 5.0</div>
+          <div class="level-desc">有感地震。室内物品可能轻微晃动，请提高警惕，远离玻璃、吊灯与高处物品。</div>
         </div>
-        <div class="level-row blue">
-          <div class="level-name"><span class="dot level-blue"></span>Ⅳ级 蓝色</div>
-          <div class="level-mag">预估烈度 &lt; 3°</div>
-          <div class="level-desc">告知性。多数人仅感轻微晃动或无明显感觉，留意后续信息即可。</div>
+        <div class="level-row orange">
+          <div class="level-name"><span class="dot level-orange"></span>橙色</div>
+          <div class="level-mag">5.0 ≤ M &lt; 6.0</div>
+          <div class="level-desc">强烈地震。可能造成物品倾倒、墙体开裂，请立即采取防护措施并准备避险。</div>
+        </div>
+        <div class="level-row red">
+          <div class="level-name"><span class="dot level-red"></span>红色</div>
+          <div class="level-mag">M ≥ 6.0</div>
+          <div class="level-desc">破坏性地震。可能造成建筑损毁，请立即就近躲避、保护头部，震后有序撤离。</div>
         </div>
       </div>
       <div class="callout">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 2 20h20L12 3z"/><path d="M12 9v5"/><path d="M12 17h.01"/></svg>
         <div>
-          <b>等级由「本地烈度」决定，不是震级</b>
-          <p>一次远方的 6 级地震，你这里的预估烈度可能不到 2 度，只会进通知栏；一次近处的 4.5 级小震却可能触发全屏。阈值可在 <strong>3° / 2°（默认推荐）/ 4°</strong> 间切换：调高更安静，调低更灵敏。单源初报会被标记为 <code>isPreliminary</code>，禁止触发红色，防止误报。</p>
-          <p style="margin-top:10px"><b>两套分级标准并存：</b>历史列表按<strong>震级</strong>着色（红 ≥6.0 / 橙 5.0–5.9 / 黄 3.0–4.9 / 蓝 &lt;3.0），告诉你地震本身有多强；倒计时弹窗按<strong>你所在地的预估烈度</strong>着色（红 ≥7° / 橙 5–6° / 黄 3–4° / 蓝 &lt;3°），告诉你该怎么避险。二者服务不同的认知目的，不可混用。</p>
+          <b>等级 ≠ 一定会全屏</b>
+          <p>一次 6.0 级地震如果发生在 800 公里之外，你这里的估算烈度可能不到 2 度，此时只会进通知栏。反过来，一次 4.5 级的近震也可能触发全屏。这正是「按本地烈度触发」的意义。</p>
         </div>
       </div>
     </div>
@@ -213,7 +175,7 @@
     <div class="container">
       <div class="fx-head">
         <h2>真实大陆预警语音，不是机器读数字</h2>
-        <p>像消防警铃一样「听得懂、叫得醒」：告警音频全部采用真实的大陆地震预警录音，分段拼接播放，走闹钟音频通道，静音与免打扰下依然响。</p>
+        <p>告警音频全部采用真实的大陆地震预警录音，分段拼接播放，走闹钟音频通道，静音与免打扰下依然响。</p>
       </div>
       <div class="fx-row">
         <div class="fx-copy">
@@ -247,7 +209,6 @@
           </div>
         </div>
       </div>
-      <p class="anim-caption">三段式播报依次激活，条形跳动模拟当前段的音频输出——与真实告警流程完全一致</p>
     </div>
   </section>
 
@@ -255,121 +216,54 @@
   <section id="sources" class="fx-block">
     <div class="container">
       <div class="fx-head">
-        <h2>多源融合：五路实时源，任一可达即触发</h2>
-        <p>地震预警报文需经公共转发节点到达手机。单一节点一旦限流、维护或断网，你就完全收不到——且不会知道。地震哨兵同时常驻<strong>五路实时源</strong>：CENC / SC / CQ / CWA 经 Wolfx 镜像、ICL 成都高新减灾所经<strong>完全独立的官方域名</strong>，任一可达即触发；USGS / Wolfx HTTP / EMSC 备用探测源在主链路全断时兜底。须坦诚：前四路共用 Wolfx 单一网关，该网关故障时 ICL 是唯一不中断的实时链路。</p>
+        <h2>官方直连 + 多层降级：一条链路挂了，预警不断</h2>
+        <p>预警报文需要经过网络才能到达手机。单一节点一旦限流、维护或断网，你就完全收不到预警——而你根本不会知道。</p>
       </div>
       <div class="source-grid">
         <div class="source-card">
-          <div class="source-name">CENC 中国地震台网</div>
-          <div class="source-url">wss://ws-api.wolfx.jp · WebSocket</div>
-          <span class="badge free">主实时源 · 秒级推送 · 免 Key</span>
+          <div class="source-name">ICL 官方预警网</div>
+          <div class="source-url">mobile-new.chinaeew.cn · 1s 增量</div>
+          <span class="badge free">官方直连 · 默认启用</span>
         </div>
         <div class="source-card">
-          <div class="source-name">SC 四川省地震局</div>
-          <div class="source-url">wss://ws-api.wolfx.jp · WebSocket</div>
-          <span class="badge free">主实时源 · 秒级推送 · 免 Key</span>
+          <div class="source-name">CENC 官方目录</div>
+          <div class="source-url">www.ceic.ac.cn · 权威历史</div>
+          <span class="badge free">官方 · 免 Key</span>
         </div>
         <div class="source-card">
-          <div class="source-name">CQ 重庆市地震局</div>
-          <div class="source-url">wss://ws-api.wolfx.jp · WebSocket</div>
-          <span class="badge free">主实时源 · 秒级推送 · 免 Key</span>
+          <div class="source-name">Wolfx 四路转发</div>
+          <div class="source-url">CENC / 川 / 渝 / 台</div>
+          <span class="badge free">免 Key · 故障自动 HTTP 降级</span>
         </div>
         <div class="source-card">
-          <div class="source-name">CWA 中国台湾测报</div>
-          <div class="source-url">wss://ws-api.wolfx.jp · WebSocket</div>
-          <span class="badge free">主实时源 · 秒级推送 · 免 Key</span>
-        </div>
-        <div class="source-card">
-          <div class="source-name">ICL 成都高新减灾所</div>
-          <div class="source-url">mobile-new.chinaeew.cn · HTTP 3s 轮询</div>
-          <span class="badge free">中国官方预警 · 域名完全独立</span>
-        </div>
-        <div class="source-card muted">
-          <div class="source-name">USGS · Wolfx HTTP · EMSC</div>
-          <div class="source-url">FDSN · HTTP 30s 轮询</div>
-          <span class="badge token">备用探测源 · 主链路全断时激活</span>
-        </div>
-        <div class="source-card muted">
-          <div class="source-name">用户自建源（BeeCLD / 2v8 / FAN）</div>
-          <div class="source-url">令牌由用户自行填写</div>
-          <span class="badge off">v1.3.2 起不再内置，可手动添加</span>
+          <div class="source-name">BeeCLD · 2v8</div>
+          <div class="source-url">api.2v8.cn/ws/cea</div>
+          <span class="badge token">可选 · 用户自备令牌</span>
         </div>
       </div>
       <div class="fx-row" style="margin-top:56px">
         <div class="fx-copy">
-          <span class="fx-tag">EewFusion</span><span class="fx-tag self">自研核心</span>
-          <h3>EewFusion — 自研多源融合决策引擎</h3>
-          <p>借鉴集成学习思想，每个数据源被视为独立「专家」。在 <strong>1.0–1.5s 动态融合窗口</strong>内收集多源报文后加权融合、震级校准与趋势融合，单源异常不会主导结果：</p>
-          <p class="fx-lead">这是地震哨兵区别于「单源转发器」的核心能力，完全由作者<strong>自研</strong>：让多源相互印证，而非盲信单一来源。</p>
+          <span class="fx-tag">Redundancy</span>
+          <h3>先到先发，三层降级</h3>
+          <p>所有数据源指向同一套国家级预警数据。它们同时在线，<strong>谁先到谁触发</strong>，重复报文自动去重；任一链路故障自动降级到下一层。</p>
           <ul class="fx-points">
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span><b>震级融合 + 校准</b>：加权中位数更抗异常值；并按「源 × 震级桶」预训练修正，偏差钳制在 ±0.5 内。</span></li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span><b>坐标选优</b>：取权重最高源的原始坐标，严禁加权平均（避免物理意义错误）；并带坐标死区防抖。</span></li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span><b>初报 / 终报双轨</b>：多源一致→高置信触发；单源初报标记 <code>isPreliminary</code> 禁止触发红色；修正量 &gt;±0.4 强制推送版本更新。</span></li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span><b>趋势融合</b>：按各源相对共识偏移量动态加权，捕捉震级 / 位置修正；单源伪造报文被中位数 + 置信度机制抑制。</span></li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span><b>动态融合窗</b>：1.0–1.5s 自适应——多源在线时自动缩短，单源时延长以积累证据。</span></li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span><b>状态 TTL 淘汰</b>：按事件版本隔离，30 分钟超时状态自动回收，杜绝内存泄漏（v1.3.2 修复）。</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span><b>并行连接</b>：官方源 1 秒增量轮询 + 多路 WebSocket 推送同时在线，没有切换延迟。</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span><b>自动去重</b>：同一次地震从多个源到达时，只弹一次告警。</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span><b>三层降级</b>：WS 推送 → 同机构 HTTP 轮询 → 备用探测源，逐层自动接管。</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span><b>状态可见</b>：主页实时显示官方/转发每条链路的在线情况，不做黑盒。</span></li>
           </ul>
-          <p class="fx-note">工程保障：动态融合窗 · 震级校准 · 趋势融合 · 坐标防抖 · 按版本隔离 · 状态 TTL 30min 淘汰 · 10 分钟跨源去重，确保不重复、不漏报。</p>
-          <p class="fx-license">EewFusion 为地震哨兵自研核心算法。仓库以 <strong>Apache-2.0</strong> 协议开源（UI / 解析 / 烈度衰减 / 告警 / 历史 / 证书固定 / 构建），其核心融合与 FusionCalibration 以 <strong>专有协议</strong>分发、不随仓库公开；仓库内含接口一致的<strong>精简兼容实现</strong>（<code>ingest</code> / <code>forceFlush</code> / <code>FusionResult</code>），便于审阅与二次开发。</p>
           <p style="margin-top:20px"><a class="link-arrow" href="how.html#arch">查看完整数据流架构<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></p>
         </div>
         <div class="fx-visual">
-          <div class="reliability-graph" aria-hidden="true">
-            <svg class="rg-svg" viewBox="0 0 360 320" preserveAspectRatio="xMidYMid meet" role="img" aria-label="五路实时数据源汇聚至地震哨兵：CENC / SC / CQ / CWA 经 Wolfx 网关，ICL 经独立域名">
-              <defs>
-                <radialGradient id="rgHubGlow2" cx="50%" cy="50%" r="50%">
-                  <stop offset="0%" stop-color="#0a84ff" stop-opacity="0.55"/>
-                  <stop offset="100%" stop-color="#0a84ff" stop-opacity="0"/>
-                </radialGradient>
-                <linearGradient id="rgHubFill2" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0%" stop-color="#0a84ff"/>
-                  <stop offset="100%" stop-color="#0050b3"/>
-                </linearGradient>
-              </defs>
-              <!-- edges: 4 Wolfx (blue) + ICL (green) -->
-              <path class="rg-edge" d="M50,52 C 70,140 120,200 150,214" fill="none" stroke="rgba(10,132,255,0.5)" stroke-width="1.6"/>
-              <path class="rg-edge" d="M133,42 C 140,130 160,185 175,212" fill="none" stroke="rgba(10,132,255,0.5)" stroke-width="1.6"/>
-              <path class="rg-edge" d="M227,42 C 220,130 200,185 185,212" fill="none" stroke="rgba(10,132,255,0.5)" stroke-width="1.6"/>
-              <path class="rg-edge" d="M310,52 C 290,140 240,200 210,214" fill="none" stroke="rgba(10,132,255,0.5)" stroke-width="1.6"/>
-              <path class="rg-edge" d="M40,182 C 90,200 140,215 160,228" fill="none" stroke="rgba(52,199,89,0.6)" stroke-width="1.8"/>
-
-              <!-- packets -->
-              <circle r="4" fill="#0A84FF" filter="url(#rgHubGlow2)"><animateMotion dur="2.4s" repeatCount="indefinite" path="M50,52 C 70,140 120,200 150,214"/></circle>
-              <circle r="4" fill="#0A84FF"><animateMotion dur="2.4s" begin="0.6s" repeatCount="indefinite" path="M133,42 C 140,130 160,185 175,212"/></circle>
-              <circle r="4" fill="#0A84FF"><animateMotion dur="2.4s" begin="1.2s" repeatCount="indefinite" path="M227,42 C 220,130 200,185 185,212"/></circle>
-              <circle r="4" fill="#0A84FF"><animateMotion dur="2.4s" begin="1.8s" repeatCount="indefinite" path="M310,52 C 290,140 240,200 210,214"/></circle>
-              <circle r="4" fill="#34C759"><animateMotion dur="2.4s" begin="0.3s" repeatCount="indefinite" path="M40,182 C 90,200 140,215 160,228"/></circle>
-
-              <!-- Wolfx source nodes -->
-              <g class="rg-node">
-                <circle cx="50" cy="50" r="18" fill="rgba(10,132,255,0.16)" stroke="#0A84FF" stroke-width="2"/>
-                <text x="50" y="54" text-anchor="middle" fill="#fff" font-size="9" font-weight="700">CENC</text>
-              </g>
-              <g class="rg-node">
-                <circle cx="133" cy="40" r="18" fill="rgba(10,132,255,0.16)" stroke="#0A84FF" stroke-width="2"/>
-                <text x="133" y="44" text-anchor="middle" fill="#fff" font-size="9" font-weight="700">SC</text>
-              </g>
-              <g class="rg-node">
-                <circle cx="227" cy="40" r="18" fill="rgba(10,132,255,0.16)" stroke="#0A84FF" stroke-width="2"/>
-                <text x="227" y="44" text-anchor="middle" fill="#fff" font-size="9" font-weight="700">CQ</text>
-              </g>
-              <g class="rg-node">
-                <circle cx="310" cy="50" r="18" fill="rgba(10,132,255,0.16)" stroke="#0A84FF" stroke-width="2"/>
-                <text x="310" y="54" text-anchor="middle" fill="#fff" font-size="9" font-weight="700">CWA</text>
-              </g>
-
-              <!-- ICL independent node -->
-              <g class="rg-node">
-                <circle cx="40" cy="180" r="20" fill="rgba(52,199,89,0.16)" stroke="#34C759" stroke-width="2"/>
-                <text x="40" y="184" text-anchor="middle" fill="#fff" font-size="10" font-weight="700">ICL</text>
-                <text x="40" y="206" text-anchor="middle" fill="rgba(255,255,255,0.55)" font-size="8">独立域名</text>
-              </g>
-
-              <!-- hub -->
-              <ellipse cx="180" cy="248" rx="92" ry="32" fill="url(#rgHubGlow2)"/>
-              <rect x="122" y="222" width="116" height="52" rx="14" fill="url(#rgHubFill2)" stroke="rgba(255,255,255,0.25)" stroke-width="1"/>
-              <text x="180" y="246" text-anchor="middle" fill="#fff" font-size="14" font-weight="800">地震哨兵</text>
-              <text x="180" y="263" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="9">五路实时源·任一可达即触发</text>
+          <div class="reliability-graph" style="flex:none;width:100%;max-width:290px;height:270px">
+            <div class="rg-source">ICL 官方</div>
+            <div class="rg-source">CENC 官方</div>
+            <div class="rg-source">Wolfx 转发</div>
+            <div class="rg-hub">地震哨兵</div>
+            <svg class="rg-lines" viewBox="0 0 200 220" preserveAspectRatio="none">
+              <line x1="100" y1="30" x2="100" y2="180"></line>
+              <line x1="44" y1="72" x2="100" y2="180"></line>
+              <line x1="156" y1="72" x2="100" y2="180"></line>
             </svg>
           </div>
         </div>
@@ -447,7 +341,6 @@
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span><b>无账号体系</b>，不需要注册、不需要登录。</span></li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span><b>无广告、无内购</b>，完全免费且开源，代码可自行审计。</span></li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span>除网络请求必须的 URL 外，<b>无任何数据上报行为</b>。</span></li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span><b>证书固定（SPKI）</b>：所有数据链路固定 leaf + 中间 CA 双 pin，即使网络层被控也无法用伪 CA 冒充数据源。</span></li>
           </ul>
         </div>
         <div class="fx-copy">
@@ -538,7 +431,7 @@
             <tr><th>对比项</th><th>地震哨兵</th><th>系统自带预警</th></tr>
           </thead>
           <tbody>
-            <tr><td>数据链路</td><td>五路实时源并行（CENC/SC/CQ/CWA 经 Wolfx 镜像 + ICL 独立域名），USGS/Wolfx HTTP/EMSC 备用探测</td><td>厂商 / 运营商单一链路</td></tr>
+            <tr><td>数据链路</td><td>多个相互独立的公共转发源并行</td><td>厂商 / 运营商单一链路</td></tr>
             <tr><td>触发条件</td><td><span class="cmp-yes">按本地估算烈度，阈值可调</span></td><td>由厂商策略决定，通常不可调</td></tr>
             <tr><td>告警形式</td><td>全屏倒计时 + 真实预警语音 + 震动</td><td>因机型而异，部分仅弹窗提示</td></tr>
             <tr><td>模拟演练</td><td><span class="cmp-yes">支持，真实城市 + 随机 ETA</span></td><td><span class="cmp-no">通常不支持</span></td></tr>
@@ -549,7 +442,6 @@
           </tbody>
         </table>
       </div>
-      <p class="anim-caption">各行依次渐入，绿色标记弹入——逐行展开让你从容对比每一项差异</p>
     </div>
   </section>
 
@@ -574,7 +466,7 @@
         <img src="assets/ic_launcher.png" alt="">
         <div>
           <strong>地震哨兵 Dianguard</strong>
-          <p>公益开源项目 · 官方地震预警信息接收终端 · 仅供学习与研究使用</p>
+          <p>开源 Android 地震预警应用 · 仅供学习与研究使用</p>
         </div>
       </div>
       <div class="footer-links">
@@ -585,15 +477,7 @@
         <a href="disclaimer.html">免责声明</a>
         <a href="https://github.com/Lokeily/Earthquake-Sentinel" target="_blank" rel="noopener">GitHub</a>
       </div>
-      <p class="footer-copy">© 2026 地震哨兵 Dianguard · 遵循中国大陆法律法规 · 地震预警信息源自中国地震台网中心（经公共聚合转发），请以官方渠道为准。本公益开源项目若侵犯国家权益或社会公共利益，将立即自行下架或删除。</p>
-      <div class="footer-sources">
-        <span class="fs-label">数据来源</span>
-        <a href="https://www.cenc.ac.cn/" target="_blank" rel="noopener">中国地震台网中心</a>
-        <a href="https://wolfx.jp/" target="_blank" rel="noopener">Wolfx（CENC）</a>
-        <a href="https://www.cnee.net/" target="_blank" rel="noopener">ICL 成都高新减灾所</a>
-        <a href="https://earthquake.usgs.gov/" target="_blank" rel="noopener">USGS</a>
-        <a href="https://www.seismicportal.eu/" target="_blank" rel="noopener">EMSC</a>
-      </div>
+      <p class="footer-copy">© 2026 地震哨兵 Dianguard · 地震预警信息源自中国地震台网中心（经公共聚合转发），请以官方渠道为准。</p>
     </div>
   </footer>
 
