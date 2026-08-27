@@ -5,45 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>版本更新 — 地震哨兵 Dianguard</title>
   <meta name="description" content="地震哨兵 Dianguard 的版本更新记录。本站下载按钮实时指向最新 Release，你下载到的永远是最新版。">
-  <meta name="theme-color" content="#050508">
-  <meta name="color-scheme" content="dark">
   <link rel="icon" type="image/png" href="assets/ic_launcher.png">
-  <link rel="canonical" href="https://lokeily.github.io/dianguard-site/changelog.html">
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="地震哨兵 Dianguard">
-  <meta property="og:title" content="版本更新 — 地震哨兵 Dianguard">
-  <meta property="og:description" content="地震哨兵 Dianguard 的版本更新记录。本站下载按钮实时指向最新 Release，你下载到的永远是最新版。">
-  <meta property="og:url" content="https://lokeily.github.io/dianguard-site/changelog.html">
-  <meta property="og:image" content="https://lokeily.github.io/dianguard-site/assets/og-cover.png">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:locale" content="zh_CN">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="版本更新 — 地震哨兵 Dianguard">
-  <meta name="twitter:description" content="地震哨兵 Dianguard 的版本更新记录。本站下载按钮实时指向最新 Release，你下载到的永远是最新版。">
-  <meta name="twitter:image" content="https://lokeily.github.io/dianguard-site/assets/og-cover.png">
   <link rel="stylesheet" href="styles.css">
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "地震哨兵 Dianguard",
-    "applicationCategory": "UtilityApplication",
-    "operatingSystem": "Android",
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "CNY"
-    },
-    "softwareVersion": "v1.3.2",
-    "downloadUrl": "https://github.com/Lokeily/Earthquake-Sentinel/releases/latest",
-    "codeRepository": "https://github.com/Lokeily/Earthquake-Sentinel",
-    "author": {
-      "@type": "Organization",
-      "name": "Lokeily"
-    }
-  }
-  </script>
 </head>
 <body class="page-changelog">
   <div class="scroll-progress"><i></i></div>
@@ -58,8 +21,8 @@
     <button class="nav-toggle" id="nav-toggle" aria-label="打开菜单" aria-expanded="false"><i></i><i></i><i></i></button>
     <div class="nav-links" id="nav-links">
       <a href="index.html">首页</a>
-      <div class="nav-item"><a href="features.html">功能</a><span class="nav-caret" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span><div class="nav-drop" role="menu"><a href="features.html#alerting"><b>告警体验</b><span>全屏倒计时 · 锁屏之上</span></a><a href="features.html#levels"><b>四级预警</b><span>Ⅰ红Ⅱ橙Ⅲ黄Ⅳ蓝 · 按本地烈度</span></a><a href="features.html#voice"><b>预警语音</b><span>真实录音 · 三段式播报</span></a><a href="features.html#sources"><b>多源融合</b><span>五源融合 · EewFusion 决策</span></a><a href="features.html#control"><b>个性化</b><span>阈值可调 · 模拟演练</span></a><a href="features.html#permissions"><b>权限说明</b><span>每一项都对应一个功能</span></a></div></div>
-      <div class="nav-item"><a href="how.html">技术原理</a><span class="nav-caret" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span><div class="nav-drop" role="menu"><a href="how.html#mechanism"><b>地震波</b><span>先见闪电 · 后闻雷声</span></a><a href="how.html#timeline"><b>预警时间轴</b><span>从地动山摇到手机响铃</span></a><a href="how.html#intensity"><b>烈度公式</b><span>你这里有多晃</span></a><a href="how.html#arch"><b>五源数据流</b><span>五源融合 · 分区烈度</span></a><a href="how.html#blindzone"><b>预警盲区</b><span>离闪电太近来不及</span></a><a href="how.html#decision"><b>触发决策</b><span>要不要叫醒你</span></a></div></div>
+      <a href="features.html">功能</a>
+      <a href="how.html">技术原理</a>
       <a href="changelog.html" class="active">版本更新</a>
       <a href="disclaimer.html">免责声明</a>
       <span class="nav-sep"></span>
@@ -77,53 +40,9 @@
         <p class="lead">地震哨兵每次发版都会同步到这里。本站下载按钮实时指向列表中的<strong>最新版本</strong>，你拿到的永远是最新版。</p>
       </header>
 
-      <!-- 下面这段由 tools/bake-changelog.js 从 GitHub Release 生成，请勿手改。
-           静态存在是刻意为之：GitHub API 对未认证请求限流 60 次/小时/IP，
-           页面内容不能依赖那次请求成功。JS 只在能连通时刷新出更新的版本。 -->
-      <!-- BAKED:BEGIN -->
-  <div id="release-list" class="release-list" data-baked="1.3.2,1.3.1,1.3.0,1.2.0,1.1.0">
-    <article class="release-card latest">
-      <div class="release-head">
-        <span class="release-version">v1.3.2</span><span class="release-badge">最新</span>
-        <span class="release-date">2026-08-05</span>
+      <div id="release-list" class="release-list">
+        <div class="release-loading">正在加载更新记录…</div>
       </div>
-      <div class="release-notes"><h4>融合引擎 v2.4 完整版 · 与 v1.3.1 的关键变化</h4><h5>🧠 EewFusion 融合算法升级</h5><ul><li><strong>加权中位数融合</strong>：对五路实时源（CENC / SC / CQ / CWA 经 Wolfx 镜像、ICL 独立域名）做加权中位数收敛，抑制单源跳变。</li><li><strong>动态融合窗</strong>：融合窗口在 1.0–1.5 秒之间自适应，源越多越短、源越少越长。</li><li><strong>震级校准</strong>：基于历史偏差对每路震级做 ±0.5 自动修正，收敛后取中位估计。</li><li><strong>趋势融合</strong>：捕捉震级随时间动态修正的轨迹，而非只取单帧快照。</li><li><strong>初报 / 终报双轨</strong>：先发初步结论（`isPreliminary`），修正量大于 ±0.4 时强制推送新版本，终报收敛后锁定。</li><li><strong>状态 TTL 淘汰</strong>：事件状态 30 分钟未更新即淘汰，修复长时间运行的内存泄漏。</li></ul><h5>📡 数据来源收敛</h5><ul><li>实时源收敛为五路：CENC / SC / CQ / CWA（Wolfx 单一网关镜像）+ ICL（完全独立官方域名）。</li><li>用户自建源（BeeCLD · 2v8 · FAN Studio）自 v1.3.2 起不再内置，需用户自行接入。</li></ul><h5>📋 工程改进</h5><ul><li>融合核心以 Apache-2.0 开放 `ingest` / `forceFlush` / `FusionResult` 接口，自研调权与校准逻辑以专有许可保护。</li></ul></div>
-      <p class="release-dl"><a class="btn btn-secondary btn-small" href="https://github.com/Lokeily/Earthquake-Sentinel/releases/download/v1.3.2/Dianguard-v1.3.2.apk" target="_blank" rel="noopener">下载 v1.3.2 APK</a></p>
-    </article>
-    <article class="release-card">
-      <div class="release-head">
-        <span class="release-version">v1.3.1</span>
-        <span class="release-date">2026-08-04</span>
-      </div>
-      <div class="release-notes"><h4>与 v1.3.0 的关键变化</h4><h5>🚨 分级与告警对齐</h5><ul><li><strong>分级按烈度标准对齐</strong>：预警分级严格对齐本地烈度（GB/T 国标五级）判定，避免远震误报。</li></ul><h5>🔒 安全增强</h5><ul><li><strong>证书固定（Cert Pinning）覆盖 6 个域名</strong>：对全部数据域做证书固定，抵御中间人与伪造源。</li><li><strong>密钥从 git history 移除</strong>：敏感凭据彻底移出版本历史，仅经 BuildConfig 注入。</li></ul></div>
-      <p class="release-dl"><a class="btn btn-secondary btn-small" href="https://github.com/Lokeily/Earthquake-Sentinel/releases/download/v1.3.1/Dianguard-v1.3.1-release.apk" target="_blank" rel="noopener">下载 v1.3.1 APK</a></p>
-    </article>
-    <article class="release-card">
-      <div class="release-head">
-        <span class="release-version">v1.3.0</span>
-        <span class="release-date">2026-08-04</span>
-      </div>
-      <div class="release-notes"><h4>与 v1.2.0 的关键变化</h4><h5>🧠 EewFusion 融合引擎</h5><ul><li>引入自研 <strong>EewFusion 融合引擎</strong>，对多路独立实时源做加权融合、坐标选优与去抖。</li><li><strong>ICL 改用完全独立官方域名</strong>（mobile-new.chinaeew.cn），与 Wolfx 镜像链路彻底解耦，去单点设计。</li></ul><h5>📡 数据源升级</h5><ul><li>实时源扩展为 CENC / SC / CQ / CWA 四路经 Wolfx 镜像 + ICL 一路独立域名。</li></ul></div>
-      <p class="release-dl"><a class="btn btn-secondary btn-small" href="https://github.com/Lokeily/Earthquake-Sentinel/releases/download/v1.3.0/Dianguard-v1.3.0-release.apk" target="_blank" rel="noopener">下载 v1.3.0 APK</a></p>
-    </article>
-    <article class="release-card">
-      <div class="release-head">
-        <span class="release-version">v1.2.0</span>
-        <span class="release-date">2026-08-03</span>
-      </div>
-      <div class="release-notes"><h4>与 v1.1.0 的关键变化</h4><h5>🚨 告警系统重构（核心安全改进）</h5><ul><li><strong>告警阈值改为本地烈度判定</strong>：不再用震级一刀切，改为按震中距+深度+震级估算<strong>用户所在地烈度</strong>（汪素云等2000短轴衰减模型），避免远震误报。</li><li><strong>四级预警配色标准化</strong>：红/橙/黄/蓝严格对应震级分级，全软件统一配色（AlertActivity/HistoryFragment/TestAlarmActivity）。</li><li><strong>三段式真实语音播报</strong>：采用真实大陆预警录音（非TTS），短语循环 → 逐秒倒计时 → 警报循环，全程走ALARM流、锁屏/静音下最大音量。</li></ul><h5>📡 数据源全面升级</h5><ul><li><strong>新增 BeeCLD·2v8 独立主机</strong>（api.2v8.cn/ws/cea）：中国地震预警网CEA国家级秒级预警源，与Wolfx完全独立，去单点设计。</li><li><strong>FAN Studio 鉴权握手代码已就绪</strong>（需用户配置API密钥后启用）</li><li><strong>备用探测源增强</strong>：USGS + Wolfx HTTP + EMSC 三级兜底，主链路全断时自动激活。</li></ul><h5>📋 历史记录大幅改进</h5><ul><li>主源改为<strong>中国地震台网速报目录</strong>（api.wolfx.jp/cenc_eqlist.json），中文地名/震级/深度齐全</li><li>USGS FDSN + EMSC FDSN 双兜底</li><li>BigDataCloud 免密钥逆地理编码 + 内置省级边界表</li><li>顶部特色卡片 + 等级色列表，标注来源与本地预估烈度</li></ul><h5>🎨 界面与体验</h5><ul><li><strong>深色模式默认开启</strong>（OLED纯黑省电，适配常亮旧手机）</li><li>设置页参考位置<strong>只显示中文地名</strong>（Geocoder → BigDataCloud → 省级表三级兜底），绝不显示裸经纬度</li><li>模拟预警以<strong>周边真实城市</strong>为震中，完整模拟全屏告警流程</li><li>告警页排版优化：大数字倒计时、「秒」紧随数字、归零显示「地震波已抵达」</li><li>全局字体统一为简体中文（内嵌Noto Sans SC）</li><li>繁体地名自动转简体（离线字符映射表）</li></ul><h5>🔧 工程改进</h5><ul><li>核心算法抽为顶层纯函数，56个单元测试全部通过</li><li>多源连接管理重构（EewConnectionManager/EewAlertManager职责分离）</li><li>WakeLock无条件续期（消除4小时失效窗口）</li><li>启动冷静期15秒（防止BeeCLD补推历史EEW误弹告警）</li><li>返回键拦截（告警页只能点「我已安全」解除）</li><li>崩溃日志坐标自动脱敏</li></ul><h5>🔒 安全增强</h5><ul><li>BEECLD_TOKEN从源码硬编码迁移到BuildConfig注入</li><li>Doze休眠白名单引导</li><li>历史记录SP写入容错</li></ul></div>
-      <p class="release-dl"><a class="btn btn-secondary btn-small" href="https://github.com/Lokeily/Earthquake-Sentinel/releases/download/v1.2.0/Dianguard-v1.2.0-release.apk" target="_blank" rel="noopener">下载 v1.2.0 APK</a></p>
-    </article>
-    <article class="release-card">
-      <div class="release-head">
-        <span class="release-version">v1.1.0</span>
-        <span class="release-date">2026-08-02</span>
-      </div>
-      <div class="release-notes"><p>Earthquake Sentinel v1.1.0 - Multi-source EEW, OLED dark mode, Disclaimer</p></div>
-      <p class="release-dl"><a class="btn btn-secondary btn-small" href="https://github.com/Lokeily/Earthquake-Sentinel/releases/download/v1.1.0/Dianguard-v1.1.0-release.apk" target="_blank" rel="noopener">下载 v1.1.0 APK</a></p>
-    </article>
-  </div>
-  <!-- BAKED:END -->
 
       <div class="changelog-actions">
         <a class="btn btn-secondary" href="https://github.com/Lokeily/Earthquake-Sentinel/releases" target="_blank" rel="noopener">在 GitHub 查看全部 Release</a>
@@ -138,7 +57,7 @@
         <img src="assets/ic_launcher.png" alt="">
         <div>
           <strong>地震哨兵 Dianguard</strong>
-          <p>公益开源项目 · 官方地震预警信息接收终端 · 仅供学习与研究使用</p>
+          <p>开源 Android 地震预警应用 · 仅供学习与研究使用</p>
         </div>
       </div>
       <div class="footer-links">
@@ -149,18 +68,39 @@
         <a href="disclaimer.html">免责声明</a>
         <a href="https://github.com/Lokeily/Earthquake-Sentinel" target="_blank" rel="noopener">GitHub</a>
       </div>
-      <p class="footer-copy">© 2026 地震哨兵 Dianguard · 遵循中国大陆法律法规 · 地震预警信息源自中国地震台网中心（经公共聚合转发），请以官方渠道为准。本公益开源项目若侵犯国家权益或社会公共利益，将立即自行下架或删除。</p>
-      <div class="footer-sources">
-        <span class="fs-label">数据来源</span>
-        <a href="https://www.cenc.ac.cn/" target="_blank" rel="noopener">中国地震台网中心</a>
-        <a href="https://wolfx.jp/" target="_blank" rel="noopener">Wolfx（CENC）</a>
-        <a href="https://www.cnee.net/" target="_blank" rel="noopener">ICL 成都高新减灾所</a>
-        <a href="https://earthquake.usgs.gov/" target="_blank" rel="noopener">USGS</a>
-        <a href="https://www.seismicportal.eu/" target="_blank" rel="noopener">EMSC</a>
-      </div>
+      <p class="footer-copy">© 2026 地震哨兵 Dianguard · 地震预警信息源自中国地震台网中心（经公共聚合转发），请以官方渠道为准。</p>
     </div>
   </footer>
 
+  <script type="application/json" id="fallback-releases">
+  [
+    {
+      "tag": "v1.4.3",
+      "date": "2026-08-28",
+      "notes": "回归初衷：移除融合引擎，先到先发（首报烈度达标立即告警）；接入 ICL 官方 1s 增量实时与 CENC 官方目录；Wolfx 故障自动 HTTP 降级；告警页对齐 ICL / 国家标准（等级横幅 + 倒计时提示横幅 + 分级避险指引）。"
+    },
+    {
+      "tag": "v1.3.2",
+      "date": "2026-08-05",
+      "notes": "融合引擎 v2.4 完整版 + 内存泄漏修复。详见 GitHub Release 页面查看完整更新说明。"
+    },
+    {
+      "tag": "v1.3.1",
+      "date": "2026-08-04",
+      "notes": "预警等级对齐中国地震局官方标准（本地预估烈度）。详见 GitHub Release 页面查看完整更新说明。"
+    },
+    {
+      "tag": "v1.2.0",
+      "date": "2026-08-03",
+      "notes": "告警系统重构 + 数据源升级。详见 GitHub Release 页面查看完整更新说明。"
+    },
+    {
+      "tag": "v1.1.0",
+      "date": "2026-08-01",
+      "notes": "早期稳定版。详见 GitHub Release 页面查看完整更新说明。"
+    }
+  ]
+  </script>
   <script src="app.js"></script>
 </body>
 </html>
